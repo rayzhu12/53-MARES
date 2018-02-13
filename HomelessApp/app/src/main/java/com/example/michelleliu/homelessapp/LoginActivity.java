@@ -32,6 +32,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.util.Log;
+
 import static android.Manifest.permission.READ_CONTACTS;
 
 /**
@@ -160,8 +162,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         View focusView = null;
 
         // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
+        if (TextUtils.isEmpty(password) && !isPasswordValid(password)) {
             mPasswordView.setError(getString(R.string.error_invalid_password));
+            Log.d("Message", "invalid password");
             focusView = mPasswordView;
             cancel = true;
         }
@@ -169,10 +172,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         // Check for a valid email address.
         if (TextUtils.isEmpty(email)) {
             mEmailView.setError(getString(R.string.error_field_required));
+            Log.d("Message", "isEmpty");
             focusView = mEmailView;
             cancel = true;
-        } else if (!isEmailValid(email)) {
+        }
+        if (!isEmailValid(email)) {
             mEmailView.setError(getString(R.string.error_invalid_email));
+            Log.d("Message", "invalid email");
             focusView = mEmailView;
             cancel = true;
         }
@@ -185,6 +191,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
+            Log.d("Message", "success");
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
         }
@@ -192,12 +199,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     private boolean isEmailValid(String email) {
         //TODO: Replace this with your own logic
-        return email.contains("@");
+        return email.equals("user");
     }
 
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
-        return password.length() > 4;
+        return password.equals("pass");
     }
 
     /**
