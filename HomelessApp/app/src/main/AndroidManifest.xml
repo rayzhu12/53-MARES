@@ -27,6 +27,14 @@
         <activity
             android:name=".AppActivity"
             android:label="@string/title_activity_app"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Registration"
+            android:label="@string/title_activity_registration"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".RegistrationActivity"
+            android:label="@string/title_activity_registration"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
