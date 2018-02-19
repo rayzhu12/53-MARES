@@ -43,16 +43,6 @@ public class RegistrationActivity extends AppCompatActivity {
             }
         });
 
-//        Button cancel = (Button) findViewById(R.id.cancel_button);
-//        cancel.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-////                mEmailView.setText("");
-////                mPasswordView.setText("");
-////                mPasswordView.clearFocus();
-//                startActivity(new Intent(RegistrationActivity.this, MainActivity.class));
-//            }
-//        });
 
         name = (EditText) findViewById(R.id.Name);
         email =(EditText) findViewById(R.id.Email);
@@ -60,6 +50,18 @@ public class RegistrationActivity extends AppCompatActivity {
 
         register = (Button) findViewById(R.id.create_account);
         register.setOnClickListener(addNewUser);
+
+        Button cancel2 = (Button) findViewById(R.id.cancel2);
+        cancel2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                name.setText("");
+                email.setText("");
+                password.setText("");
+                password.clearFocus();
+                startActivity(new Intent(RegistrationActivity.this, MainActivity.class));
+            }
+        });
     }
 
     private View.OnClickListener addNewUser = new View.OnClickListener() {
