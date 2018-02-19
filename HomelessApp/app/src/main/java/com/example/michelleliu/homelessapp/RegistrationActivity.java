@@ -73,6 +73,7 @@ public class RegistrationActivity extends AppCompatActivity {
             user.setPassword(password.getText().toString());
 
             model.checkUser(user);
+            model.printArray();
         }
     };
 

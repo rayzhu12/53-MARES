@@ -37,4 +37,8 @@ public class UserInfo {
     public String toString() {
         return ("Name: " + name + "Username: " + email + "Password: " + password);
     }
+
+    public boolean equals(UserInfo user) {
+        return false; 
+    }
  }

@@ -47,7 +47,10 @@ public class Model {
         return true;
     }
 
-    public String printArray() {
-        return null; 
+    public void printArray() {
+        for (UserInfo u: userInfo) {
+            String a = u.toString();
+            Log.d("test", a);
+        }
     }
 }
