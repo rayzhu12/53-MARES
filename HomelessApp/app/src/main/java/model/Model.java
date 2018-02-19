@@ -40,7 +40,9 @@ public class Model {
      */
     public boolean checkUser(UserInfo user) {
         for (UserInfo u: userInfo) {
-            if (u.equals(user)) return false;
+            if (u.equals(user)) {
+                return false;
+            }
         }
         Log.d("test", "added");
         userInfo.add(user);
@@ -48,9 +50,10 @@ public class Model {
     }
 
     public void printArray() {
+
         for (UserInfo u: userInfo) {
-            String a = u.toString();
-            Log.d("test", a);
+            String us = u.toString();
+            Log.d("users", us);
         }
     }
 }

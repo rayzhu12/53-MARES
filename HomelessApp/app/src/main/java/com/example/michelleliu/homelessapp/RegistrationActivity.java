@@ -68,11 +68,12 @@ public class RegistrationActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             Model model = Model.getInstance();
-            user = new UserInfo("", "", "");
+            user = new UserInfo("", "", "", "");
 
             user.setName(name.getText().toString());
             user.setEmail(email.getText().toString());
             user.setPassword(password.getText().toString());
+            user.setUserType(typeOfUser.getSelectedItem().toString());
 
             model.checkUser(user);
             model.printArray();
