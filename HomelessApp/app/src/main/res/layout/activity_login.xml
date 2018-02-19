@@ -76,6 +76,7 @@
                 android:id="@+id/cancel_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textStyle="bold"
                 android:backgroundTint="@android:color/holo_red_dark"
                 android:text="@string/action_cancel"
                 android:textAppearance="@android:style/TextAppearance.Material.Widget.Button.Colored" />
