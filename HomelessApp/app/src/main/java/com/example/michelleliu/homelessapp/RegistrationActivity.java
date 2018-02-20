@@ -37,6 +37,24 @@ public class RegistrationActivity extends AppCompatActivity {
         User;
     }
 
+    private boolean isEmailValid(String email) {
+        //TODO: Replace this with your own logic
+        // return email.equals("user");
+        if (email.equals("user")) {
+            return true;
+        }
+        return email.contains("@");
+    }
+
+    private boolean isPasswordValid(String password) {
+        //TODO: Replace this with your own logic
+        // return password.equals("pass");
+        if (password.equals("pass")) {
+            return true;
+        }
+        return password.length() >= 8;
+    }
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
@@ -76,6 +94,8 @@ public class RegistrationActivity extends AppCompatActivity {
                 startActivity(new Intent(RegistrationActivity.this, MainActivity.class));
             }
         });
+
+
     }
 
     private View.OnClickListener addNewUser = new View.OnClickListener() {
@@ -90,7 +110,8 @@ public class RegistrationActivity extends AppCompatActivity {
             user.setUserType(typeOfUser.getSelectedItem().toString());
 
             model.checkUser(user);
-            model.printArray();
+            // model.printArray();
+            startActivity(new Intent(RegistrationActivity.this, AppActivity.class));
         }
 
     };
