@@ -40,14 +40,20 @@ public class Model {
      */
     public boolean checkUser(UserInfo user) {
         for (UserInfo u: userInfo) {
-            if (u.equals(user)) return false;
+            if (u.equals(user)) {
+                return false;
+            }
         }
         Log.d("test", "added");
         userInfo.add(user);
         return true;
     }
 
-    public String printArray() {
-        return null; 
+    public void printArray() {
+
+        for (UserInfo u: userInfo) {
+            String us = u.toString();
+            Log.d("users", us);
+        }
     }
 }
