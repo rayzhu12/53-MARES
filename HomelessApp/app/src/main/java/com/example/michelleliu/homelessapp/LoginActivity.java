@@ -35,6 +35,8 @@ import java.util.List;
 import android.util.Log;
 import android.content.Intent;
 
+import model.Model;
+import model.UserInfo;
 /**
  * A login screen that offers login via email/password.
  */
@@ -304,6 +306,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 }
             }
 
+            Model model = Model.getInstance();
+            for (model.UserInfo UI : model.getUserInfo()) {
+                String email = UI.getEmail();
+                if (email.equals(mEmail)) {
+                    return UI.getPassword().equals(mPassword);
+                }
+
+            }
             // TODO: register the new account here.
             return false;
         }

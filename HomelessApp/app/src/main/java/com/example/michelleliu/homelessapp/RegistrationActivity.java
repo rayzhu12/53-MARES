@@ -9,8 +9,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import org.w3c.dom.Text;
 
@@ -27,6 +29,13 @@ public class RegistrationActivity extends AppCompatActivity {
     private Button register;
 
     private UserInfo user;
+
+    private Spinner typeOfUser;
+
+    public enum adminOrUser {
+        Admin,
+        User;
+    }
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +56,11 @@ public class RegistrationActivity extends AppCompatActivity {
         name = (EditText) findViewById(R.id.Name);
         email =(EditText) findViewById(R.id.Email);
         password = (EditText) findViewById(R.id.Password);
+
+        typeOfUser = (Spinner) findViewById(R.id.typeOfUser);
+        ArrayAdapter<String> adapter2 = new ArrayAdapter(this,android.R.layout.simple_spinner_item, adminOrUser.values());
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        typeOfUser.setAdapter(adapter2);
 
         register = (Button) findViewById(R.id.create_account);
         register.setOnClickListener(addNewUser);
@@ -76,6 +90,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
             model.checkUser(user);
         }
+
     };
 
 }

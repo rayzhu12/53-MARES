@@ -21,7 +21,7 @@ public class UserInfo {
     public void setName(String name) {
         this.name = name;
     }
-    public String geEmail() {
+    public String getEmail() {
         return this.email;
     }
     public void setEmail(String email) {
