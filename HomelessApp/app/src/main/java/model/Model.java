@@ -40,6 +40,8 @@ public class Model {
      */
     public boolean checkUser(UserInfo user) {
         for (UserInfo u: userInfo) {
+            System.out.println(userInfo.size());
+            System.out.println(u.equals(user));
             if (u.equals(user)) {
                 return false;
             }
