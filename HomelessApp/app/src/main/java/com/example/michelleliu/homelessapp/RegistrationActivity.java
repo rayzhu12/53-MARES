@@ -145,9 +145,14 @@ public class RegistrationActivity extends AppCompatActivity {
                 user.setPassword(password.getText().toString());
                 user.setUserType(typeOfUser.getSelectedItem().toString());
 
-                model.checkUser(user);
+                if (model.checkUser(user)) {
+                    startActivity(new Intent(RegistrationActivity.this, AppActivity.class));
+                } else {
+                    email.setError(getString(R.string.error_duplicate_email));
+                    email.requestFocus();
+                }
                 // model.printArray();
-                startActivity(new Intent(RegistrationActivity.this, AppActivity.class));
+
             }
         }
     };
