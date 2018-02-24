@@ -19,12 +19,12 @@ public class ItemArrayAdapter extends ArrayAdapter<String[]> {
     static class ItemViewHolder {
         TextView key;
         TextView name;
-        TextView capacity;
-        TextView gender;
-        TextView longitude;
-        TextView latitude;
-        TextView address;
-        TextView number;
+//        TextView capacity;
+//        TextView gender;
+//        TextView longitude;
+//        TextView latitude;
+//        TextView address;
+//        TextView number;
     }
 
     public ItemArrayAdapter(Context context, int textViewResourceId) {
@@ -58,13 +58,12 @@ public class ItemArrayAdapter extends ArrayAdapter<String[]> {
             viewHolder = new ItemViewHolder();
             viewHolder.key = (TextView) row.findViewById(R.id.key);
             viewHolder.name = (TextView) row.findViewById(R.id.name);
-            viewHolder.capacity = (TextView) row.findViewById(R.id.capacity);
-            viewHolder.gender = (TextView) row.findViewById(R.id.gender);
-            viewHolder.longitude = (TextView) row.findViewById(R.id.longitude);
-            viewHolder.latitude = (TextView) row.findViewById(R.id.latitude);
-            viewHolder.address = (TextView) row.findViewById(R.id.address);
-            viewHolder.number = (TextView) row.findViewById(R.id.number);
-
+//            viewHolder.capacity = (TextView) row.findViewById(R.id.capacity);
+//            viewHolder.gender = (TextView) row.findViewById(R.id.gender);
+//            viewHolder.longitude = (TextView) row.findViewById(R.id.longitude);
+//            viewHolder.latitude = (TextView) row.findViewById(R.id.latitude);
+//            viewHolder.address = (TextView) row.findViewById(R.id.address);
+//            viewHolder.number = (TextView) row.findViewById(R.id.number);
             row.setTag(viewHolder);
         } else {
             viewHolder = (ItemViewHolder)row.getTag();
@@ -72,12 +71,12 @@ public class ItemArrayAdapter extends ArrayAdapter<String[]> {
         String[] stat = getItem(position);
         viewHolder.key.setText(stat[0]);
         viewHolder.name.setText(stat[1]);
-        viewHolder.capacity.setText(stat[2]);
-        viewHolder.gender.setText(stat[3]);
-        viewHolder.longitude.setText(stat[4]);
-        viewHolder.latitude.setText(stat[5]);
-        viewHolder.address.setText(stat[6]);
-        viewHolder.number.setText(stat[7]);
+//        viewHolder.capacity.setText(stat[2]);
+//        viewHolder.gender.setText(stat[3]);
+//        viewHolder.longitude.setText(stat[4]);
+//        viewHolder.latitude.setText(stat[5]);
+//        viewHolder.address.setText(stat[6]);
+//        viewHolder.number.setText(stat[7]);
         return row;
     }
 }
