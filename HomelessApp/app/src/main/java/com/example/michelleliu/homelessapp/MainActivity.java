@@ -13,10 +13,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    /** Called when the user taps the Send button */
+    /** Called when the user taps the sign in button */
     public void signIn(View view) {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
+        //todo: disable back button after sign in (or auto logs out when back button pressed)
+        //finish();
     }
 
     public void register(View view) {

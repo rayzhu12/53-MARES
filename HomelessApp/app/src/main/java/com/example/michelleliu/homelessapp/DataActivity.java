@@ -1,14 +1,17 @@
 package com.example.michelleliu.homelessapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Parcelable;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.io.InputStream;
 import java.util.List;
 
-public class DataActivity extends AppCompatActivity {
+public class DataActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
     private ListView listView;
     private ItemArrayAdapter itemArrayAdapter;
 
@@ -22,6 +25,7 @@ public class DataActivity extends AppCompatActivity {
         Parcelable state = listView.onSaveInstanceState();
         listView.setAdapter(itemArrayAdapter);
         listView.onRestoreInstanceState(state);
+        listView.setOnItemClickListener(this);
 
         InputStream inputStream = getResources().openRawResource(R.raw.stats);
         CSVFile csvFile = new CSVFile(inputStream);
@@ -32,4 +36,10 @@ public class DataActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Intent intent = new Intent(DataActivity.this, DetailActivity.class);
+        intent.putExtra("key", "hi"); //todo: find shelter's key
+        startActivity(intent);
+    }
 }

@@ -35,12 +35,12 @@ public class AppActivity extends AppCompatActivity {
             }
         });
 
-
         Button logout = (Button) findViewById(R.id.logout);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(AppActivity.this, MainActivity.class));
+                //startActivity(new Intent(AppActivity.this, MainActivity.class));
+                finish();
             }
         });
     }

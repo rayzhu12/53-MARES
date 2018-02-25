@@ -21,4 +21,5 @@
     <!--</string>-->
     <string name="title_activity_app">Application</string>
     <string name="title_activity_registration">Registration</string>
+    <string name="title_activity_detail">DetailActivity</string>
 </resources>
