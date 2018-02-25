@@ -7,6 +7,7 @@ import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -35,6 +36,24 @@ public class RegistrationActivity extends AppCompatActivity {
     public enum adminOrUser {
         Admin,
         User;
+    }
+
+    private boolean isEmailValid(String email) {
+        //TODO: Replace this with your own logic
+        // return email.equals("user");
+        if (email.equals("user")) {
+            return true;
+        }
+        return email.contains("@");
+    }
+
+    private boolean isPasswordValid(String password) {
+        //TODO: Replace this with your own logic
+        // return password.equals("pass");
+        if (password.equals("pass")) {
+            return true;
+        }
+        return password.length() >= 8;
     }
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,23 +95,65 @@ public class RegistrationActivity extends AppCompatActivity {
                 startActivity(new Intent(RegistrationActivity.this, MainActivity.class));
             }
         });
+
+
     }
 
     private View.OnClickListener addNewUser = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             Model model = Model.getInstance();
-            user = new UserInfo("", "", "", "");
 
-            user.setName(name.getText().toString());
-            user.setEmail(email.getText().toString());
-            user.setPassword(password.getText().toString());
-            user.setUserType(typeOfUser.getSelectedItem().toString());
+            boolean cancel = false;
+            View focusView = null;
 
-            model.checkUser(user);
-            model.printArray();
+            // Check for a valid password, if the user entered one.
+            if (!isPasswordValid(password.getText().toString())) {
+                password.setError(getString(R.string.error_invalid_password));
+                focusView = password;
+                cancel = true;
+            }
+            if (TextUtils.isEmpty(password.getText().toString())) {
+                password.setError(getString(R.string.error_field_required));
+                focusView = password;
+                cancel = true;
+            }
+
+            // Check for a valid email address.
+            if (TextUtils.isEmpty(email.getText().toString())) {
+                email.setError(getString(R.string.error_field_required));
+                focusView = email;
+                cancel = true;
+            }
+            if (!isEmailValid(email.getText().toString())) {
+                email.setError(getString(R.string.error_invalid_email));
+                focusView = email;
+                cancel = true;
+            }
+
+            if (cancel) {
+                // There was an error; don't attempt login and focus the first
+                // form field with an error.
+                focusView.requestFocus();
+            } else {
+                // Show a progress spinner, and kick off a background task to
+                // perform the user login attempt.
+                user = new UserInfo("", "", "", "");
+
+                user.setName(name.getText().toString());
+                user.setEmail(email.getText().toString());
+                user.setPassword(password.getText().toString());
+                user.setUserType(typeOfUser.getSelectedItem().toString());
+
+                if (model.checkUser(user)) {
+                    startActivity(new Intent(RegistrationActivity.this, AppActivity.class));
+                } else {
+                    email.setError(getString(R.string.error_duplicate_email));
+                    email.requestFocus();
+                }
+                // model.printArray();
+
+            }
         }
-
     };
-
 }
