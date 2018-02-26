@@ -44,7 +44,6 @@ public class DataActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent intent = new Intent(DataActivity.this, DetailActivity.class);
-        //todo: convert to Shelter
         String[] selection = (String []) parent.getItemAtPosition(position);
         intent.putExtra("shelter_info", selection);
 

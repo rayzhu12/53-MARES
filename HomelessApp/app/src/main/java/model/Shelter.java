@@ -36,7 +36,6 @@ public class Shelter {
         }
     }
 
-    //todo: add other getters
     public int getKey() {
         return key;
     }

@@ -8,6 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import model.Shelter;
 
@@ -24,6 +27,22 @@ public class DetailActivity extends AppCompatActivity {
         Intent intent = getIntent();
         shelter = new Shelter(intent.getStringArrayExtra("shelter_info"));
 
+        TextView keyTextView = (TextView) findViewById(R.id.key);
+        keyTextView.setText("Key: " + Integer.toString(shelter.getKey()));
+        TextView capacityTextView = (TextView) findViewById(R.id.capacity);
+        capacityTextView.setText("Capacity: " + shelter.getCapacity());
+        TextView restrictionsTextView = (TextView) findViewById(R.id.restrictions);
+        restrictionsTextView.setText("Restrictions: " + shelter.getRestriction());
+        TextView coordinatesTextView = (TextView) findViewById(R.id.coordinates);
+        coordinatesTextView.setText("Coordinates: " + Float.toString(shelter.getLongitude())
+                + ", " + Float.toString(shelter.getLatitude()));
+        TextView addressTextView = (TextView) findViewById(R.id.address);
+        addressTextView.setText("Address: " + shelter.getAddress());
+        TextView specialNotesTextView = (TextView) findViewById(R.id.specialNotes);
+        specialNotesTextView.setText("Special Notes: " + shelter.getSpecialNotes());
+        TextView phoneNumberTextView = (TextView) findViewById(R.id.phoneNumber);
+        phoneNumberTextView.setText("Phone Number: " + shelter.getPhoneNumber());
+
         //todo: change to not-grey?
         FloatingActionButton returnToList = (FloatingActionButton) findViewById(R.id.fab);
         returnToList.setOnClickListener(new View.OnClickListener() {
@@ -33,30 +52,6 @@ public class DetailActivity extends AppCompatActivity {
                 //startActivity(new Intent(DetailActivity.this, DataActivity.class));
             }
         });
-
-//        if (savedInstanceState == null) {
-//            // Create the detail fragment and add it to the activity
-//            // using a fragment transaction.  Pass the course info to
-//            //the fragment
-//            Bundle arguments = new Bundle();
-//            arguments.putInt(ShelterDetailFragment.ARG_SHELTER_ID,
-//                    getIntent().getIntExtra(ShelterDetailFragment.ARG_SHELTER_ID, 0));
-//
-//            ShelterDetailFragment fragment = new ShelterDetailFragment();
-//            fragment.setArguments(arguments);
-//            getSupportFragmentManager().beginTransaction()
-//                    .add(R.id.____, fragment)
-//                    .commit();
-//        }
-        // todo: fix 3 lines up, shelterName def not right
-
-//        returnToList.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Return to shelter list", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
     }
 
 }

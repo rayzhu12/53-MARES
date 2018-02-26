@@ -32,7 +32,9 @@ public class Model {
      */
     public List<UserInfo> getUserInfo() { return userInfo; }
 
-    //todo: add javadoc
+    /**
+     * @return a list of the shelters as Shelter objects
+     */
     public List<Shelter> getShelterList() { return shelterList; }
 
     /**
@@ -75,6 +77,11 @@ public class Model {
         return true;
     }
 
+    /**
+     * Returns the Shelter object given a key
+     * @param key the key that is searched for
+     * @return the Shelter that corresponds to the input key
+     */
     public Shelter findShelterById(int key) {
         Shelter returned = null;
         for (Shelter s : shelterList) {
@@ -84,8 +91,6 @@ public class Model {
         }
         return returned;
     }
-
-
 
     public void printArray() {
 
