@@ -17,8 +17,6 @@ public class MainActivity extends AppCompatActivity {
     public void signIn(View view) {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
-        //todo: disable back button after sign in (or auto logs out when back button pressed)
-        //finish();
     }
 
     public void register(View view) {

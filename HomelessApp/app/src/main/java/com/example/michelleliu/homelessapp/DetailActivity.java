@@ -20,8 +20,6 @@ public class DetailActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Object object = intent.getStringExtra("key");
 
-
-        //todo: create return to list button
         FloatingActionButton returnToList = (FloatingActionButton) findViewById(R.id.fab);
         returnToList.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -30,6 +28,22 @@ public class DetailActivity extends AppCompatActivity {
                 //startActivity(new Intent(DetailActivity.this, DataActivity.class));
             }
         });
+//
+//        if (savedInstanceState == null) {
+//            // Create the detail fragment and add it to the activity
+//            // using a fragment transaction.  Pass the course info to
+//            //the fragment
+//            Bundle arguments = new Bundle();
+//            arguments.putInt(ShelterDetailFragment.ARG_COURSE_ID,
+//                    getIntent().getIntExtra(ShelterDetailFragment.ARG_COURSE_ID, 0));
+//
+//            ShelterDetailFragment fragment = new ShelterDetailFragment();
+//            fragment.setArguments(arguments);
+//
+//            getSupportFragmentManager().beginTransaction()
+//                    .add(R.id.course_detail_container, fragment)
+//                    .commit();
+//        }
 
 //        returnToList.setOnClickListener(new View.OnClickListener() {
 //            @Override
