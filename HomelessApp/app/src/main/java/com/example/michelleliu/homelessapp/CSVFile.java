@@ -16,14 +16,16 @@ import model.Shelter;
 
 public class CSVFile {
     InputStream inputStream;
+    List resultList = null;
+    List<Shelter> shelterList = null;
 
     public CSVFile(InputStream inputStream){
         this.inputStream = inputStream;
     }
 
     public List read(){
-        List resultList = new ArrayList();
-        List<Shelter> shelterList = new ArrayList<>();
+        resultList = new ArrayList();
+        shelterList = new ArrayList<>();
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         try {
             String csvLine;
@@ -50,13 +52,20 @@ public class CSVFile {
         return resultList;
     }
 
-    //todo: debug print
-    String printRow(String[] row) {
-        String returned = "[";
-        for (String s : row) {
-            returned += s + "| ";
+    public List<Shelter> returnShelterList() {
+        if (shelterList == null) {
+            read();
         }
-        returned += "]";
-        return returned;
+        return shelterList;
     }
+
+//    debug printmethod
+//    String printRow(String[] row) {
+//        String returned = "[";
+//        for (String s : row) {
+//            returned += s + "| ";
+//        }
+//        returned += "]";
+//        return returned;
+//    }
 }

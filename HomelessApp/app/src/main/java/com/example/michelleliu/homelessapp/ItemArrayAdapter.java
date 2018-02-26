@@ -9,16 +9,20 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Shelter;
+
 /**
  * Created by Raymond on 2/24/2018.
  */
 
 public class ItemArrayAdapter extends ArrayAdapter<String[]> {
     private List<String[]> scoreList = new ArrayList<String[]>();
+    private List<Shelter> shelterList = new ArrayList<>();
 
     static class ItemViewHolder {
         TextView key;
         TextView name;
+
 //        TextView capacity;
 //        TextView gender;
 //        TextView longitude;
@@ -35,6 +39,11 @@ public class ItemArrayAdapter extends ArrayAdapter<String[]> {
     public void add(String[] object) {
         scoreList.add(object);
         super.add(object);
+    }
+
+    public void add(Shelter shelter) {
+        shelterList.add(shelter);
+        super.add(shelter.toArray());
     }
 
     @Override

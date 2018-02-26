@@ -4,12 +4,16 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Parcelable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.io.InputStream;
 import java.util.List;
+
+import model.Shelter;
 
 public class DataActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
     private ListView listView;
@@ -36,10 +40,14 @@ public class DataActivity extends AppCompatActivity implements AdapterView.OnIte
         }
     }
 
+
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent intent = new Intent(DataActivity.this, DetailActivity.class);
-        intent.putExtra("key", "hi"); //todo: find shelter's key
+        //todo: convert to Shelter
+        String[] selection = (String []) parent.getItemAtPosition(position);
+        intent.putExtra("shelter_info", selection);
+
         startActivity(intent);
     }
 }
