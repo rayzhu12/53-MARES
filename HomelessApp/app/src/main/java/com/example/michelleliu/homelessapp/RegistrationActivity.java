@@ -147,6 +147,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
                 if (model.checkUser(user)) {
                     startActivity(new Intent(RegistrationActivity.this, AppActivity.class));
+                    finish();
                 } else {
                     email.setError(getString(R.string.error_duplicate_email));
                     email.requestFocus();

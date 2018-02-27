@@ -46,7 +46,6 @@ public class DetailActivity extends AppCompatActivity {
         TextView phoneNumberTextView = (TextView) findViewById(R.id.phoneNumber);
         phoneNumberTextView.setText("Phone Number: " + shelter.getPhoneNumber());
 
-        //todo: change to not-grey?
         FloatingActionButton returnToList = (FloatingActionButton) findViewById(R.id.fab);
         returnToList.setOnClickListener(new View.OnClickListener() {
             @Override
