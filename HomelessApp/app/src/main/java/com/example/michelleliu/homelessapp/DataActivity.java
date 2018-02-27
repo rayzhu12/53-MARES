@@ -43,10 +43,12 @@ public class DataActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Intent intent = new Intent(DataActivity.this, DetailActivity.class);
-        String[] selection = (String []) parent.getItemAtPosition(position);
-        intent.putExtra("shelter_info", selection);
+        if (position != 0) {
+            Intent intent = new Intent(DataActivity.this, DetailActivity.class);
+            String[] selection = (String[]) parent.getItemAtPosition(position);
+            intent.putExtra("shelter_info", selection);
 
-        startActivity(intent);
+            startActivity(intent);
+        }
     }
 }

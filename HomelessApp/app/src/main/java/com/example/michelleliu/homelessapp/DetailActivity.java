@@ -27,6 +27,9 @@ public class DetailActivity extends AppCompatActivity {
         Intent intent = getIntent();
         shelter = new Shelter(intent.getStringArrayExtra("shelter_info"));
 
+
+        TextView nameTextView = (TextView) findViewById(R.id.name);
+        nameTextView.setText(shelter.getName());
         TextView keyTextView = (TextView) findViewById(R.id.key);
         keyTextView.setText("Key: " + Integer.toString(shelter.getKey()));
         TextView capacityTextView = (TextView) findViewById(R.id.capacity);
@@ -34,8 +37,8 @@ public class DetailActivity extends AppCompatActivity {
         TextView restrictionsTextView = (TextView) findViewById(R.id.restrictions);
         restrictionsTextView.setText("Restrictions: " + shelter.getRestriction());
         TextView coordinatesTextView = (TextView) findViewById(R.id.coordinates);
-        coordinatesTextView.setText("Coordinates: " + Float.toString(shelter.getLongitude())
-                + ", " + Float.toString(shelter.getLatitude()));
+        coordinatesTextView.setText("Coordinates: (" + Float.toString(shelter.getLongitude())
+                + ", " + Float.toString(shelter.getLatitude()) + ")");
         TextView addressTextView = (TextView) findViewById(R.id.address);
         addressTextView.setText("Address: " + shelter.getAddress());
         TextView specialNotesTextView = (TextView) findViewById(R.id.specialNotes);

@@ -22,7 +22,9 @@
 
     <include
         layout="@layout/content_detail"
-        android:layout_width="363dp" />
+        android:layout_width="384dp"
+        android:layout_height="616dp"
+        tools:layout_editor_absoluteY="63dp" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
@@ -30,6 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        app:backgroundTint="@color/colorPrimary"
+        app:srcCompat="@android:drawable/ic_media_rew" />
 
 </android.support.design.widget.CoordinatorLayout>
