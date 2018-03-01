@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "481599581963",
+    "firebase_url": "https://homelessapp-ab54a.firebaseio.com",
+    "project_id": "homelessapp-ab54a",
+    "storage_bucket": "homelessapp-ab54a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:481599581963:android:0d00a613c3983848",
+        "android_client_info": {
+          "package_name": "com.example.michelleliu.homelessapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "481599581963-m4hteoabe8jc06bqlas8i0j57viimp69.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.michelleliu.homelessapp",
+            "certificate_hash": "86811489dca513e41a9629cda21fde73b365cd3a"
+          }
+        },
+        {
+          "client_id": "481599581963-1sau5642d04ahspbr820o54qjrqokqcu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjYtY6iVAvwR8zrpY2DnScqNHKE3n3cY8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "481599581963-1sau5642d04ahspbr820o54qjrqokqcu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
