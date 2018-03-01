@@ -66,7 +66,6 @@ public class AppActivity extends AppCompatActivity {
         // Adding firebaseAuth current user info into firebaseUser object.
         firebaseUser = firebaseAuth.getCurrentUser();
 
->>>>>>> emily
         Button logout = (Button) findViewById(R.id.logout);
         // Adding click listener on logout button.
         logout.setOnClickListener(new View.OnClickListener() {
