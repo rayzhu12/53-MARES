@@ -47,6 +47,7 @@ import model.UserInfo;
 /**
  * A login screen that offers login via email/password.
  */
+
 public class LoginActivity extends AppCompatActivity{
 
     // Creating EditText.

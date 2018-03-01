@@ -66,12 +66,12 @@ public class AppActivity extends AppCompatActivity {
         // Adding firebaseAuth current user info into firebaseUser object.
         firebaseUser = firebaseAuth.getCurrentUser();
 
+>>>>>>> emily
         Button logout = (Button) findViewById(R.id.logout);
         // Adding click listener on logout button.
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 // Destroying login season.
                 firebaseAuth.signOut();
 
@@ -84,7 +84,6 @@ public class AppActivity extends AppCompatActivity {
 
                 // Showing toast message on logout.
                 Toast.makeText(AppActivity.this, "Logged Out Successfully.", Toast.LENGTH_LONG).show();
-
             }
         });
 

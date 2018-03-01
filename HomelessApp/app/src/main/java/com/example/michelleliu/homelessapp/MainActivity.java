@@ -107,7 +107,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
     /*********************************************************************************************
      * NEED TO ADD METHODS THAT CHECK FOR PASSWORD RESTRICTIONS EX: 8 CHARACTERS, NEED A #....ETC
      ********************************************************************************************/
@@ -145,7 +144,6 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 });
-
     }
 
     public void CheckEditTextIsEmptyOrNot(){
