@@ -1,69 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.michelleliu.homelessapp.MainActivity">
 
-    <Button
-        android:id="@+id/register_button"
-        android:layout_width="250dp"
-        android:layout_height="51dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:backgroundTint="@android:color/holo_purple"
-        android:onClick="register"
-        android:text="@string/register"
-        android:textAppearance="@android:style/TextAppearance.Material.Widget.Button.Colored"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signin_button"
-        app:layout_constraintVertical_bias="0.091" />
-
-    <Button
-        android:id="@+id/signin_button"
-        android:layout_width="250dp"
-        android:layout_height="44dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="92dp"
-        android:background="?attr/colorButtonNormal"
-        android:backgroundTint="@android:color/holo_purple"
-        android:onClick="signIn"
-        android:text="@string/action_sign_in_short"
-        android:textAppearance="@android:style/TextAppearance.Material.Widget.Button.Colored"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
-        android:id="@+id/signin_text"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:text="Already have an account?"
-        app:layout_constraintBottom_toTopOf="@+id/signin_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.282"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:id="@+id/textView"
+        android:textSize="20dp"
+        android:textColor="#000"
+        android:text="Firebase User Registration Form"
+        android:gravity="center"
+        android:layout_marginTop="60dp"
+        />
 
-    <TextView
-        android:id="@+id/register_text"
-        android:layout_width="wrap_content"
+    <EditText
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:text="New user?"
-        app:layout_constraintBottom_toTopOf="@+id/register_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.194"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:id="@+id/EditText_User_EmailID"
+        android:hint="Enter Your Email Here"
+        android:gravity="center"
+        android:layout_below="@+id/textView"
+        android:layout_marginTop="20dp"
+        />
 
-</android.support.constraint.ConstraintLayout>
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/EditText_User_Password"
+        android:hint="Enter Your Password Here"
+        android:gravity="center"
+        android:inputType="textPassword"
+        android:layout_below="@+id/EditText_User_EmailID"
+        android:layout_marginTop="20dp"/>
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/Button_SignUp"
+        android:layout_below="@+id/EditText_User_Password"
+        android:text="Click Here To Sign Up"
+        android:layout_marginTop="20dp"/>
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/Button_LoginActivity"
+        android:layout_below="@+id/Button_SignUp"
+        android:text="ALREADY SIGN UP ? LOGIN FROM HERE"
+        android:layout_marginTop="20dp"/>
+
+</RelativeLayout>

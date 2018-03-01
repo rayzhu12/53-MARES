@@ -46,13 +46,13 @@ public class Model {
      * @return true if added, false if a duplicate
      */
     public boolean checkUser(UserInfo user) {
-        for (UserInfo u: userInfo) {
-//            System.out.println(userInfo.size());
-//            System.out.println(u.equals(user));
-            if (u.getEmail().toString().equals(user.getEmail().toString())) {
-                return false;
-            }
-        }
+//        for (UserInfo u: userInfo) {
+////            System.out.println(userInfo.size());
+////            System.out.println(u.equals(user));
+//            if (u.getEmail().toString().equals(user.getEmail().toString())) {
+//                return false;
+//            }
+//        }
         Log.d("test", "added");
         userInfo.add(user);
         return true;

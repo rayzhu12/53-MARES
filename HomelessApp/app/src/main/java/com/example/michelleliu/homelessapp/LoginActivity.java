@@ -3,6 +3,7 @@ package com.example.michelleliu.homelessapp;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.ProgressDialog;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -34,309 +35,178 @@ import java.util.List;
 
 import android.util.Log;
 import android.content.Intent;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 import model.Model;
 import model.UserInfo;
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
 
-    /**
-     * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
-     */
-//    private static final String[] DUMMY_CREDENTIALS = new String[]{
-//
-//    };
-    /**
-     * Keep track of the login task to ensure we can cancel it if requested.
-     */
-    private UserLoginTask mAuthTask = null;
+public class LoginActivity extends AppCompatActivity{
 
-    // UI references.
-    private AutoCompleteTextView mEmailView;
-    private EditText mPasswordView;
-    private View mProgressView;
-    private View mLoginFormView;
+    // Creating EditText.
+    EditText email, password ;
+
+    // Creating string to hold values.
+    String EmailHolder, PasswordHolder;
+
+    // Creating buttons.
+    Button Login,SignUP ;
+
+    // Creating Boolean to hold EditText empty true false value.
+    Boolean EditTextEmptyCheck;
+
+    // Creating progress dialog.
+    ProgressDialog progressDialog;
+
+    // Creating FirebaseAuth object.
+    FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        // Set up the login form.
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
 
-        mPasswordView = (EditText) findViewById(R.id.password);
-        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                if (id == EditorInfo.IME_ACTION_DONE || id == EditorInfo.IME_NULL) {
-                    attemptLogin();
-                    return true;
-                }
-                return false;
-            }
-        });
+        // Assign ID's to EditText.
+        email = (EditText)findViewById(R.id.editText_email);
+        password = (EditText)findViewById(R.id.editText_password);
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
-        mEmailSignInButton.setOnClickListener(new OnClickListener() {
+        // Assign ID's to button.
+        Login = (Button)findViewById(R.id.button_login);
+        SignUP = (Button)findViewById(R.id.button_SignUP);
+
+        progressDialog =  new ProgressDialog(LoginActivity.this);
+
+        // Assign FirebaseAuth instance to FirebaseAuth object.
+        firebaseAuth = FirebaseAuth.getInstance();
+
+
+        // Checking if user already logged in before and not logged out properly.
+        if(firebaseAuth.getCurrentUser() != null){
+
+            // Finishing current Login Activity.
+            finish();
+
+            // Opening UserProfileActivity .
+            Intent intent = new Intent(LoginActivity.this, AppActivity.class);
+            startActivity(intent);
+        }
+
+
+        // Adding click listener to login button.
+        Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptLogin();
+
+                // Calling method CheckEditTextIsEmptyOrNot().
+                CheckEditTextIsEmptyOrNot();
+
+                // If  EditTextEmptyCheck == true
+                if(EditTextEmptyCheck)
+                {
+
+                    // If  EditTextEmptyCheck == true then login function called.
+                    LoginFunction();
+
+                }
+                else {
+
+                    // If  EditTextEmptyCheck == false then toast display on screen.
+                    Toast.makeText(LoginActivity.this, "Please Fill All the Fields", Toast.LENGTH_LONG).show();
+                }
+
+
             }
         });
 
-        Button cancel = (Button) findViewById(R.id.cancel_button);
-        cancel.setOnClickListener(new OnClickListener() {
+        // Adding click listener to Sign up button.
+        SignUP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mEmailView.setText("");
-                mPasswordView.setText("");
-                mPasswordView.clearFocus();
-                startActivity(new Intent(LoginActivity.this, MainActivity.class));
-            }
-        });
 
-        mLoginFormView = findViewById(R.id.login_form);
-        mProgressView = findViewById(R.id.login_progress);
-    }
-
-    /**
-     * Attempts to sign in or register the account specified by the login form.
-     * If there are form errors (invalid email, missing fields, etc.), the
-     * errors are presented and no actual login attempt is made.
-     */
-    private void attemptLogin() {
-        if (mAuthTask != null) {
-            return;
-        }
-
-        // Reset errors.
-        mEmailView.setError(null);
-        mPasswordView.setError(null);
-
-        // Store values at the time of the login attempt.
-        String email = mEmailView.getText().toString();
-        String password = mPasswordView.getText().toString();
-
-        boolean cancel = false;
-        View focusView = null;
-
-        // Check for a valid password, if the user entered one.
-        if (!isPasswordValid(password)) {
-            mPasswordView.setError(getString(R.string.error_invalid_password));
-            Log.d("Message", "invalid password");
-            focusView = mPasswordView;
-            cancel = true;
-        }
-        if (TextUtils.isEmpty(password)) {
-            mEmailView.setError(getString(R.string.error_field_required));
-            Log.d("Message", "isEmpty");
-            focusView = mPasswordView;
-            cancel = true;
-        }
-
-        // Check for a valid email address.
-        if (TextUtils.isEmpty(email)) {
-            mEmailView.setError(getString(R.string.error_field_required));
-            Log.d("Message", "isEmpty");
-            focusView = mEmailView;
-            cancel = true;
-        }
-        if (!isEmailValid(email)) {
-            mEmailView.setError(getString(R.string.error_invalid_email));
-            Log.d("Message", "invalid email");
-            focusView = mEmailView;
-            cancel = true;
-        }
-
-        if (cancel) {
-            // There was an error; don't attempt login and focus the first
-            // form field with an error.
-            focusView.requestFocus();
-        } else {
-            // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
-            showProgress(true);
-            Log.d("Message", "success");
-            mAuthTask = new UserLoginTask(email, password);
-            mAuthTask.execute((Void) null);
-        }
-    }
-
-    private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
-        // return email.equals("user");
-        if (email.equals("user")) {
-            return true;
-        }
-        return email.contains("@");
-    }
-
-    private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
-        // return password.equals("pass");
-        if (password.equals("pass")) {
-            return true;
-        }
-        return password.length() >= 8;
-    }
-
-    /**
-     * Shows the progress UI and hides the login form.
-     */
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
-    private void showProgress(final boolean show) {
-        // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
-        // for very easy animations. If available, use these APIs to fade-in
-        // the progress spinner.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
-            int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
-
-            mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-            mLoginFormView.animate().setDuration(shortAnimTime).alpha(
-                    show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-                }
-            });
-
-            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-            mProgressView.animate().setDuration(shortAnimTime).alpha(
-                    show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-                }
-            });
-        } else {
-            // The ViewPropertyAnimator APIs are not available, so simply show
-            // and hide the relevant UI components.
-            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-            mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-        }
-    }
-
-    @Override
-    public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
-        return new CursorLoader(this,
-                // Retrieve data rows for the device user's 'profile' contact.
-                Uri.withAppendedPath(ContactsContract.Profile.CONTENT_URI,
-                        ContactsContract.Contacts.Data.CONTENT_DIRECTORY), ProfileQuery.PROJECTION,
-
-                // Select only email addresses.
-                ContactsContract.Contacts.Data.MIMETYPE +
-                        " = ?", new String[]{ContactsContract.CommonDataKinds.Email
-                .CONTENT_ITEM_TYPE},
-
-                // Show primary email addresses first. Note that there won't be
-                // a primary email address if the user hasn't specified one.
-                ContactsContract.Contacts.Data.IS_PRIMARY + " DESC");
-    }
-
-    @Override
-    public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
-        List<String> emails = new ArrayList<>();
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            emails.add(cursor.getString(ProfileQuery.ADDRESS));
-            cursor.moveToNext();
-        }
-
-        addEmailsToAutoComplete(emails);
-    }
-
-    @Override
-    public void onLoaderReset(Loader<Cursor> cursorLoader) {
-
-    }
-
-    private void addEmailsToAutoComplete(List<String> emailAddressCollection) {
-        //Create adapter to tell the AutoCompleteTextView what to show in its dropdown list.
-        ArrayAdapter<String> adapter =
-                new ArrayAdapter<>(LoginActivity.this,
-                        android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
-
-        mEmailView.setAdapter(adapter);
-    }
-
-
-    private interface ProfileQuery {
-        String[] PROJECTION = {
-                ContactsContract.CommonDataKinds.Email.ADDRESS,
-                ContactsContract.CommonDataKinds.Email.IS_PRIMARY,
-        };
-
-        int ADDRESS = 0;
-        int IS_PRIMARY = 1;
-    }
-
-    /**
-     * Represents an asynchronous login/registration task used to authenticate
-     * the user.
-     */
-    public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
-
-        private final String mEmail;
-        private final String mPassword;
-
-        UserLoginTask(String email, String password) {
-            mEmail = email;
-            mPassword = password;
-        }
-
-        @Override
-        protected Boolean doInBackground(Void... params) {
-            // TODO: attempt authentication against a network service.
-
-            try {
-                // Simulate network access.
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                return false;
-            }
-
-//            for (String credential : DUMMY_CREDENTIALS) {
-//                String[] pieces = credential.split(":");
-//                if (pieces[0].equals(mEmail)) {
-//                    // Account exists, return true if the password matches.
-//                    return pieces[1].equals(mPassword);
-//                }
-//            }
-
-            Model model = Model.getInstance();
-            for (model.UserInfo UI : model.getUserInfo()) {
-                String email = UI.getEmail();
-                if (email.equals(mEmail)) {
-                    return UI.getPassword().equals(mPassword);
-                }
-
-            }
-            // TODO: register the new account here.
-            return false;
-        }
-
-        @Override
-        protected void onPostExecute(final Boolean success) {
-            mAuthTask = null;
-            showProgress(false);
-
-            if (success) {
-                startActivity(new Intent(LoginActivity.this, AppActivity.class));
-
+                // Closing current activity.
                 finish();
-            } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
+
+                // Opening the Main Activity .
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
+
             }
+        });
+    }
+
+    // Creating method to check EditText is empty or not.
+    public void CheckEditTextIsEmptyOrNot(){
+
+        // Getting value form Email's EditText and fill into EmailHolder string variable.
+        EmailHolder = email.getText().toString().trim();
+
+        // Getting value form Password's EditText and fill into PasswordHolder string variable.
+        PasswordHolder = password.getText().toString().trim();
+
+        // Checking Both EditText is empty or not.
+        if(TextUtils.isEmpty(EmailHolder) || TextUtils.isEmpty(PasswordHolder))
+        {
+
+            // If any of EditText is empty then set value as false.
+            EditTextEmptyCheck = false;
+
+        }
+        else {
+
+            // If any of EditText is empty then set value as true.
+            EditTextEmptyCheck = true ;
+
         }
 
-        @Override
-        protected void onCancelled() {
-            mAuthTask = null;
-            showProgress(false);
-        }
     }
+
+    // Creating login function.
+    public void LoginFunction(){
+
+        // Setting up message in progressDialog.
+        progressDialog.setMessage("Please Wait");
+
+        // Showing progressDialog.
+        progressDialog.show();
+
+        // Calling  signInWithEmailAndPassword function with firebase object and passing EmailHolder and PasswordHolder inside it.
+        firebaseAuth.signInWithEmailAndPassword(EmailHolder, PasswordHolder)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+
+                        // If task done Successful.
+                        if(task.isSuccessful()){
+
+                            // Hiding the progress dialog.
+                            progressDialog.dismiss();
+
+                            // Closing the current Login Activity.
+                            finish();
+
+
+                            // Opening the UserProfileActivity.
+                            Intent intent = new Intent(LoginActivity.this, AppActivity.class);
+                            startActivity(intent);
+                        }
+                        else {
+
+                            // Hiding the progress dialog.
+                            progressDialog.dismiss();
+
+                            // Showing toast message when email or password not found in Firebase Online database.
+                            Toast.makeText(LoginActivity.this, "Email or Password Not found, Please Try Again", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+
+    }
+
 }

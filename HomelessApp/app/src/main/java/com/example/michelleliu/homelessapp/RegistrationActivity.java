@@ -25,10 +25,9 @@ import model.UserInfo;
 public class RegistrationActivity extends AppCompatActivity {
 
     private EditText name;
-    private EditText email;
-    private EditText password;
+    private EditText age;
+    private EditText number;
     private Button register;
-
     private UserInfo user;
 
     private Spinner typeOfUser;
@@ -62,19 +61,9 @@ public class RegistrationActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
-
         name = (EditText) findViewById(R.id.Name);
-        email =(EditText) findViewById(R.id.Email);
-        password = (EditText) findViewById(R.id.Password);
+        age =(EditText) findViewById(R.id.Age);
+        number = (EditText) findViewById(R.id.phoneNumber);
 
         typeOfUser = (Spinner) findViewById(R.id.typeOfUser);
         ArrayAdapter<String> adapter2 = new ArrayAdapter(this,android.R.layout.simple_spinner_item, adminOrUser.values());
@@ -89,9 +78,8 @@ public class RegistrationActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 name.setText("");
-                email.setText("");
-                password.setText("");
-                password.clearFocus();
+                age.setText("");
+                number.setText("");
                 startActivity(new Intent(RegistrationActivity.this, MainActivity.class));
             }
         });
@@ -107,29 +95,29 @@ public class RegistrationActivity extends AppCompatActivity {
             boolean cancel = false;
             View focusView = null;
 
-            // Check for a valid password, if the user entered one.
-            if (!isPasswordValid(password.getText().toString())) {
-                password.setError(getString(R.string.error_invalid_password));
-                focusView = password;
-                cancel = true;
-            }
-            if (TextUtils.isEmpty(password.getText().toString())) {
-                password.setError(getString(R.string.error_field_required));
-                focusView = password;
-                cancel = true;
-            }
-
-            // Check for a valid email address.
-            if (TextUtils.isEmpty(email.getText().toString())) {
-                email.setError(getString(R.string.error_field_required));
-                focusView = email;
-                cancel = true;
-            }
-            if (!isEmailValid(email.getText().toString())) {
-                email.setError(getString(R.string.error_invalid_email));
-                focusView = email;
-                cancel = true;
-            }
+//            // Check for a valid password, if the user entered one.
+//            if (!isPasswordValid(password.getText().toString())) {
+//                password.setError(getString(R.string.error_invalid_password));
+//                focusView = password;
+//                cancel = true;
+//            }
+//            if (TextUtils.isEmpty(password.getText().toString())) {
+//                password.setError(getString(R.string.error_field_required));
+//                focusView = password;
+//                cancel = true;
+//            }
+//
+//            // Check for a valid email address.
+//            if (TextUtils.isEmpty(email.getText().toString())) {
+//                email.setError(getString(R.string.error_field_required));
+//                focusView = email;
+//                cancel = true;
+//            }
+//            if (!isEmailValid(email.getText().toString())) {
+//                email.setError(getString(R.string.error_invalid_email));
+//                focusView = email;
+//                cancel = true;
+//            }
 
             if (cancel) {
                 // There was an error; don't attempt login and focus the first
@@ -138,20 +126,22 @@ public class RegistrationActivity extends AppCompatActivity {
             } else {
                 // Show a progress spinner, and kick off a background task to
                 // perform the user login attempt.
-                user = new UserInfo("", "", "", "");
+                user = new UserInfo("", 0, "", "");
+                user = new UserInfo(name.getText().toString(), Integer.parseInt(age.getText().toString()), number.getText().toString(), typeOfUser.getSelectedItem().toString());
 
-                user.setName(name.getText().toString());
-                user.setEmail(email.getText().toString());
-                user.setPassword(password.getText().toString());
-                user.setUserType(typeOfUser.getSelectedItem().toString());
+//                user.setName(name.getText().toString());
+//                user.setEmail(email.getText().toString());
+//                user.setPassword(password.getText().toString());
+//                user.setUserType(typeOfUser.getSelectedItem().toString());
+
 
                 if (model.checkUser(user)) {
                     startActivity(new Intent(RegistrationActivity.this, AppActivity.class));
-                    finish();
-                } else {
-                    email.setError(getString(R.string.error_duplicate_email));
-                    email.requestFocus();
                 }
+//                } else {
+//                    email.setError(getString(R.string.error_duplicate_email));
+//                    email.requestFocus();
+//                }
                 // model.printArray();
 
             }
