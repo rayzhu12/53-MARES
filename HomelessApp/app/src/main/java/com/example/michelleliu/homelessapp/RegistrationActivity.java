@@ -73,6 +73,9 @@ public class RegistrationActivity extends AppCompatActivity {
         register = (Button) findViewById(R.id.create_account);
         register.setOnClickListener(addNewUser);
 
+        /***************************************************
+         * NEED TO FIX CODE FOR CANCEL BUTTON SINCE REGISTRATION IS NOW ON A DIFFERENT SCREEN
+         **************************************************/
         Button cancel2 = (Button) findViewById(R.id.cancel2);
         cancel2.setOnClickListener(new View.OnClickListener() {
             @Override

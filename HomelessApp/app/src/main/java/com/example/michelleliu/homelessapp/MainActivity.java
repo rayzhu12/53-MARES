@@ -47,9 +47,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
-        userDatabase = FirebaseDatabase.getInstance();
-        userDatabaseReference = userDatabase.getReference("users");
+//        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+//        userDatabase = FirebaseDatabase.getInstance();
+//        userDatabaseReference = userDatabase.getReference("users");
 
         // Assigning layout email ID and Password ID.
         email = (EditText)findViewById(R.id.EditText_User_EmailID);
@@ -88,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
 
         // Adding click listener to ButtonGoToLoginActivity button.
         ButtonGoToLoginActivity.setOnClickListener(new View.OnClickListener() {
@@ -148,21 +149,65 @@ public class MainActivity extends AppCompatActivity {
 
     public void CheckEditTextIsEmptyOrNot(){
 
-        // Getting name and email from EditText and save into string variables.
-        EmailHolder = email.getText().toString().trim();
-        PasswordHolder = password.getText().toString().trim();
+        boolean cancel = false;
+        View focusView = null;
 
-        if(TextUtils.isEmpty(EmailHolder) || TextUtils.isEmpty(PasswordHolder))
-        {
-
-            EditTextStatus = false;
-
+        // Check for a valid password, if the user entered one.
+        if (!isPasswordValid(password.getText().toString())) {
+            password.setError(getString(R.string.error_invalid_password));
+            focusView = password;
+            cancel = true;
         }
-        else {
-
-            EditTextStatus = true ;
+        if (TextUtils.isEmpty(password.getText().toString())) {
+            password.setError(getString(R.string.error_field_required));
+            focusView = password;
+            cancel = true;
         }
 
+        // Check for a valid email address.
+        if (TextUtils.isEmpty(email.getText().toString())) {
+            email.setError(getString(R.string.error_field_required));
+            focusView = email;
+            cancel = true;
+        }
+        if (!isEmailValid(email.getText().toString())) {
+            email.setError(getString(R.string.error_invalid_email));
+            focusView = email;
+            cancel = true;
+        }
+
+        if (cancel) {
+            // There was an error; don't attempt login and focus the first
+            // form field with an error.
+            focusView.requestFocus();
+        } else {
+
+            // Getting name and email from EditText and save into string variables.
+            EmailHolder = email.getText().toString().trim();
+            PasswordHolder = password.getText().toString().trim();
+        }
+
+            if (TextUtils.isEmpty(EmailHolder) || TextUtils.isEmpty(PasswordHolder)) {
+
+                EditTextStatus = false;
+
+            } else {
+
+                EditTextStatus = true;
+            }
+
+    }
+
+    private boolean isEmailValid(String email) {
+        //TODO: Replace this with your own logic
+        // return email.equals("user");
+        return email.contains("@");
+    }
+
+    private boolean isPasswordValid(String password) {
+        //TODO: Replace this with your own logic
+        // return password.equals("pass");
+        return password.length() >= 8;
     }
 
 }
