@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -38,6 +39,14 @@ public class DataActivity extends AppCompatActivity implements AdapterView.OnIte
         for(String[] scoreData:scoreList) {
             itemArrayAdapter.add(scoreData);
         }
+
+        Button search = (Button) findViewById(R.id.button5);
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(DataActivity.this, Search.class));
+            }
+        });
     }
 
 
