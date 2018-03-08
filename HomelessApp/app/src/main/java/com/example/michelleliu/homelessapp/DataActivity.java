@@ -55,7 +55,6 @@ public class DataActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         }
 
-        //
 //        for(String[] scoreData:scoreList) {
 //            itemArrayAdapter.add(scoreData);
 //        }
@@ -101,8 +100,8 @@ public class DataActivity extends AppCompatActivity implements AdapterView.OnIte
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (position != 0) {
             Intent intent = new Intent(DataActivity.this, DetailActivity.class);
-            String[] selection = (String[]) parent.getItemAtPosition(position);
-//            String selection = (String) parent.getItemAtPosition(position);
+//            String[] selection = (String[]) parent.getItemAtPosition(position);
+            String selection = (String) parent.getItemAtPosition(position);
             intent.putExtra("shelter_info", selection);
             startActivity(intent);
         }

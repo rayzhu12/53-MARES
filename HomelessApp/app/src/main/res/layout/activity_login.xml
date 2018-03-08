@@ -15,11 +15,11 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:gravity="center"
         android:text="Login Page"
-        android:textSize="21dp"
-        android:textStyle="bold" />
+        android:textColor="#000"
+        android:textSize="20dp" />
 
     <EditText
         android:id="@+id/editText_email"
@@ -48,7 +48,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/editText_password"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="20dp"
         android:backgroundTint="@android:color/holo_purple"
         android:text="Click Here to Login"
         android:textAppearance="@android:style/TextAppearance.Material.Widget.Button.Colored" />

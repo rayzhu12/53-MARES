@@ -48,10 +48,11 @@ public class SearchActivity extends AppCompatActivity {
             String entry;
             @Override
             public void onClick(View view) {
-                entry = bar.getText().toString();
+                entry = bar.getText().toString().toLowerCase();
 //                System.out.println("a " + entry);
                 for(String[] score : scoreList) {
                     for(String s : score) {
+                        s = s.toLowerCase();
 //                        System.out.println("BBBBB " + s);
                         if (s.contains(entry) && !scores.contains(score[1])) {
 //                            System.out.println("HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
@@ -71,9 +72,9 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
 
-        for (String s : scores) {
-            System.out.println("CCCCC " + s);
-        }
+//        for (String s : scores) {
+//            System.out.println("CCCCC " + s);
+//        }
 
 //                (view) -> {
 //            entry = search.getText().toString();
@@ -86,6 +87,18 @@ public class SearchActivity extends AppCompatActivity {
 //                }
 //            }
 //        });
+
+        Button clear = (Button) findViewById(R.id.button2);
+        clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(SearchActivity.this, SearchActivity.class));
+//                ListView shelters = findViewById(R.id.shelters);
+//
+//                shelters.setAdapter(null);
+//                shelters.setVisibility(View.VISIBLE);
+            }
+        });
 
 
     }

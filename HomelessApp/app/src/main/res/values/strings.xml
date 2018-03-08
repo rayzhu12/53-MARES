@@ -18,6 +18,8 @@
     <string name="error_field_required">This field is required.</string>
     <string name="data">Data</string>
     <string name="search">Detailed Search</string>
+    <string name="clear">Clear Search</string>
+
 
 
     <!--<string name="permission_rationale">"Contacts permissions are needed for providing email-->
