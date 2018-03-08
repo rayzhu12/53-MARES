@@ -1,7 +1,7 @@
 package com.example.michelleliu.homelessapp;
 
 /**
- * Created by Raymond on 2/23/2018.
+ * Created by Raymond the dummy on 2/23/2018.
  */
 import android.util.Log;
 

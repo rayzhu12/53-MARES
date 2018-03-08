@@ -4,6 +4,67 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.michelleliu.homelessapp.Search">
+    tools:context="com.example.michelleliu.homelessapp.SearchActivity">
 
+    <!--<activity-->
+    <!--android:name=".ui.DataActivity"-->
+    <!--android:screenOrientation="portrait"-->
+    <!--android:configChanges="orientation"-->
+    <!--android:windowSoftInputMode="stateHidden"-->
+    <!--android:launchMode="singleTask"-->
+    <!--android:parentActivityName=".ui.SensorDetailsActivity">-->
+    <!--<meta-data-->
+    <!--android:name="android.app.searchable"-->
+    <!--android:resource="@xml/searchable">-->
+    <!--</meta-data>-->
+    <!--</activity>-->
+
+    <EditText
+        android:id="@+id/detsearch2"
+        android:layout_width="375dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="84dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="What kind of shelter are YOU looking for?"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/shelters"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/search2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@android:color/holo_purple"
+        android:text="@string/search"
+        android:textAppearance="@android:style/TextAppearance.Material.Widget.Button.Colored"
+        app:layout_constraintBottom_toTopOf="@+id/shelters"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detsearch2"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ListView
+        android:id="@+id/shelters"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detsearch2" />
 </android.support.constraint.ConstraintLayout>
+

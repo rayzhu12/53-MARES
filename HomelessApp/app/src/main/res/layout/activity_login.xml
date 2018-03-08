@@ -22,22 +22,24 @@
         android:layout_marginTop="20dp"/>
 
     <EditText
+        android:id="@+id/editText_email"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/textview1"
+        android:layout_marginTop="20dp"
         android:gravity="center"
         android:hint="Enter Your Email"
-        android:id="@+id/editText_email"
-        android:layout_below="@+id/textview1"
-        android:layout_marginTop="20dp"/>
+        android:inputType="textEmailAddress" />
 
     <EditText
+        android:id="@+id/editText_password"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/editText_email"
+        android:layout_marginTop="20dp"
         android:gravity="center"
         android:hint="Enter Your Password"
-        android:id="@+id/editText_password"
-        android:layout_below="@+id/editText_email"
-        android:layout_marginTop="20dp"/>
+        android:inputType="textPassword" />
 
     <Button
         android:layout_width="fill_parent"

@@ -18,14 +18,14 @@
         />
 
     <EditText
+        android:id="@+id/EditText_User_EmailID"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/EditText_User_EmailID"
-        android:hint="Enter Your Email Here"
-        android:gravity="center"
         android:layout_below="@+id/textView"
         android:layout_marginTop="20dp"
-        />
+        android:gravity="center"
+        android:hint="Enter Your Email Here"
+        android:inputType="textEmailAddress" />
 
     <EditText
         android:layout_width="fill_parent"

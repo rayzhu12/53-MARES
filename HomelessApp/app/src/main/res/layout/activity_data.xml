@@ -5,27 +5,40 @@
     android:layout_height="match_parent"
     tools:context="com.example.michelleliu.homelessapp.DataActivity">
 
-    <ListView
-        android:id="@+id/listView"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_above="@+id/button5"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="21dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    </ListView>
+        <EditText
+            android:id="@+id/searchbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Search by Name"
+            android:inputType="textPersonName"
+            android:visibility="visible" />
 
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="53dp"
-        android:background="?attr/colorButtonNormal"
-        android:backgroundTint="@android:color/holo_purple"
-        android:text="@string/search"
-        android:textAppearance="@android:style/TextAppearance.Material.Widget.Button.Colored" />
+        <Button
+            android:id="@+id/detailsearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/holo_purple"
+            android:text="@string/search"
+            android:textAppearance="@android:style/TextAppearance.Material.Widget.Button.Colored" />
+
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="74dp"
+            android:visibility="visible">
+
+        </ListView>
+
+    </LinearLayout>
 
 </RelativeLayout>
