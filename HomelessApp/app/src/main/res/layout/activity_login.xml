@@ -11,15 +11,15 @@
     tools:context="com.example.michelleliu.homelessapp.LoginActivity">
 
     <TextView
+        android:id="@+id/textview1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textview1"
-        android:gravity="center"
-        android:textSize="21dp"
-        android:textStyle="bold"
-        android:text="Firebase Login"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="Login Page"
+        android:textSize="21dp"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/editText_email"
@@ -42,21 +42,25 @@
         android:inputType="textPassword" />
 
     <Button
+        android:id="@+id/button_login"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Click Here to Login"
-        android:id="@+id/button_login"
-        android:layout_marginTop="14dp"
-        android:layout_below="@+id/editText_password"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/editText_password"
+        android:layout_marginTop="14dp"
+        android:backgroundTint="@android:color/holo_purple"
+        android:text="Click Here to Login"
+        android:textAppearance="@android:style/TextAppearance.Material.Widget.Button.Colored" />
 
     <Button
+        android:id="@+id/button_SignUP"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="NOT LOG-IN ? SIGN UP FROM HERE"
-        android:id="@+id/button_SignUP"
+        android:layout_below="@+id/button_login"
         android:layout_marginTop="20dp"
-        android:layout_below="@+id/button_login"/>
+        android:backgroundTint="@android:color/holo_purple"
+        android:text="DON't HAVE AN ACCOUNT? REGISTER HERE"
+        android:textAppearance="@android:style/TextAppearance.Material.Widget.Button.Colored" />
 </RelativeLayout>
 

@@ -7,15 +7,14 @@
     tools:context="com.example.michelleliu.homelessapp.MainActivity">
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView"
-        android:textSize="20dp"
-        android:textColor="#000"
-        android:text="Firebase User Registration Form"
-        android:gravity="center"
         android:layout_marginTop="60dp"
-        />
+        android:gravity="center"
+        android:text="Registration Page"
+        android:textColor="#000"
+        android:textSize="20dp" />
 
     <EditText
         android:id="@+id/EditText_User_EmailID"
@@ -24,33 +23,37 @@
         android:layout_below="@+id/textView"
         android:layout_marginTop="20dp"
         android:gravity="center"
-        android:hint="Enter Your Email Here"
+        android:hint="Enter Your Email"
         android:inputType="textEmailAddress" />
 
     <EditText
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/EditText_User_Password"
-        android:hint="Enter Your Password Here"
-        android:gravity="center"
-        android:inputType="textPassword"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/EditText_User_EmailID"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:hint="Enter Your Password"
+        android:inputType="textPassword" />
 
     <Button
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/Button_SignUp"
-        android:layout_below="@+id/EditText_User_Password"
-        android:text="Click Here To Sign Up"
-        android:layout_marginTop="20dp"/>
-
-    <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/EditText_User_Password"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@android:color/holo_purple"
+        android:text="Click Here To Sign Up"
+        android:textAppearance="@android:style/TextAppearance.Material.Widget.Button.Colored" />
+
+    <Button
         android:id="@+id/Button_LoginActivity"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/Button_SignUp"
-        android:text="ALREADY SIGN UP ? LOGIN FROM HERE"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@android:color/holo_purple"
+        android:text="ALREADY SIGNED UP ? LOGIN HERE"
+        android:textAppearance="@android:style/TextAppearance.Material.Widget.Button.Colored" />
 
 </RelativeLayout>

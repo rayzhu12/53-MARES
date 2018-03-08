@@ -131,7 +131,7 @@ public class LoginActivity extends AppCompatActivity{
             public void onClick(View view) {
 
                 // Closing current activity.
-                finish();
+                //finish();
 
                 // Opening the Main Activity .
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
