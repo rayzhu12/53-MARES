@@ -11,15 +11,15 @@
     tools:context="com.example.michelleliu.homelessapp.LoginActivity">
 
     <TextView
+        android:id="@+id/textview1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textview1"
-        android:gravity="center"
-        android:textSize="21dp"
-        android:textStyle="bold"
-        android:text="Firebase Login"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="Snack Overflow SignIn"
+        android:textSize="21dp"
+        android:textStyle="bold" />
 
     <EditText
         android:layout_width="fill_parent"
@@ -50,11 +50,11 @@
         android:layout_alignParentStart="true" />
 
     <Button
+        android:id="@+id/button_SignUP"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="NOT LOG-IN ? SIGN UP FROM HERE"
-        android:id="@+id/button_SignUP"
+        android:layout_below="@+id/button_login"
         android:layout_marginTop="20dp"
-        android:layout_below="@+id/button_login"/>
+        android:text="New User? Sign Up here" />
 </RelativeLayout>
 
