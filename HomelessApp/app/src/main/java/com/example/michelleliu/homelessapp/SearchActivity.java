@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,7 +25,7 @@ import java.util.List;
 
 import model.Shelter;
 
-public class SearchActivity extends AppCompatActivity {
+public class SearchActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
     final String entry = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,14 +64,17 @@ public class SearchActivity extends AppCompatActivity {
                         }
                     }
                 }
-                ListView shelters = findViewById(R.id.shelters);
-
-                ArrayAdapter adapter = new ArrayAdapter(SearchActivity.this, R.layout.textview_layout, scores);
-
-                shelters.setAdapter(adapter);
-                shelters.setVisibility(View.VISIBLE);
             }
         });
+
+        ListView shelters = findViewById(R.id.shelters);
+
+        ArrayAdapter adapter = new ArrayAdapter(SearchActivity.this, R.layout.textview_layout, scores);
+
+        shelters.setAdapter(adapter);
+        shelters.setVisibility(View.VISIBLE);
+
+        shelters.setOnItemClickListener(this);
 
 //        for (String s : scores) {
 //            System.out.println("CCCCC " + s);
@@ -100,7 +104,32 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
 
+    }
 
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        if (position != 0) {
+            Intent intent = new Intent(SearchActivity.this, DetailActivity.class);
+//            String[] selection = (String[]) parent.getItemAtPosition(position);
+            String selection = (String) parent.getItemAtPosition(position);
+
+            InputStream inputStream = getResources().openRawResource(R.raw.stats);
+            CSVFile csvFile = new CSVFile(inputStream);
+            List<String[]> scoreList = csvFile.read();
+
+            String[] shelterInfo= null;
+
+            for (String[] shelter : scoreList) {
+                if (shelter[1].equals(selection)) {
+                    shelterInfo = shelter;
+                    break;
+                }
+            }
+
+
+            intent.putExtra("shelter_info", shelterInfo);
+            startActivity(intent);
+        }
     }
 
 }
