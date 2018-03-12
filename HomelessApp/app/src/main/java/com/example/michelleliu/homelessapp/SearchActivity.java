@@ -55,6 +55,24 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
                     for(String s : score) {
                         s = s.toLowerCase();
 //                        System.out.println("BBBBB " + s);
+
+                        if (entry.equals("male")) {
+                            if (s.contains("men") && !scores.contains(score[1])) {
+//                            System.out.println("HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                                scores.add(score[1]);
+//                            for (String a : scores) {
+//                                System.out.println("a " + a);
+//                            }
+                            }
+                        } else if (entry.equals("female")) {
+                            if (s.contains("women") && !scores.contains(score[1])) {
+//                            System.out.println("HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                                scores.add(score[1]);
+//                            for (String a : scores) {
+//                                System.out.println("a " + a);
+//                            }
+                            }                        }
+                        //System.out.println("ENTRY " + entry);
                         if (s.contains(entry) && !scores.contains(score[1])) {
 //                            System.out.println("HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                             scores.add(score[1]);
