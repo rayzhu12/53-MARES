@@ -20,34 +20,37 @@
         android:text="Snack Overflow SignIn"
         android:textSize="21dp"
         android:textStyle="bold" />
-
     <EditText
+        android:id="@+id/editText_email"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/textview1"
+        android:layout_marginTop="20dp"
         android:gravity="center"
         android:hint="Enter Your Email"
-        android:id="@+id/editText_email"
-        android:layout_below="@+id/textview1"
-        android:layout_marginTop="20dp"/>
+        android:inputType="textEmailAddress" />
 
     <EditText
+        android:id="@+id/editText_password"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/editText_email"
+        android:layout_marginTop="20dp"
         android:gravity="center"
         android:hint="Enter Your Password"
-        android:id="@+id/editText_password"
-        android:layout_below="@+id/editText_email"
-        android:layout_marginTop="20dp"/>
+        android:inputType="textPassword" />
 
     <Button
+        android:id="@+id/button_login"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Click Here to Login"
-        android:id="@+id/button_login"
-        android:layout_marginTop="14dp"
-        android:layout_below="@+id/editText_password"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/editText_password"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@android:color/holo_purple"
+        android:text="Click Here to Login"
+        android:textAppearance="@android:style/TextAppearance.Material.Widget.Button.Colored" />
 
     <Button
         android:id="@+id/button_SignUP"
@@ -56,5 +59,6 @@
         android:layout_below="@+id/button_login"
         android:layout_marginTop="20dp"
         android:text="New User? Sign Up here" />
+
 </RelativeLayout>
 

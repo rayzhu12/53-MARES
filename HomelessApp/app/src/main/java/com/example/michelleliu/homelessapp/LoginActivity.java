@@ -88,15 +88,15 @@ public class LoginActivity extends AppCompatActivity{
 
 
         // Checking if user already logged in before and not logged out properly.
-        if(firebaseAuth.getCurrentUser() != null){
-
-            // Finishing current Login Activity.
-            finish();
-
-            // Opening UserProfileActivity .
-            Intent intent = new Intent(LoginActivity.this, AppActivity.class);
-            startActivity(intent);
-        }
+//        if(firebaseAuth.getCurrentUser() != null){
+//
+//            // Finishing current Login Activity.
+//            finish();
+//
+//            // Opening UserProfileActivity .
+//            Intent intent = new Intent(LoginActivity.this, AppActivity.class);
+//            startActivity(intent);
+//        }
 
 
         // Adding click listener to login button.
@@ -131,7 +131,7 @@ public class LoginActivity extends AppCompatActivity{
             public void onClick(View view) {
 
                 // Closing current activity.
-                finish();
+                //finish();
 
                 // Opening the Main Activity .
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);

@@ -35,6 +35,10 @@ public class ItemArrayAdapter extends ArrayAdapter<String[]> {
         super(context, textViewResourceId);
     }
 
+    public ItemArrayAdapter(Context context, int textViewResourceId, List object) {
+        super(context, textViewResourceId, object);
+    }
+
     @Override
     public void add(String[] object) {
         scoreList.add(object);

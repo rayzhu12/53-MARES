@@ -17,24 +17,24 @@
         android:textSize="20dp" />
 
     <EditText
+        android:id="@+id/EditText_User_EmailID"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/EditText_User_EmailID"
-        android:hint="Enter Your Email Here"
-        android:gravity="center"
         android:layout_below="@+id/textView"
         android:layout_marginTop="20dp"
-        />
+        android:gravity="center"
+        android:hint="Enter Your Email"
+        android:inputType="textEmailAddress" />
 
     <EditText
+        android:id="@+id/EditText_User_Password"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/EditText_User_Password"
-        android:hint="Enter Your Password Here"
-        android:gravity="center"
-        android:inputType="textPassword"
         android:layout_below="@+id/EditText_User_EmailID"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:hint="Enter Your Password"
+        android:inputType="textPassword" />
 
     <Button
         android:id="@+id/Button_SignUp"
@@ -45,6 +45,7 @@
         android:layout_below="@+id/confirmPass"
         android:layout_marginTop="47dp"
         android:text="Sign Up" />
+
 
     <Button
         android:id="@+id/Button_LoginActivity"
