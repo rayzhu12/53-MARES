@@ -53,11 +53,12 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
 //                System.out.println("a " + entry);
                 for(String[] score : scoreList) {
                     for(String s : score) {
-                        s = s.toLowerCase();
+                        s = score[3].toLowerCase();
+                        entry = entry.toLowerCase();
 //                        System.out.println("BBBBB " + s);
 
                         if (entry.equals("male")) {
-                            if (s.contains("men") && !scores.contains(score[1])) {
+                            if (s.contains("men") && !s.contains("women") && !scores.contains(score[1])) {
 //                            System.out.println("HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                                 scores.add(score[1]);
 //                            for (String a : scores) {
@@ -71,9 +72,16 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
 //                            for (String a : scores) {
 //                                System.out.println("a " + a);
 //                            }
-                            }                        }
-                        //System.out.println("ENTRY " + entry);
-                        if (s.contains(entry) && !scores.contains(score[1])) {
+                            }
+                        } else if (entry.equals("family")) {
+                            if ((s.contains("family") || s.contains("families")) && !scores.contains(score[1])) {
+//                            System.out.println("HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                                scores.add(score[1]);
+//                            for (String a : scores) {
+//                                System.out.println("a " + a);
+//                            }
+                            }
+                        } else if (s.contains(entry) && !scores.contains(score[1])) {
 //                            System.out.println("HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                             scores.add(score[1]);
 //                            for (String a : scores) {
@@ -143,7 +151,6 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
                     break;
                 }
             }
-
 
             intent.putExtra("shelter_info", shelterInfo);
             startActivity(intent);
