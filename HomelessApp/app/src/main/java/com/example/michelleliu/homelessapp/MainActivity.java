@@ -22,7 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class MainActivity extends AppCompatActivity {
 
     // Creating EditText .
-    EditText email, password ;
+    EditText email, password, checkPassword ;
 
     // Creating button.
     Button SignUp, ButtonGoToLoginActivity;
@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         // Assigning layout email ID and Password ID.
         email = (EditText)findViewById(R.id.EditText_User_EmailID);
         password = (EditText)findViewById(R.id.EditText_User_Password);
+        checkPassword = (EditText)findViewById(R.id.confirmPass);
 
         // Assign button layout ID.
         SignUp = (Button)findViewById(R.id.Button_SignUp);
@@ -161,6 +162,18 @@ public class MainActivity extends AppCompatActivity {
         if (TextUtils.isEmpty(password.getText().toString())) {
             password.setError(getString(R.string.error_field_required));
             focusView = password;
+            cancel = true;
+        }
+
+        if (TextUtils.isEmpty(checkPassword.getText().toString())) {
+            checkPassword.setError("This field is required.");
+            focusView = checkPassword;
+            cancel = true;
+        }
+
+        if (! (password.getText().toString().equals(checkPassword.getText().toString()))) {
+            checkPassword.setError("Passwords do not match.");
+            focusView = checkPassword;
             cancel = true;
         }
 

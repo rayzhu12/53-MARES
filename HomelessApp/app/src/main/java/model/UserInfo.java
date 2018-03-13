@@ -6,19 +6,25 @@ package model;
 
 public class UserInfo {
     private String name;
-//    private String email;
-//    private String password;
+    private String gender;
     private int age;
-    private String number;
+    private String phoneNumber;
+    private int numberOfChildren;
     private String typeOfUser;
+    private int numberOfBeds;
+    private String currentShelter;
 
-    public UserInfo(String name, int age, String number, String typeOfUser) {
+
+    public UserInfo() {
+
+    }
+    public UserInfo(String name, int age, String gender, String phoneNumber, int numberofChildren, String typeOfUser) {
         this.name = name;
-//        this.email = email;
-//        this.password = password;
         this.age = age;
-        this.number = number;
+        this.phoneNumber = phoneNumber;
         this.typeOfUser = typeOfUser;
+        this.gender = gender;
+        this.numberOfChildren = numberofChildren;
     }
 
     public String getName() {
@@ -27,24 +33,31 @@ public class UserInfo {
     public void setName(String name) {
         this.name = name;
     }
-//    public String getEmail() {
-//        return this.email;
-//    }
-//    public void setEmail(String email) {
-//        this.email = email;
-//    }
-//    public String getPassword() {
-//        return this.password;
-//    }
-//    public void setPassword(String password) {
-//        this.password = password;
-//    }
+
+    public int getAge() {return this.age;}
+    public void setAge(int age) {this.age = age;}
+
+    public String getPhoneNumber() {return this.phoneNumber;}
+    public void setPhoneNumber(String phoneNumber) {this.phoneNumber = phoneNumber;}
+
+    public String getGender() {return this.gender;}
+    public void setGender(String gender) {this.gender = gender;}
+
+    public int getNumberofChildren() {return numberOfChildren;}
+    public void setNumberofChildren(int numberOfChildren) {numberOfChildren = numberOfChildren;}
+
     public String getUserType() {
         return this.typeOfUser;
     }
     public void setUserType(String typeOfUser) {
         this.typeOfUser = typeOfUser;
     }
+
+    public int getNumberOfBeds() {return numberOfBeds;}
+    public void setNumberOfBeds(int beds) {this.numberOfBeds = beds;}
+
+    private String getCurrentShelter() {return currentShelter;}
+    private void setCurrentShelter(String shelter) {this.currentShelter = shelter;}
 
     public String toString() {
         return ("Name: " + name + " User Type: " + typeOfUser);

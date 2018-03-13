@@ -15,6 +15,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import org.w3c.dom.Text;
 
 import java.util.List;
@@ -25,41 +28,45 @@ import model.UserInfo;
 public class RegistrationActivity extends AppCompatActivity {
 
     private EditText name;
+    private EditText gender;
     private EditText age;
     private EditText number;
+    private EditText numChildren;
     private Button register;
     private UserInfo user;
+    private String userID;
 
     private Spinner typeOfUser;
+
+    private DatabaseReference userData;
 
     public enum adminOrUser {
         Admin,
         User;
     }
 
-    private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
-        // return email.equals("user");
-        if (email.equals("user")) {
-            return true;
-        }
-        return email.contains("@");
-    }
-
-    private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
-        // return password.equals("pass");
-        if (password.equals("pass")) {
-            return true;
-        }
-        return password.length() >= 8;
-    }
+//    private boolean isEmailValid(String email) {
+//        //TODO: Replace this with your own logic
+//        // return email.equals("user");
+//        return email.contains("@");
+//    }
+//
+//    private boolean isPasswordValid(String password) {
+//        //TODO: Replace this with your own logic
+//        // return password.equals("pass");
+//        return password.length() >= 8;
+//    }
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+
+        userData = FirebaseDatabase.getInstance().getReference("users");
+        userID = userData.push().getKey();
 
         name = (EditText) findViewById(R.id.Name);
         age =(EditText) findViewById(R.id.Age);
@@ -73,19 +80,19 @@ public class RegistrationActivity extends AppCompatActivity {
         register = (Button) findViewById(R.id.create_account);
         register.setOnClickListener(addNewUser);
 
-        /***************************************************
-         * NEED TO FIX CODE FOR CANCEL BUTTON SINCE REGISTRATION IS NOW ON A DIFFERENT SCREEN
-         **************************************************/
-        Button cancel2 = (Button) findViewById(R.id.cancel2);
-        cancel2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                name.setText("");
-                age.setText("");
-                number.setText("");
-                startActivity(new Intent(RegistrationActivity.this, MainActivity.class));
-            }
-        });
+//        /***************************************************
+//         * NEED TO FIX CODE FOR CANCEL BUTTON SINCE REGISTRATION IS NOW ON A DIFFERENT SCREEN
+//         **************************************************/
+//        Button cancel2 = (Button) findViewById(R.id.cancel2);
+//        cancel2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                name.setText("");
+//                age.setText("");
+//                number.setText("");
+//                startActivity(new Intent(RegistrationActivity.this, MainActivity.class));
+//            }
+//        });
 
 
     }
@@ -93,6 +100,8 @@ public class RegistrationActivity extends AppCompatActivity {
     private View.OnClickListener addNewUser = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            finish();
+
             Model model = Model.getInstance();
 
             boolean cancel = false;
@@ -122,6 +131,28 @@ public class RegistrationActivity extends AppCompatActivity {
 //                cancel = true;
 //            }
 
+            if (TextUtils.isEmpty(name.getText().toString())) {
+                name.setError(getString(R.string.error_field_required));
+                focusView = name;
+                cancel = true;
+            }
+            if (TextUtils.isEmpty(age.getText().toString())) {
+                age.setError(getString(R.string.error_field_required));
+                focusView = age;
+                cancel = true;
+            }
+            if (TextUtils.isEmpty(gender.getText().toString())) {
+                gender.setError(getString(R.string.error_field_required));
+                focusView = gender;
+                cancel = true;
+            }
+            if (TextUtils.isEmpty(number.getText().toString())) {
+                number.setError(getString(R.string.error_field_required));
+                focusView = number;
+                cancel = true;
+            }
+
+
             if (cancel) {
                 // There was an error; don't attempt login and focus the first
                 // form field with an error.
@@ -129,9 +160,10 @@ public class RegistrationActivity extends AppCompatActivity {
             } else {
                 // Show a progress spinner, and kick off a background task to
                 // perform the user login attempt.
-                user = new UserInfo("", 0, "", "");
-                user = new UserInfo(name.getText().toString(), Integer.parseInt(age.getText().toString()), number.getText().toString(), typeOfUser.getSelectedItem().toString());
+                user = new UserInfo("", 0, "", "", 0, "");
+                user = new UserInfo(name.getText().toString(), Integer.parseInt(age.getText().toString()), null, number.getText().toString(), 0, typeOfUser.getSelectedItem().toString());
 
+                userData.child(userID).setValue(user);
 //                user.setName(name.getText().toString());
 //                user.setEmail(email.getText().toString());
 //                user.setPassword(password.getText().toString());

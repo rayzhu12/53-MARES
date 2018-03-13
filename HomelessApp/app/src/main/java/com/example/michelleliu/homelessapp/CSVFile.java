@@ -17,7 +17,7 @@ import model.Shelter;
 public class CSVFile {
     InputStream inputStream;
     List resultList = null;
-    List<Shelter> shelterList = null;
+    List<Shelter> shelterList = null;           //list of shelters
 
     public CSVFile(InputStream inputStream){
         this.inputStream = inputStream;
@@ -30,7 +30,9 @@ public class CSVFile {
         try {
             String csvLine;
             while ((csvLine = reader.readLine()) != null) {
+                //splitting each item
                 String[] row = csvLine.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
+
 
                 if (!row[0].equals("Unique Key")) {
                     shelterList.add(new Shelter(row));

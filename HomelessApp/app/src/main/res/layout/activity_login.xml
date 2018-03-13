@@ -15,12 +15,11 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:gravity="center"
-        android:text="Login Page"
-        android:textColor="#000"
-        android:textSize="20dp" />
-
+        android:text="Snack Overflow SignIn"
+        android:textSize="21dp"
+        android:textStyle="bold" />
     <EditText
         android:id="@+id/editText_email"
         android:layout_width="fill_parent"
@@ -59,8 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/button_login"
         android:layout_marginTop="20dp"
-        android:backgroundTint="@android:color/holo_purple"
-        android:text="DON't HAVE AN ACCOUNT? REGISTER HERE"
-        android:textAppearance="@android:style/TextAppearance.Material.Widget.Button.Colored" />
+        android:text="New User? Sign Up here" />
+
 </RelativeLayout>
 
