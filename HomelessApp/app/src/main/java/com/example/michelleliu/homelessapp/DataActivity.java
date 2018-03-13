@@ -98,7 +98,8 @@ public class DataActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if (position != 0) {
+        if (!parent.getItemAtPosition(position).equals("Shelter Name")) {
+            Log.d("test", parent.getItemAtPosition(position).toString());
             Intent intent = new Intent(DataActivity.this, DetailActivity.class);
             //String[] selection = (String[]) parent.getItemAtPosition(position);
             String selection = (String) parent.getItemAtPosition(position);
@@ -107,7 +108,7 @@ public class DataActivity extends AppCompatActivity implements AdapterView.OnIte
             CSVFile csvFile = new CSVFile(inputStream);
             List<String[]> scoreList = csvFile.read();
 
-            String[] shelterInfo= null;
+            String[] shelterInfo = null;
 
             for (String[] shelter : scoreList) {
                 if (shelter[1].equals(selection)) {
