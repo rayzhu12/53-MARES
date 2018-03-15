@@ -31,7 +31,7 @@ public class ShelterListActivity extends AppCompatActivity implements AdapterVie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data);
 
-        //adds the initial shelter data
+        //adds the initial shelter data if not already populated
         if (shelterList == null) {
             InputStream inputStream = getResources().openRawResource(R.raw.stats);
             CSVFile csvFile = new CSVFile(inputStream);
@@ -83,8 +83,9 @@ public class ShelterListActivity extends AppCompatActivity implements AdapterVie
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (!parent.getItemAtPosition(position).equals("Shelter Name")) {
+            Log.d("clicked shelter", (String) parent.getItemAtPosition(position));
             Intent intent = new Intent(ShelterListActivity.this, DetailActivity.class);
-            Shelter selectedShelter = sm.findShelterByID(position); // todo: check position + 1??
+            Shelter selectedShelter = sm.findShelterByKey(position); // todo: fix stubbed method
             intent.putExtra("passed shelter", selectedShelter);
             startActivity(intent);
         }

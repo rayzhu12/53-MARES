@@ -147,7 +147,7 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
 
             //move sm to class var
             ShelterManager sm = ShelterManager.getInstance();
-            Shelter selectedShelter = sm.findShelterByID(position); // todo: check position + 1??
+            Shelter selectedShelter = sm.findShelterByKey(position); // todo: check position + 1??
             intent.putExtra("passed shelter", selectedShelter);
             startActivity(intent);
         }
