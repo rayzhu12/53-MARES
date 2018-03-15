@@ -24,9 +24,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Shelter;
+import model.ShelterManager;
 
 public class SearchActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
     final String entry = "";
+    private ShelterManager sm = ShelterManager.getInstance();
+    private List<Shelter> shelterList = sm.getShelterList();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +44,8 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
 
         InputStream inputStream = getResources().openRawResource(R.raw.stats);
         CSVFile csvFile = new CSVFile(inputStream);
+        // uncomment out
+        /*
         List<String[]> scoreList = csvFile.read();
 
         final List<String> scores = new ArrayList<>();
@@ -93,6 +99,7 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
             }
         });
 
+
         ListView shelters = findViewById(R.id.shelters);
 
         ArrayAdapter adapter = new ArrayAdapter(SearchActivity.this, R.layout.textview_layout, scores);
@@ -101,6 +108,7 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
         shelters.setVisibility(View.VISIBLE);
 
         shelters.setOnItemClickListener(this);
+        */
 
 //        for (String s : scores) {
 //            System.out.println("CCCCC " + s);
@@ -136,23 +144,11 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (position != 0) {
             Intent intent = new Intent(SearchActivity.this, DetailActivity.class);
-//            String[] selection = (String[]) parent.getItemAtPosition(position);
-            String selection = (String) parent.getItemAtPosition(position);
 
-            InputStream inputStream = getResources().openRawResource(R.raw.stats);
-            CSVFile csvFile = new CSVFile(inputStream);
-            List<String[]> scoreList = csvFile.read();
-
-            String[] shelterInfo= null;
-
-            for (String[] shelter : scoreList) {
-                if (shelter[1].equals(selection)) {
-                    shelterInfo = shelter;
-                    break;
-                }
-            }
-
-            intent.putExtra("shelter_info", shelterInfo);
+            //move sm to class var
+            ShelterManager sm = ShelterManager.getInstance();
+            Shelter selectedShelter = sm.findShelterByID(position); // todo: check position + 1??
+            intent.putExtra("passed shelter", selectedShelter);
             startActivity(intent);
         }
     }

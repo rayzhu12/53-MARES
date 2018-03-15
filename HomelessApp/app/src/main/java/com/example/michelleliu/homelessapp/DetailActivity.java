@@ -21,13 +21,14 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+
+        //idk what toolbar does
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Intent intent = getIntent();
-        shelter = new Shelter(intent.getStringArrayExtra("shelter_info"));
+        shelter = (Shelter) getIntent().getSerializableExtra("passed shelter");
 
-
+        // replace with something bc this looks ugly af lmao
         TextView nameTextView = (TextView) findViewById(R.id.name);
         nameTextView.setText(shelter.getName());
         TextView keyTextView = (TextView) findViewById(R.id.key);
@@ -46,12 +47,11 @@ public class DetailActivity extends AppCompatActivity {
         TextView phoneNumberTextView = (TextView) findViewById(R.id.phoneNumber);
         phoneNumberTextView.setText("Phone Number: " + shelter.getPhoneNumber());
 
-        FloatingActionButton returnToList = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton returnToList = findViewById(R.id.fab);
         returnToList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
-                //startActivity(new Intent(DetailActivity.this, DataActivity.class));
             }
         });
     }

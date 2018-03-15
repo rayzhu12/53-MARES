@@ -7,7 +7,7 @@
     tools:context="com.example.michelleliu.homelessapp.SearchActivity">
 
     <!--<activity-->
-    <!--android:name=".ui.DataActivity"-->
+    <!--android:name="ShelterListActivityvity"-->
     <!--android:screenOrientation="portrait"-->
     <!--android:configChanges="orientation"-->
     <!--android:windowSoftInputMode="stateHidden"-->
