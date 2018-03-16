@@ -1,4 +1,4 @@
-package com.example.michelleliu.homelessapp;
+package model;
 
 /**
  * Created by Raymond the dummy on 2/23/2018.
@@ -11,8 +11,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-
-import model.Shelter;
 
 public class CSVFile {
     static InputStream inputStream;

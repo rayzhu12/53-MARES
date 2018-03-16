@@ -1,10 +1,5 @@
 package model;
 
-import android.util.Log;
-
-import com.example.michelleliu.homelessapp.CSVFile;
-
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,9 +21,28 @@ public class ShelterManager {
         this.shelterList = shelterList;
     }
 
-    // list of shelters that have this as the name or within name
-    public List<Shelter> findShelterByName(String s) {
+    /**
+     * Returns the Shelter whose name matches the input String exactly.
+     * @param name of Shelter
+     * @return Shelter object in shelterList
+     */
+    public Shelter findShelterByName(String name) {
         //TODO
+        Shelter foundShelter = null;
+        for (Shelter s : shelterList) {
+            if (s.getName().equals(name)) {
+                foundShelter = s;
+            }
+        }
+        return foundShelter;
+    }
+
+    /**
+     * Returns the List of Shelters whose names include String s
+     * @param s String that is searched for
+     * @return list of Shelters whose names include s
+     */
+    public List<Shelter> findShelterByString(String s) {
         List<Shelter> matchingShelters = new ArrayList<>();
         matchingShelters.add(shelterList.get(0));
         return matchingShelters;

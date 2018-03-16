@@ -17,6 +17,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.CSVFile;
 import model.Shelter;
 import model.ShelterManager;
 
@@ -49,15 +50,10 @@ public class ShelterListActivity extends AppCompatActivity implements AdapterVie
 
         //adding each name from shelter list to shelterNames
         //eventually switch out of listview?? (pls!!!!)
-        List<String> shelterNames = new ArrayList<>();
-        for (Shelter shelter : shelterList) {
-            shelterNames.add(shelter.getName());
-        }
 
         listView = findViewById(R.id.listView);
-        adapter = new ArrayAdapter(this, R.layout.listview_layout, shelterNames);
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(this);
+        populateList(shelterList);
+
 
         // search bar stuff
         // keep generic search by name function in ShelterListA or move to SearchA and call from here?
@@ -71,6 +67,7 @@ public class ShelterListActivity extends AppCompatActivity implements AdapterVie
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 ShelterListActivity.this.adapter.getFilter().filter(charSequence);
+                //populateList(sm.findShelterByName(charSequence.toString()));
             }
 
             @Override
@@ -80,12 +77,31 @@ public class ShelterListActivity extends AppCompatActivity implements AdapterVie
         });
     }
 
+    /**
+     * Populates the class listView with elements of input shelter List. Can be changed if switch
+     * out of listview
+     * @param newShelterList list of shelters to be added
+     */
+    private void populateList(List<Shelter> newShelterList) {
+        List<String> shelterNames = new ArrayList<>();
+        for (Shelter shelter : newShelterList) {
+            shelterNames.add(shelter.getName());
+        }
+
+        adapter = new ArrayAdapter(this, R.layout.listview_layout, shelterNames);
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(this);
+
+    }
+
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Log.d("selected shelter", (String) parent.getItemAtPosition(position));
         if (!parent.getItemAtPosition(position).equals("Shelter Name")) {
-            Log.d("clicked shelter", (String) parent.getItemAtPosition(position));
             Intent intent = new Intent(ShelterListActivity.this, DetailActivity.class);
-            Shelter selectedShelter = sm.findShelterByKey(position); // todo: fix stubbed method
+            String shelterName = (String) parent.getItemAtPosition(position);
+            Shelter selectedShelter = sm.findShelterByName(shelterName);
+            Log.d("selected shelter", (String) parent.getItemAtPosition(position));
             intent.putExtra("passed shelter", selectedShelter);
             startActivity(intent);
         }
