@@ -1,32 +1,25 @@
 package com.example.michelleliu.homelessapp;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.SearchView;
 
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 
+import model.CSVFile;
 import model.Shelter;
+import model.ShelterManager;
 
 public class SearchActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
     final String entry = "";
+    private ShelterManager sm = ShelterManager.getInstance();
+    private List<Shelter> shelterList = sm.getShelterList();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +33,10 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
 
         InputStream inputStream = getResources().openRawResource(R.raw.stats);
         CSVFile csvFile = new CSVFile(inputStream);
-        List<String[]> scoreList = csvFile.read();
+
+        // uncomment out
+        /*
+
 
         final List<String> scores = new ArrayList<>();
 
@@ -93,6 +89,7 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
             }
         });
 
+
         ListView shelters = findViewById(R.id.shelters);
 
         ArrayAdapter adapter = new ArrayAdapter(SearchActivity.this, R.layout.textview_layout, scores);
@@ -101,6 +98,7 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
         shelters.setVisibility(View.VISIBLE);
 
         shelters.setOnItemClickListener(this);
+        */
 
 //        for (String s : scores) {
 //            System.out.println("CCCCC " + s);
@@ -136,23 +134,11 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (position != 0) {
             Intent intent = new Intent(SearchActivity.this, DetailActivity.class);
-//            String[] selection = (String[]) parent.getItemAtPosition(position);
-            String selection = (String) parent.getItemAtPosition(position);
 
-            InputStream inputStream = getResources().openRawResource(R.raw.stats);
-            CSVFile csvFile = new CSVFile(inputStream);
-            List<String[]> scoreList = csvFile.read();
-
-            String[] shelterInfo= null;
-
-            for (String[] shelter : scoreList) {
-                if (shelter[1].equals(selection)) {
-                    shelterInfo = shelter;
-                    break;
-                }
-            }
-
-            intent.putExtra("shelter_info", shelterInfo);
+            //move sm to class var
+            ShelterManager sm = ShelterManager.getInstance();
+            Shelter selectedShelter = sm.findShelterByKey(position); // todo: check position + 1??
+            intent.putExtra("passed shelter", selectedShelter);
             startActivity(intent);
         }
     }

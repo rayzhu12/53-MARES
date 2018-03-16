@@ -1,10 +1,12 @@
 package model;
 
+import java.io.Serializable;
+
 /**
  * Created by michelleliu on 2/26/18.
  */
 
-public class Shelter {
+public class Shelter implements Serializable {
     private int key;
     private String name;
     private String capacity;

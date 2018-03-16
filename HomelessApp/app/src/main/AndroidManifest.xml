@@ -33,7 +33,7 @@
             android:name=".RegistrationActivity"
             android:label="@string/title_activity_registration"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".DataActivity" />
+        <activity android:name=".ShelterListActivity" />
         <activity
             android:name=".DetailActivity"
             android:label="@string/title_activity_detail"

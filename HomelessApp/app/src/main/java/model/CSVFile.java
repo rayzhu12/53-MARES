@@ -1,4 +1,4 @@
-package com.example.michelleliu.homelessapp;
+package model;
 
 /**
  * Created by Raymond the dummy on 2/23/2018.
@@ -12,34 +12,37 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Shelter;
-
 public class CSVFile {
-    InputStream inputStream;
-    List resultList = null;
-    List<Shelter> shelterList = null;
+    static InputStream inputStream;
+    static List resultList;
+    static List<Shelter> shelterList;
 
     public CSVFile(InputStream inputStream){
         this.inputStream = inputStream;
     }
 
-    public List read(){
+    /**
+     * Parses raw csv file to extract information in String[]. Then passes String[] to Shelter
+     * constructor to create List of Shelter objects using ArrayList.
+     *
+     * @return List of all Shelter objects parsed from raw csv file
+     */
+    public static List<Shelter> read(){
         resultList = new ArrayList();
         shelterList = new ArrayList<>();
+        Log.d("3/14", "i reach here");
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         try {
             String csvLine;
             while ((csvLine = reader.readLine()) != null) {
                 String[] row = csvLine.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
-
                 if (!row[0].equals("Unique Key")) {
                     shelterList.add(new Shelter(row));
                 }
-                resultList.add(row);
             }
         }
         catch (IOException ex) {
-            throw new RuntimeException("Error in reading CSV file: "+ ex);
+            throw new RuntimeException("Error in reading CSV file: " + ex);
         }
         finally {
             try {
@@ -49,12 +52,13 @@ public class CSVFile {
                 throw new RuntimeException("Error while closing input stream: "+ e);
             }
         }
-        return resultList;
+        return shelterList;
     }
 
-    public List<Shelter> returnShelterList() {
+    // not sure what this does/why its needed but too scared to delete -m
+    public static List<Shelter> returnShelterList() {
         if (shelterList == null) {
-            read();
+            shelterList = read();
         }
         return shelterList;
     }
