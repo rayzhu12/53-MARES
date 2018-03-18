@@ -3,15 +3,20 @@ package com.example.michelleliu.homelessapp;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import java.io.InputStream;
 import java.util.List;
 
 import model.CSVFile;
+import model.FamilyType;
+import model.Gender;
 import model.Shelter;
 import model.ShelterManager;
 
@@ -33,6 +38,18 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
 
         InputStream inputStream = getResources().openRawResource(R.raw.stats);
         CSVFile csvFile = new CSVFile(inputStream);
+
+        Spinner gender = (Spinner) findViewById(R.id.familySpinner);
+        ArrayAdapter<String> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, Gender.values());
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        gender.setAdapter(adapter);
+
+        Spinner familyType = (Spinner) findViewById(R.id.familySpinner);
+        ArrayAdapter<String> adapter2 = new ArrayAdapter(this,android.R.layout.simple_spinner_item, FamilyType.values());
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        gender.setAdapter(adapter2);
+
+        Log.d("selected gender", gender.toString());
 
         // uncomment out
         /*
