@@ -5,5 +5,15 @@ package model;
  */
 
 public enum Gender {
-    MALE, FEMALE, NONBINARY;
+    MALE("Male"), FEMALE("Female"), NONBINARY("Nonbinary");
+
+    private final String name;
+
+    Gender(String name) {
+        this.name = name;
+    }
+
+    public String toString() {
+        return this.name;
+    }
 }
