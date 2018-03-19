@@ -62,7 +62,7 @@ public class RegistrationActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         name = (EditText) findViewById(R.id.Name);
-        age =(EditText) findViewById(R.id.Age);
+        age = (EditText) findViewById(R.id.Age);
         number = (EditText) findViewById(R.id.phoneNumber);
 
         typeOfUser = (Spinner) findViewById(R.id.typeOfUser);
