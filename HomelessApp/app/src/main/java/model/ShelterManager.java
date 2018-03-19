@@ -27,7 +27,6 @@ public class ShelterManager {
      * @return Shelter object in shelterList
      */
     public Shelter findShelterByName(String name) {
-        //TODO
         Shelter foundShelter = null;
         for (Shelter s : shelterList) {
             if (s.getName().equals(name)) {
@@ -48,11 +47,18 @@ public class ShelterManager {
         return matchingShelters;
     }
 
-    // families, newborns
-    public List<Shelter> findShelterByType() {
+    // individual, family
+    public List<Shelter> findShelterByFamilyType(FamilyType familyType) {
         //TODO fix stub
-        return null;
+        return new ArrayList<Shelter>();
     }
+
+    // male, female, nonbinary
+    public List<Shelter> findShelterByGender(Gender gender) {
+        return new ArrayList<Shelter>();
+    }
+
+
 
     public Shelter findShelterByKey(int key) {
         //TODO fix stub
@@ -67,8 +73,4 @@ public class ShelterManager {
         }
         return foundShelter;
     }
-
-
-
-    //todo: add findShelterByType
 }
