@@ -17,7 +17,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
         android:gravity="center"
-        android:text="Login Page"
+        android:text="Login or Register"
         android:textColor="#000"
         android:textSize="20dp" />
 
