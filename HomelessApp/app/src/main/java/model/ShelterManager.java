@@ -55,6 +55,7 @@ public class ShelterManager {
 
     // male, female, nonbinary
     public List<Shelter> findShelterByGender(Gender gender) {
+        //TODO fix stub
         return new ArrayList<Shelter>();
     }
 
