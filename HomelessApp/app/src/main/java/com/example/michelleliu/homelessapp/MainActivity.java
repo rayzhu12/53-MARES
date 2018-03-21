@@ -50,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        firebaseAuth = FirebaseAuth.getInstance();
+
 //        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 //        userDatabase = FirebaseDatabase.getInstance();
 //        userDatabaseReference = userDatabase.getReference("users");
@@ -127,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 finish();
 
-                Intent intent = new Intent(MainActivity.this, RegistrationActivity.class);
+                Intent intent = new Intent(MainActivity.this, TestRegister.class);
                 startActivity(intent);
             }
         });
@@ -196,9 +198,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
-
-
-
 
     /*********************************************************************************************
      * NEED TO ADD METHODS THAT CHECK FOR PASSWORD RESTRICTIONS EX: 8 CHARACTERS, NEED A #....ETC

@@ -25,7 +25,6 @@
     <string name="new_user">New user? Sign-up here</string>
 
 
-
     <!--<string name="permission_rationale">"Contacts permissions are needed for providing email-->
     <!--completions."-->
     <!--</string>-->
@@ -40,5 +39,6 @@
     <!-- Twitter consumer key and secret -->
     <string name="twitter_consumer_key" translatable="false">YOUR_CONSUMER_KEY</string>
     <string name="twitter_consumer_secret" translatable="false">YOUR_CONSUMER_SECRET</string>
+    <string name="title_activity_test_register">TestRegister</string>
 
 </resources>
