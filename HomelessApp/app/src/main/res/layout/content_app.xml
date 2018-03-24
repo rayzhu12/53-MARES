@@ -38,4 +38,22 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.978" />
 
+    <Button
+        android:id="@+id/reserve"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"
+        android:text="Reserve Beds"
+        app:layout_constraintStart_toStartOf="@+id/logout"
+        app:layout_constraintTop_toBottomOf="@+id/logout" />
+
+    <Button
+        android:id="@+id/release"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:text="Release Beds"
+        app:layout_constraintStart_toStartOf="@+id/reserve"
+        app:layout_constraintTop_toBottomOf="@+id/reserve" />
+
 </android.support.constraint.ConstraintLayout>

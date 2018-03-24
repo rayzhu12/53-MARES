@@ -1,5 +1,7 @@
 package model;
 
+import com.google.firebase.database.DatabaseReference;
+
 /**
  * Created by Emily Wang on 2/19/2018.
  */
@@ -13,6 +15,7 @@ public class UserInfo {
     private String typeOfUser;
     private int numberOfBeds;
     private String currentShelter;
+    private String userID;
 
 
     public UserInfo() {
@@ -25,6 +28,8 @@ public class UserInfo {
         this.typeOfUser = typeOfUser;
         this.gender = gender;
         this.numberOfChildren = numberofChildren;
+        this.numberOfBeds = 5;
+        this.currentShelter = null;
     }
 
     public String getName() {
@@ -56,8 +61,11 @@ public class UserInfo {
     public int getNumberOfBeds() {return numberOfBeds;}
     public void setNumberOfBeds(int beds) {this.numberOfBeds = beds;}
 
-    private String getCurrentShelter() {return currentShelter;}
-    private void setCurrentShelter(String shelter) {this.currentShelter = shelter;}
+    public String getCurrentShelter() {return currentShelter;}
+    public void setCurrentShelter(String shelter) {this.currentShelter = shelter;}
+
+    public void setUserID(String id) {this.userID = id;}
+    public String getUserID() {return userID;}
 
     public String toString() {
         return ("Name: " + name + " User Type: " + typeOfUser);

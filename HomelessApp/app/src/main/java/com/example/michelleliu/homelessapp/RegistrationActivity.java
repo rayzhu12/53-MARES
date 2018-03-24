@@ -142,6 +142,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 if (EditTextStatus) {
                     UserInfo userInfo = new UserInfo(nameHolder, ageHolder
                     ,genderHolder, null, 0, typeOfUser.getSelectedItem().toString());
+                    userInfo.setUserID(userID);
                     myRef.child("users").child(userID).setValue(userInfo);
                     Toast.makeText(RegistrationActivity.this, "User added to database", Toast.LENGTH_LONG).show();
                     name.setText("");
