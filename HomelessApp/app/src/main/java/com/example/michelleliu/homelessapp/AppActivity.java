@@ -52,8 +52,8 @@ public class AppActivity extends AppCompatActivity {
             // Finishing current Profile activity.
             finish();
 
-            // If user already not log in then Redirect to LoginActivity .
-            Intent intent = new Intent(AppActivity.this, LoginActivity.class);
+            // If user already not log in then Redirect to MainActivity .
+            Intent intent = new Intent(AppActivity.this, MainActivity.class);
             startActivity(intent);
 
             // Showing toast message.
@@ -76,7 +76,7 @@ public class AppActivity extends AppCompatActivity {
                 finish();
 
                 // Redirect to Login Activity after click on logout button.
-                Intent intent = new Intent(AppActivity.this, LoginActivity.class);
+                Intent intent = new Intent(AppActivity.this, MainActivity.class);
                 startActivity(intent);
 
                 // Showing toast message on logout.

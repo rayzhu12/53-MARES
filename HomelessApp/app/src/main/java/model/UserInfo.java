@@ -6,11 +6,15 @@ package model;
 
 public class UserInfo {
     private String name;
+    private String gender;
 //    private String email;
 //    private String password;
     private int age;
     private String number;
     private String typeOfUser;
+    private int numberOfChildren;
+    private int numberOfBeds;
+    private String currentShelter;
 
     public UserInfo(String name, int age, String number, String typeOfUser) {
         this.name = name;
@@ -19,6 +23,8 @@ public class UserInfo {
         this.age = age;
         this.number = number;
         this.typeOfUser = typeOfUser;
+        this.numberOfBeds = 0;
+        this.currentShelter = null;
     }
 
     public String getName() {
@@ -39,6 +45,19 @@ public class UserInfo {
 //    public void setPassword(String password) {
 //        this.password = password;
 //    }
+
+    public int getAge(){return this.age;}
+    public void setAge(int age){this.age = age;}
+
+    public String getNumber(){return this.number;}
+    public void setNumber(String phoneNumber){number = phoneNumber;}
+
+    public String getGender(){return this.gender;}
+    public void setGender(String gender) {this.gender = gender;}
+
+    public int getNumberOfChildren(){return numberOfChildren;}
+    public void setNumberOfChildren(int numberOfChildren){this.numberOfChildren = numberOfChildren;}
+
     public String getUserType() {
         return this.typeOfUser;
     }
@@ -46,10 +65,19 @@ public class UserInfo {
         this.typeOfUser = typeOfUser;
     }
 
+    public int getNumberOfBeds(){return numberOfBeds;}
+    public void setNumberOfBeds(int beds){numberOfBeds = beds;}
+
+    public String getCurrentShelter(){return currentShelter;}
+    public void setCurrentShelter(String shelter){currentShelter = shelter;}
+
     public String toString() {
         return ("Name: " + name + " User Type: " + typeOfUser);
     }
 
+    /***************************************************************
+     * Need to update this if it's still necessary
+     ***************************************************************/
     @Override
     public boolean equals(Object u2) {
         if (u2 == this) {
