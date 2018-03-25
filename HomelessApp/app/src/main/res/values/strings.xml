@@ -13,6 +13,7 @@
     <string name="prompt_password">Enter Password</string>
     <string name="action_sign_in">Sign In</string>
     <string name="action_sign_in_short">Sign In</string>
+    <string name="action_sign_out">Sign Out</string>
     <string name="error_invalid_email">Email is missing required symbols.</string>
     <string name="error_invalid_password">Password must be at least 8 characters long.</string>
     <string name="error_incorrect_password">Username or password is incorrect.</string>
@@ -22,6 +23,9 @@
     <string name="clear">Clear Search</string>
 
     <string name="new_user">New user? Sign-up here</string>
+
+    <string name="reserve_bed">Reserve Bed(s)</string>
+    <string name="release_bed">Release Bed(s)</string>
 
     <!--<string name="permission_rationale">"Contacts permissions are needed for providing email-->
     <!--completions."-->

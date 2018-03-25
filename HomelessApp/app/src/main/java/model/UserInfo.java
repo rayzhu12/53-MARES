@@ -15,8 +15,13 @@ public class UserInfo {
     private int numberOfChildren;
     private int numberOfBeds;
     private String currentShelter;
+    private String userID;
 
-    public UserInfo(String name, int age, String number, String typeOfUser) {
+    public UserInfo(){
+
+    }
+
+    public UserInfo(String userID, String name, int age, String number, String typeOfUser) {
         this.name = name;
 //        this.email = email;
 //        this.password = password;
@@ -45,6 +50,8 @@ public class UserInfo {
 //    public void setPassword(String password) {
 //        this.password = password;
 //    }
+
+    public String getUserID(){return this.userID;}
 
     public int getAge(){return this.age;}
     public void setAge(int age){this.age = age;}

@@ -102,8 +102,7 @@ public class RegistrationActivity extends AppCompatActivity {
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference();
         FirebaseUser user = mAuth.getCurrentUser();
-        //userID = user.getUid();
-        userID = myRef.push().getKey();
+        //userID = myRef.push().getKey();
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -112,11 +111,12 @@ public class RegistrationActivity extends AppCompatActivity {
                 if (user != null) {
                     // User is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-                    //toastMessage("Successfully signed in with: " + user.getEmail());
+                    userID = user.getUid();
+                    Toast.makeText(RegistrationActivity.this, "Successfully signed in with: " + user.getEmail(), Toast.LENGTH_LONG).show();
                 } else {
                     // User is signed out
                     Log.d(TAG, "onAuthStateChanged:signed_out");
-                    //toastMessage("Successfully signed out.");
+                    Toast.makeText(RegistrationActivity.this, "Successfully signed out.", Toast.LENGTH_LONG).show();
                 }
                 // ...
             }
@@ -154,7 +154,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 );
 
                 if (EditTextStatus) {
-                    UserInfo userInfo = new UserInfo(nameHolder, ageHolder
+                    UserInfo userInfo = new UserInfo(userID, nameHolder, ageHolder
                             ,genderHolder, typeOfUser.getSelectedItem().toString());
                     //userInfo.setUserID(userID);
                     myRef.child("users").child(userID).setValue(userInfo);
