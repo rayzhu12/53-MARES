@@ -1,6 +1,7 @@
 package com.example.michelleliu.homelessapp;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -12,6 +13,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -27,17 +34,51 @@ public class ShelterListActivity extends AppCompatActivity implements AdapterVie
     private ShelterManager sm = ShelterManager.getInstance();
     private List<Shelter> shelterList;
 
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+    private FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
+    private DatabaseReference myRef;
+
+    private static final String TAG = "ShelterListActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data);
+
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = mFirebaseDatabase.getReference();
+
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    // User is signed in
+                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+                    Toast.makeText(ShelterListActivity.this, "Successfully signed in with: " + user.getEmail(), Toast.LENGTH_LONG).show();
+                } else {
+                    // User is signed out
+                    Log.d(TAG, "onAuthStateChanged:signed_out");
+                    Toast.makeText(ShelterListActivity.this, "Successfully signed out.", Toast.LENGTH_LONG).show();
+                }
+                // ...
+            }
+        };
 
         //adds the initial shelter data if not already populated
         if (shelterList == null) {
             InputStream inputStream = getResources().openRawResource(R.raw.stats);
             CSVFile csvFile = new CSVFile(inputStream);
             shelterList = csvFile.read();
-            sm.setShelterList(shelterList);
+            //sm.setShelterList(shelterList);
+            for (Shelter s: shelterList) {
+                myRef.child("shelters").child(s.getName()).setValue(s);
+            }
+
+
         }
 
         Button detailSearchButton = findViewById(R.id.detailsearch);
@@ -104,6 +145,20 @@ public class ShelterListActivity extends AppCompatActivity implements AdapterVie
             Log.d("selected shelter", (String) parent.getItemAtPosition(position));
             intent.putExtra("passed shelter", selectedShelter);
             startActivity(intent);
+        }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
         }
     }
 
