@@ -95,6 +95,14 @@ public class ShelterListActivity extends AppCompatActivity implements AdapterVie
 //            });
         }
 
+        Button returnHome = findViewById(R.id.home);
+        returnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                startActivity(new Intent(ShelterListActivity.this, AppActivity.class));
+            }
+        });
         Button detailSearchButton = findViewById(R.id.detailsearch);
         detailSearchButton.setOnClickListener(new View.OnClickListener() {
             @Override

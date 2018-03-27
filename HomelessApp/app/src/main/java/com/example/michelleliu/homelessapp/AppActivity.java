@@ -18,6 +18,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import model.Shelter;
 import model.UserInfo;
 import model.UserManager;
 
@@ -34,8 +35,11 @@ public class AppActivity extends AppCompatActivity {
 
     private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference myRef;
+    private DatabaseReference secondRef;
     private String userID;
 
+    int[] nBed = new int[1];
+    String[] sName = new String[1];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +52,7 @@ public class AppActivity extends AppCompatActivity {
         updateData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                finish();
                 startActivity(new Intent(AppActivity.this, ShelterListActivity.class));
             }
         });
@@ -112,30 +117,30 @@ public class AppActivity extends AppCompatActivity {
 
         };
 
-        Button reserveBed = (Button) findViewById(R.id.reserve);
-        // Adding click listener on logout button.
-        reserveBed.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                myRef.child(userID).child("numberOfBeds").setValue(5);
-                // Read from the database
-                myRef.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange (DataSnapshot dataSnapshot){
-                        // This method is called once with the initial value and again
-                        // whenever data at this location is updated.
-                        showData(dataSnapshot);
-                    }
-
-                    @Override
-                    public void onCancelled (DatabaseError error){
-                        // Failed to read value
-                        Log.w(TAG, "Failed to read value.", error.toException());
-                    }
-                });
-            }
-        });
+//        Button reserveBed = (Button) findViewById(R.id.reserve);
+//        // Adding click listener on logout button.
+//        reserveBed.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                myRef.child(userID).child("numberOfBeds").setValue(5);
+//                // Read from the database
+//                myRef.addValueEventListener(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange (DataSnapshot dataSnapshot){
+//                        // This method is called once with the initial value and again
+//                        // whenever data at this location is updated.
+//                        showData(dataSnapshot);
+//                    }
+//
+//                    @Override
+//                    public void onCancelled (DatabaseError error){
+//                        // Failed to read value
+//                        Log.w(TAG, "Failed to read value.", error.toException());
+//                    }
+//                });
+//            }
+//        });
 
         Button releaseBed = (Button) findViewById(R.id.release);
         // Adding click listener on logout button.
@@ -144,12 +149,17 @@ public class AppActivity extends AppCompatActivity {
             public void onClick(View view) {
                 UserManager manager = new UserManager();
 
-               myRef.child(userID).child("numberOfBeds").setValue(0);
-
                 // Read from the database testing if this works
                myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                    @Override
                    public void onDataChange(DataSnapshot dataSnapshot) {
+                       nBed[0] = dataSnapshot.child(userID).getValue(UserInfo.class).getNumberOfBeds();
+                       sName[0] = dataSnapshot.child(userID).child("currentShelter").getValue().toString();
+                       myRef.child(userID).child("numberOfBeds").setValue(0);
+                       myRef.child(userID).child("currentShelter").setValue(null);
+                       if (sName[0] != null && nBed[0] > 0) {
+                           updateShelter();
+                       }
                        showData(dataSnapshot);
                    }
 
@@ -158,7 +168,6 @@ public class AppActivity extends AppCompatActivity {
                        Log.d(TAG, "failed to read value");
                    }
                });
-
 
 //                myRef.addValueEventListener(new ValueEventListener() {
 //                    @Override
@@ -177,6 +186,23 @@ public class AppActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void updateShelter() {
+        secondRef = mFirebaseDatabase.getReference("shelters");
+        secondRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.d("AppActivity", "secondRef");
+                int cap = Integer.parseInt(dataSnapshot.child(sName[0]).getValue(Shelter.class).getCapacity());
+                secondRef.child(sName[0]).child("capacity").setValue(Integer.toString(nBed[0] + cap));
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void showData(DataSnapshot dataSnapshot) {

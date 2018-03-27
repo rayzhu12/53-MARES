@@ -5,7 +5,7 @@ package model;
  */
 
 public enum Restriction {
-    WOMEN ("Women"), FAMILIES ("Families with children"), MEN("Men"), NEWBORNS("Newborn");
+    WOMEN ("Women"), FAMILIES ("Families with children"), MEN("Men"), NEWBORNS("Newborn"), CHILDREN("Children");
 
     private final String name;
 

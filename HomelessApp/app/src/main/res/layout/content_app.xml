@@ -23,15 +23,15 @@
     <Button
         android:id="@+id/updatedata"
         android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginBottom="8dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="77dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="187dp"
         android:backgroundTint="@android:color/holo_purple"
         android:text="@string/data"
         android:textAppearance="@android:style/TextAppearance.Material.Widget.Button.Colored"
-        app:layout_constraintBottom_toTopOf="@+id/logout"
+        app:layout_constraintBottom_toTopOf="@+id/release"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,25 +39,16 @@
         app:layout_constraintVertical_bias="0.978" />
 
     <Button
-        android:id="@+id/reserve"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="11dp"
-        android:backgroundTint="@android:color/holo_purple"
-        android:text="@string/reserve_bed"
-        android:textAppearance="@android:style/TextAppearance.Material.Widget.Button.Colored"
-        app:layout_constraintStart_toStartOf="@+id/logout"
-        app:layout_constraintTop_toBottomOf="@+id/logout" />
-
-    <Button
         android:id="@+id/release"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="17dp"
+        android:layout_marginBottom="151dp"
         android:backgroundTint="@android:color/holo_purple"
         android:text="@string/release_bed"
         android:textAppearance="@android:style/TextAppearance.Material.Widget.Button.Colored"
-        app:layout_constraintStart_toStartOf="@+id/reserve"
-        app:layout_constraintTop_toBottomOf="@+id/reserve" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/updatedata" />
 
 </android.support.constraint.ConstraintLayout>

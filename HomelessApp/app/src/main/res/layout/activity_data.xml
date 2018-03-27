@@ -27,6 +27,12 @@
             android:text="@string/search"
             android:textAppearance="@android:style/TextAppearance.Material.Widget.Button.Colored" />
 
+        <Button
+            android:id="@+id/home "
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Return to Home" />
+
         <ListView
             android:id="@+id/listView"
             android:layout_width="match_parent"
