@@ -154,7 +154,10 @@ public class AppActivity extends AppCompatActivity {
                    @Override
                    public void onDataChange(DataSnapshot dataSnapshot) {
                        nBed[0] = dataSnapshot.child(userID).getValue(UserInfo.class).getNumberOfBeds();
-                       sName[0] = dataSnapshot.child(userID).child("currentShelter").getValue().toString();
+
+                       if (dataSnapshot.child(userID).child("currentShelter").getValue() != null) {
+                           sName[0] = dataSnapshot.child(userID).child("currentShelter").getValue().toString();
+                       }
                        myRef.child(userID).child("numberOfBeds").setValue(0);
                        myRef.child(userID).child("currentShelter").setValue(null);
                        if (sName[0] != null && nBed[0] > 0) {
@@ -196,6 +199,7 @@ public class AppActivity extends AppCompatActivity {
                 Log.d("AppActivity", "secondRef");
                 int cap = Integer.parseInt(dataSnapshot.child(sName[0]).getValue(Shelter.class).getCapacity());
                 secondRef.child(sName[0]).child("capacity").setValue(Integer.toString(nBed[0] + cap));
+                Toast.makeText(AppActivity.this, "You've released " + nBed[0] + " bed(s) from " + sName[0], Toast.LENGTH_LONG).show();
             }
 
             @Override

@@ -64,7 +64,7 @@ public class DetailActivity extends AppCompatActivity {
                     // User is signed in
                     Log.d("DetailActivity", "onAuthStateChanged:signed_in:" + user.getUid());
                     userID = user.getUid();
-                    Toast.makeText(DetailActivity.this, "Successfully signed in with: " + user.getEmail(), Toast.LENGTH_LONG).show();
+                    //Toast.makeText(DetailActivity.this, "Successfully signed in with: " + user.getEmail(), Toast.LENGTH_LONG).show();
                 } else {
                     // User is signed out
                     Log.d("DetailActivity", "onAuthStateChanged:signed_out");
@@ -131,15 +131,23 @@ public class DetailActivity extends AppCompatActivity {
                 myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (numBeds == 0) {
+                            Toast.makeText(DetailActivity.this, "You cannot reseve zero beds", Toast.LENGTH_LONG).show();
+                        }
                         if (dataSnapshot.child(userID).getValue(UserInfo.class).getNumberOfBeds() == 0 && capacity[0] - numBeds > 0) {
                             myRef.child(userID).child("numberOfBeds").setValue(numBeds);
                             myRef.child(userID).child("currentShelter").setValue(shelter.getName());
+                            Toast.makeText(DetailActivity.this, "You've reserved " + numBeds + " beds from " + shelter.getName(), Toast.LENGTH_LONG).show();
                             updateShelter(numBeds);
                             Log.d("DetailActivity", "beds added");
                             showData(dataSnapshot);
-                        } else {
+                        } else if (capacity[0] - numBeds < 0){
                             Log.d("DetailActivity", "beds not added") ;
-                            Toast.makeText(DetailActivity.this, "You already have beds reserved at " + shelter.getName(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(DetailActivity.this, "There are not this many free beds at this shelter", Toast.LENGTH_LONG).show();
+                        }
+                        else {
+                            Log.d("DetailActivity", "beds not added") ;
+                            Toast.makeText(DetailActivity.this, "You already have beds reserved at " + dataSnapshot.child(userID).child("currentShelter").getValue().toString(), Toast.LENGTH_LONG).show();
                         }
                     }
 
