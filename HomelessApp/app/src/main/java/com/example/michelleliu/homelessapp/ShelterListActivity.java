@@ -17,8 +17,11 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -74,11 +77,22 @@ public class ShelterListActivity extends AppCompatActivity implements AdapterVie
             CSVFile csvFile = new CSVFile(inputStream);
             shelterList = csvFile.read();
             //sm.setShelterList(shelterList);
-            for (Shelter s: shelterList) {
-                myRef.child("shelters").child(s.getName()).setValue(s);
-            }
 
+            DatabaseReference mDatabase = myRef.child("shelters");
+            mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for (Shelter s: shelterList) {
+                        if(dataSnapshot.child(s.getName()).exists()){
+                            mDatabase.child(s.getName()).setValue(s);
+                        }
+                    }
+                }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
 
+                }
+            });
         }
 
         Button detailSearchButton = findViewById(R.id.detailsearch);
