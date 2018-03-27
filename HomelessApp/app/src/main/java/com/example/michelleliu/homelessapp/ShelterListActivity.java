@@ -50,9 +50,9 @@ public class ShelterListActivity extends AppCompatActivity implements AdapterVie
         setContentView(R.layout.activity_data);
 
         mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = mAuth.getCurrentUser();
+        //FirebaseUser user = mAuth.getCurrentUser();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = mFirebaseDatabase.getReference();
+        myRef = mFirebaseDatabase.getReference();
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -103,12 +103,10 @@ public class ShelterListActivity extends AppCompatActivity implements AdapterVie
             }
         });
 
-        //adding each name from shelter list to shelterNames
         //eventually switch out of listview?? (pls!!!!)
 
         listView = findViewById(R.id.listView);
         populateList(shelterList);
-
 
         // search bar stuff
         // keep generic search by name function in ShelterListA or move to SearchA and call from here?
@@ -155,6 +153,8 @@ public class ShelterListActivity extends AppCompatActivity implements AdapterVie
         if (!parent.getItemAtPosition(position).equals("Shelter Name")) {
             Intent intent = new Intent(ShelterListActivity.this, DetailActivity.class);
             String shelterName = (String) parent.getItemAtPosition(position);
+            //todo: change to retrieve from database
+            //myRef.child("shelters").child(shelterName);
             Shelter selectedShelter = sm.findShelterByName(shelterName);
             Log.d("selected shelter", (String) parent.getItemAtPosition(position));
             intent.putExtra("passed shelter", selectedShelter);

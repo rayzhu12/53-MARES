@@ -1,5 +1,14 @@
 package model;
 
+import android.util.Log;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,12 +20,20 @@ public class ShelterManager {
     private static final ShelterManager _instance = new ShelterManager();
     public static ShelterManager getInstance() { return _instance; }
 
+    //private FirebaseAuth mAuth;
+    //private FirebaseAuth.AuthStateListener mAuthListener;
+    private FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
+    private DatabaseReference myRef = mFirebaseDatabase.getReference();
+
+    //replace with database
     List<Shelter> shelterList;
+
+
+
 
     public List<Shelter> getShelterList() {
         return shelterList;
     }
-
     public void setShelterList(List<Shelter> shelterList) {
         this.shelterList = shelterList;
     }
@@ -27,13 +44,38 @@ public class ShelterManager {
      * @return Shelter object in shelterList
      */
     public Shelter findShelterByName(String name) {
-        Shelter foundShelter = null;
+        Log.d("u got here", name.toLowerCase());
+        final Shelter[] foundShelter = {null};
+
+        myRef.child("shelters").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot item: dataSnapshot.getChildren()) {
+                    Shelter s = item.getValue(Shelter.class);
+                    Log.d("s.getName", s.getName());
+                    Log.d("name.toLowercase", name.toLowerCase());
+                    if (s.getName().toLowerCase().equals(name.toLowerCase())) {
+                        Log.d("hereherehere", name.toLowerCase());
+                        foundShelter[0] = s;
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        /*
         for (Shelter s : shelterList) {
             if (s.getName().equals(name)) {
-                foundShelter = s;
+                foundShelter[0] = s;
             }
         }
-        return foundShelter;
+        */
+        return foundShelter[0];
     }
 
     /**
