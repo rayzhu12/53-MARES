@@ -34,6 +34,7 @@ import java.util.List;
 
 import model.Model;
 import model.UserInfo;
+import model.UserManager;
 
 public class RegistrationActivity extends AppCompatActivity {
     private static final String TAG = "registration";
@@ -53,10 +54,8 @@ public class RegistrationActivity extends AppCompatActivity {
     private Button register;
     private ProgressDialog progressDialog;
 
-    private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
-    private DatabaseReference myRef;
 
     public enum adminOrUser {
         Admin,
@@ -99,10 +98,7 @@ public class RegistrationActivity extends AppCompatActivity {
         //declare the database reference object. This is what we use to access the database.
         //NOTE: Unless you are signed in, this will not be useable.
         mAuth = FirebaseAuth.getInstance();
-        mFirebaseDatabase = FirebaseDatabase.getInstance();
-        myRef = mFirebaseDatabase.getReference();
         FirebaseUser user = mAuth.getCurrentUser();
-        //userID = myRef.push().getKey();
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -122,24 +118,6 @@ public class RegistrationActivity extends AppCompatActivity {
             }
         };
 
-
-        // Read from the database
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                Log.d(TAG, "onDataChange: Added information to database: \n" +
-                        dataSnapshot.getValue());
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException());
-            }
-        });
-
         register = (Button) findViewById(R.id.create_account);
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -154,10 +132,8 @@ public class RegistrationActivity extends AppCompatActivity {
                 );
 
                 if (EditTextStatus) {
-                    UserInfo userInfo = new UserInfo(userID, nameHolder, ageHolder
-                            ,genderHolder, typeOfUser.getSelectedItem().toString());
-                    //userInfo.setUserID(userID);
-                    myRef.child("users").child(userID).setValue(userInfo);
+                    UserManager manage = new UserManager();
+                    manage.addNewUser(userID, nameHolder, ageHolder, genderHolder, typeOfUser.getSelectedItem().toString());
                     Toast.makeText(RegistrationActivity.this, "User added to database", Toast.LENGTH_LONG).show();
                     name.setText("");
                     gender.setText("");

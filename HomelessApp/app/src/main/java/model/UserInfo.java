@@ -1,5 +1,10 @@
 package model;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 /**
  * Created by Emily Wang on 2/19/2018.
  */
@@ -96,4 +101,6 @@ public class UserInfo {
         UserInfo user2 = (UserInfo) u2;
         return (user2.getName().equals(this.name) && user2.getUserType().equals(this.typeOfUser));
     }
- }
+}
+
+

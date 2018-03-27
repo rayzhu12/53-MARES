@@ -19,12 +19,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import model.UserInfo;
+import model.UserManager;
 
 public class AppActivity extends AppCompatActivity {
 
     private static final String TAG = "AppActivity";
 
-    private FirebaseDatabase mFirebaseDatabase;
+    FirebaseDatabase mFirebaseDatabase;
     // Creating FirebaseAuth.
     FirebaseAuth firebaseAuth ;
 
@@ -106,7 +107,7 @@ public class AppActivity extends AppCompatActivity {
                 } else {
                     // User is signed out
                     Log.d(TAG, "onAuthStateChanged:signed_out");
-                    Toast.makeText(AppActivity.this, "Successfully signed out.", Toast.LENGTH_LONG);
+                    Toast.makeText(AppActivity.this, "Successfully signed out.", Toast.LENGTH_LONG).show();
                 }
                 // ...
             }
@@ -143,23 +144,38 @@ public class AppActivity extends AppCompatActivity {
         releaseBed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                UserManager manager = new UserManager();
 
-                myRef.child(userID).child("numberOfBeds").setValue(0);
-                // Read from the database
-                myRef.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange (DataSnapshot dataSnapshot){
-                        // This method is called once with the initial value and again
-                        // whenever data at this location is updated.
-                        showData(dataSnapshot);
-                    }
+               myRef.child(userID).child("numberOfBeds").setValue(0);
 
-                    @Override
-                    public void onCancelled (DatabaseError error){
-                        // Failed to read value
-                        Log.w(TAG, "Failed to read value.", error.toException());
-                    }
-                });
+                // Read from the database testing if this works
+               myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                   @Override
+                   public void onDataChange(DataSnapshot dataSnapshot) {
+                       showData(dataSnapshot);
+                   }
+
+                   @Override
+                   public void onCancelled(DatabaseError databaseError) {
+                       Log.d(TAG, "failed to read value");
+                   }
+               });
+
+
+//                myRef.addValueEventListener(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange (DataSnapshot dataSnapshot){
+//                        // This method is called once with the initial value and again
+//                        // whenever data at this location is updated.
+//                        showData(dataSnapshot);
+//                    }
+//
+//                    @Override
+//                    public void onCancelled (DatabaseError error){
+//                        // Failed to read value
+//                        Log.w(TAG, "Failed to read value.", error.toException());
+//                    }
+//                });
             }
         });
 

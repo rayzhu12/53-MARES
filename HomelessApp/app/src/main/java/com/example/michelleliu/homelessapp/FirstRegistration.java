@@ -27,6 +27,7 @@ public class FirstRegistration extends AppCompatActivity {
     private EditText password;
     private EditText confirmPass;
     private Button nextRegister;
+    private Button logIn;
 
     private String emailHolder;
     private String passwordHolder;
@@ -63,18 +64,26 @@ public class FirstRegistration extends AppCompatActivity {
 
                 // If EditText is true then this block with execute.
                 if(EditTextStatus){
-
                     // If EditText is not empty than UserRegistrationFunction method will call.
                     UserRegistrationFunction();
                 }
                 // If EditText is false then this block with execute.
                 else {
-
                     Toast.makeText(FirstRegistration.this, "Please fill all form fields.", Toast.LENGTH_LONG).show();
-
                 }
 
             }
+        });
+
+        logIn = (Button) findViewById(R.id.logIn);
+        logIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                Intent intent = new Intent(FirstRegistration.this, MainActivity.class);
+                startActivity(intent);
+            }
+
         });
     }
 
