@@ -24,7 +24,7 @@ public class DetailActivity extends AppCompatActivity {
 
         shelter = (Shelter) getIntent().getSerializableExtra("passed shelter");
 
-        // replace with something bc this looks ugly af lmao
+        // replace with something bc this looks uggo
         TextView nameTextView = (TextView) findViewById(R.id.name);
         nameTextView.setText(shelter.getName());
         TextView keyTextView = (TextView) findViewById(R.id.key);
