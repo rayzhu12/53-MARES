@@ -78,21 +78,21 @@ public class ShelterListActivity extends AppCompatActivity implements AdapterVie
             shelterList = csvFile.read();
             sm.setShelterList(shelterList);
 
-            DatabaseReference mDatabase = myRef.child("shelters");
-            mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    for (Shelter s: shelterList) {
-                        if(dataSnapshot.child(s.getName()).exists()){
-                            mDatabase.child(s.getName()).setValue(s);
-                        }
-                    }
-                }
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
+//            DatabaseReference mDatabase = myRef.child("shelters");
+//            mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(DataSnapshot dataSnapshot) {
+//                    for (Shelter s: shelterList) {
+//                        if(dataSnapshot.child(s.getName()).exists()){
+//                            mDatabase.child(s.getName()).setValue(s);
+//                        }
+//                    }
+//                }
+//                @Override
+//                public void onCancelled(DatabaseError databaseError) {
+//
+//                }
+//            });
         }
 
         Button detailSearchButton = findViewById(R.id.detailsearch);

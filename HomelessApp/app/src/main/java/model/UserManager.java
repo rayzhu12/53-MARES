@@ -55,7 +55,6 @@ public class UserManager {
         myRef.child("shelters").child("test1").setValue(6);
     }
 
-
     private void showData(DataSnapshot dataSnapshot, String userID) {
         UserInfo uInfo = new UserInfo();
         System.out.println(dataSnapshot.child(userID));

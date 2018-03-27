@@ -45,7 +45,7 @@ public class ShelterManager {
      */
     public Shelter findShelterByName(String name) {
         Log.d("u got here", name.toLowerCase());
-        final Shelter[] foundShelter = {null};
+        Shelter[] foundShelter = new Shelter[1];
 
         myRef = mFirebaseDatabase.getReference("shelters");
 
@@ -53,16 +53,16 @@ public class ShelterManager {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Log.d("s.getName", "I'm here");
-                for (DataSnapshot item: dataSnapshot.getChildren()) {
-                    Shelter s = item.getValue(Shelter.class);
-                    Log.d("s.getName", s.getName());
-                    Log.d("name.toLowercase", name.toLowerCase());
-                    if (s.getName().toLowerCase().equals(name.toLowerCase())) {
-                        Log.d("hereherehere", name.toLowerCase());
-                        foundShelter[0] = s;
-                    }
-
-                }
+//                for (DataSnapshot item: dataSnapshot.getChildren()) {
+//                    Shelter s = item.getValue(Shelter.class);
+//                    Log.d("s.getName", s.getName());
+//                    Log.d("name.toLowercase", name.toLowerCase());
+//                    if (s.getName().toLowerCase().equals(name.toLowerCase())) {
+//                        Log.d("hereherehere", name.toLowerCase());
+//                        foundShelter[0] = s;
+//                    }
+//
+//                }
             }
 
             @Override
@@ -70,7 +70,6 @@ public class ShelterManager {
 
             }
         });
-
 
         for (Shelter s : shelterList) {
             if (s.getName().equals(name)) {
