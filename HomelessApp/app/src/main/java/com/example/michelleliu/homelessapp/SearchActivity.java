@@ -41,8 +41,6 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         gender.setAdapter(adapter);
 
-
-
         //can do without ifs?
         Gender selectedGender;
         String genderString = gender.getSelectedItem().toString();
@@ -70,16 +68,20 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
         Log.d("selected gender", selectedGender.toString());
         Log.d("selected family type", selectedFamilyType.toString());
 
-        final List<Shelter> newShelterList = null;
+
         Button search = (Button) findViewById(R.id.detSearchButton);
         search.setOnClickListener(new View.OnClickListener() {
             String entry;
             @Override
             public void onClick(View view) {
+                List<Shelter> newShelterList = new ArrayList<>();
                 entry = bar.getText().toString().toLowerCase();
                 List<Shelter> nameMatchList = sm.findShelterByString(entry);
+                Log.d("name match list", nameMatchList.toString());
                 List<Shelter> genderMatchList = sm.findShelterByGender(selectedGender);
+                Log.d("genderMatchList", genderMatchList.toString());
                 List<Shelter> familyTypeMatchList = sm.findShelterByFamilyType(selectedFamilyType);
+                Log.d("famTypeMatchList", familyTypeMatchList.toString());
 
                 //TODO: add no selection option
                 if (nameMatchList != null) {
@@ -104,7 +106,7 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
         shelters.setVisibility(View.VISIBLE);
         populateList(shelterList);
 
-        //todo: clear should not bring up same page again!! just clear the values
+        //todo: clear should not bring up same page again, just clear the values
         Button clear = (Button) findViewById(R.id.clearButton);
         clear.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,7 +121,6 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
         });
     }
 
-    //idk how to use lmao
     private void populateList(List<Shelter> newShelterList) {
         List<String> shelterNames = new ArrayList<>();
         if (newShelterList != null) {
