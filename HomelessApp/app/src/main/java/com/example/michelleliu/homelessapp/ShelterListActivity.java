@@ -154,9 +154,8 @@ public class ShelterListActivity extends AppCompatActivity implements AdapterVie
             Intent intent = new Intent(ShelterListActivity.this, DetailActivity.class);
             String shelterName = (String) parent.getItemAtPosition(position);
             //todo: change to retrieve from database
-            //myRef.child("shelters").child(shelterName);
             Shelter selectedShelter = sm.findShelterByName(shelterName);
-            Log.d("selected shelter", (String) parent.getItemAtPosition(position));
+            //Log.d("selected shelter", (String) parent.getItemAtPosition(position));
             intent.putExtra("passed shelter", selectedShelter);
             startActivity(intent);
         }

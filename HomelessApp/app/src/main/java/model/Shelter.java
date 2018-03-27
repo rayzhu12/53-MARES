@@ -55,10 +55,7 @@ public class Shelter implements Serializable {
         }
         if (inputString.toLowerCase().contains("families") ||
                 inputString.toLowerCase().contains("anyone")) {
-            restrictionList.add(Restriction.WOMEN);
-            restrictionList.add(Restriction.MEN);
-            restrictionList.add(Restriction.CHILDREN);
-            restrictionList.add(Restriction.NEWBORNS);
+            restrictionList.add(Restriction.FAMILIES);
         }
         if (inputString.toLowerCase().contains("newborn")) {
             restrictionList.add(Restriction.NEWBORNS);

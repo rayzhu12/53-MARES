@@ -97,22 +97,48 @@ public class ShelterManager {
         } else {
             return matchingShelters;
         }
-        //todo: might return nullpointer
     }
 
     // individual, family
     public List<Shelter> findShelterByFamilyType(FamilyType familyType) {
-        //TODO fix stub
-        return new ArrayList<Shelter>();
+        List<Shelter> matches = new ArrayList<>();
+        if (familyType.equals(FamilyType.FAMILY)) {
+            for (Shelter s : shelterList) {
+                if (s.getRestrictionList().contains(Restriction.FAMILIES)
+                        || s.getRestrictionList().contains(Restriction.NEWBORNS)) {
+                    matches.add(s);
+                }
+            }
+
+        } else if (familyType.equals(FamilyType.INDIVIDUAL)) {
+            for (Shelter s : shelterList) {
+                if (s.getRestrictionList().contains(Restriction.WOMEN)
+                        || s.getRestrictionList().contains(Restriction.MEN)) {
+                    matches.add(s);
+                }
+            }
+
+        }
+        return matches;
     }
 
     // male, female, nonbinary
     public List<Shelter> findShelterByGender(Gender gender) {
-        //TODO fix stub
-        return new ArrayList<Shelter>();
+        List<Shelter> matches = new ArrayList<>();
+        for (Shelter s : shelterList) {
+            if (s.getRestrictionList().contains(Restriction.FAMILIES)) {
+                matches.add(s);
+            } else if (gender.equals(Gender.MALE) && s.getRestrictionList()
+                    .contains(Restriction.MEN)) {
+                matches.add(s);
+            } else if (gender.equals(Gender.FEMALE) && s.getRestrictionList()
+                    .contains(Restriction.WOMEN)) {
+                matches.add(s);
+            }
+        }
+
+        return matches;
     }
-
-
 
     public Shelter findShelterByKey(int key) {
         //TODO fix stub
