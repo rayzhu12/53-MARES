@@ -32,21 +32,16 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        //final String entry;
-
         final EditText bar = findViewById(R.id.detsearch2);
 
         getSupportActionBar().setTitle("Detailed Search");
-
-        /*
-        InputStream inputStream = getResources().openRawResource(R.raw.stats);
-        CSVFile csvFile = new CSVFile(inputStream);
-        */
 
         final Spinner gender = findViewById(R.id.genderSpinner);
         ArrayAdapter<String> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, Gender.values());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         gender.setAdapter(adapter);
+
+
 
         //can do without ifs?
         Gender selectedGender;
@@ -58,8 +53,6 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
         } else {
             selectedGender = Gender.NONBINARY;
         }
-
-
 
         final Spinner familyType = findViewById(R.id.familySpinner);
         ArrayAdapter<String> adapter2 = new ArrayAdapter(this,android.R.layout.simple_spinner_item, FamilyType.values());
@@ -103,86 +96,27 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
                         }
                     }
                 }
-
-            /*
-            System.out.println("a " + entry);
-            for(String[] score : scoreList) {
-                for(String s : score) {
-                    s = score[3].toLowerCase();
-                    entry = entry.toLowerCase();
-                    System.out.println("BBBBB " + s);
-
-                    if (entry.equals("male")) {
-                        if (s.contains("men") && !s.contains("women") && !scores.contains(score[1])) {
-                        System.out.println("HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-                            scores.add(score[1]);
-                        for (String a : scores) {
-                            System.out.println("a " + a);
-                        }
-                        }
-                    } else if (entry.equals("female")) {
-                        if (s.contains("women") && !scores.contains(score[1])) {
-                        System.out.println("HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-                            scores.add(score[1]);
-                        for (String a : scores) {
-                            System.out.println("a " + a);
-                        }
-                        }
-                    } else if (entry.equals("family")) {
-                        if ((s.contains("family") || s.contains("families")) && !scores.contains(score[1])) {
-                        System.out.println("HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-                            scores.add(score[1]);
-                        for (String a : scores) {
-                            System.out.println("a " + a);
-                        }
-                        }
-                    } else if (s.contains(entry) && !scores.contains(score[1])) {
-                        System.out.println("HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-                        scores.add(score[1]);
-                        for (String a : scores) {
-                            System.out.println("a " + a);
-                        }
-                    }
-                }
-            }
-            */
+                populateList(newShelterList);
             }
         });
 
         shelters = findViewById(R.id.shelters);
         shelters.setVisibility(View.VISIBLE);
-        populateList(newShelterList);
-        //shelters.setAdapter(adapter);
-        //shelters.setOnItemClickListener(this);
+        populateList(shelterList);
 
-//        for (String s : scores) {
-//            System.out.println("CCCCC " + s);
-//        }
-
-//                (view) -> {
-//            entry = search.getText().toString();
-//            System.out.println(entry);
-//            for(String[] score : scoreList) {
-//                for(String s : score) {
-//                    if (s.contains(entry)) {
-//                        scores.add(score[1]);
-//                    }
-//                }
-//            }
-//        });
-
+        //todo: clear should not bring up same page again!! just clear the values
         Button clear = (Button) findViewById(R.id.clearButton);
         clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(SearchActivity.this, SearchActivity.class));
-                ListView shelters = findViewById(R.id.shelters);
+                //startActivity(new Intent(SearchActivity.this, SearchActivity.class));
+                //ListView shelters = findViewById(R.id.shelters);
 
                 shelters.setAdapter(null);
                 shelters.setVisibility(View.VISIBLE);
+                populateList(shelterList);
             }
         });
-
     }
 
     //idk how to use lmao
@@ -204,8 +138,6 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
             Intent intent = new Intent(SearchActivity.this, DetailActivity.class);
             String shelterName = (String) parent.getItemAtPosition(position);
             Shelter selectedShelter = sm.findShelterByName(shelterName);
-            //move sm to class var
-
             intent.putExtra("passed shelter", selectedShelter);
             startActivity(intent);
         }
