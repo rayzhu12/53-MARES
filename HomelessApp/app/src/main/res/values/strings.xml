@@ -43,5 +43,7 @@
     <string name="twitter_consumer_secret" translatable="false">YOUR_CONSUMER_SECRET</string>
     <string name="title_activity_registration1">registration1</string>
     <string name="title_activity_first_registration">FirstRegistration</string>
+    <string name="title_activity_reserve_confirm">ReserveConfirmActivity</string>
+    <string name="title_activity_confirm_bed">ConfirmBedActivity</string>
 
 </resources>

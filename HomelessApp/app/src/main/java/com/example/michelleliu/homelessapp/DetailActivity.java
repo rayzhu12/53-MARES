@@ -1,5 +1,6 @@
 package com.example.michelleliu.homelessapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -22,7 +23,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import model.Shelter;
 import model.UserInfo;
-import model.UserManager;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -141,6 +141,9 @@ public class DetailActivity extends AppCompatActivity {
                             updateShelter(numBeds);
                             Log.d("DetailActivity", "beds added");
                             showData(dataSnapshot);
+                            capacityTextView.setText("Capacity: " + capacity[0]);
+
+                            //startActivity(new Intent(DetailActivity.this, ConfirmBedActivity.class));
                         } else if (capacity[0] - numBeds < 0){
                             Log.d("DetailActivity", "beds not added") ;
                             Toast.makeText(DetailActivity.this, "There are not this many free beds at this shelter", Toast.LENGTH_LONG).show();
@@ -157,7 +160,7 @@ public class DetailActivity extends AppCompatActivity {
                     }
                 });
 
-                capacityTextView.setText("Capacity: " + capacity[0]);
+                //capacityTextView.setText("Capacity: " + capacity[0]);
             }
         });
     }
