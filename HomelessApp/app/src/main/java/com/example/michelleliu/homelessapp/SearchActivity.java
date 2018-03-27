@@ -185,7 +185,6 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
 
     }
 
-
     //idk how to use lmao
     private void populateList(List<Shelter> newShelterList) {
         List<String> shelterNames = new ArrayList<>();
@@ -196,10 +195,7 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
             arrayAdapter = new ArrayAdapter(this, R.layout.listview_layout, shelterNames);
             shelters.setAdapter(arrayAdapter);
             shelters.setOnItemClickListener(this);
-
         }
-
-
     }
 
     @Override

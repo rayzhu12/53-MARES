@@ -38,13 +38,22 @@ public class ShelterManager {
 
     /**
      * Returns the List of Shelters whose names include String s
-     * @param s String that is searched for
+     * @param input String that is searched for
      * @return list of Shelters whose names include s
      */
-    public List<Shelter> findShelterByString(String s) {
+    public List<Shelter> findShelterByString(String input) {
         List<Shelter> matchingShelters = new ArrayList<>();
-        matchingShelters.add(shelterList.get(0));
-        return matchingShelters;
+        for (Shelter s : shelterList) {
+            if (s.getName().toLowerCase().contains(input.toLowerCase())) {
+                matchingShelters.add(s);
+            }
+        }
+        if (matchingShelters == null) {
+            return new ArrayList<>();
+        } else {
+            return matchingShelters;
+        }
+        //todo: might return nullpointer
     }
 
     // individual, family
