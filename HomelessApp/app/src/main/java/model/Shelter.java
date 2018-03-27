@@ -22,6 +22,10 @@ public class Shelter implements Serializable {
 
     private String[] arrayInfo;
 
+    public Shelter() {
+
+    }
+
     public Shelter(String[] info) {
         if (info == null) {
             throw new NullPointerException("Null information cannot be made into a Shelter.");

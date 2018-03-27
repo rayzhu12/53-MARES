@@ -76,7 +76,7 @@ public class ShelterListActivity extends AppCompatActivity implements AdapterVie
             InputStream inputStream = getResources().openRawResource(R.raw.stats);
             CSVFile csvFile = new CSVFile(inputStream);
             shelterList = csvFile.read();
-            //sm.setShelterList(shelterList);
+            sm.setShelterList(shelterList);
 
             DatabaseReference mDatabase = myRef.child("shelters");
             mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {

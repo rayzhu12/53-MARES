@@ -23,7 +23,7 @@ public class ShelterManager {
     //private FirebaseAuth mAuth;
     //private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
-    private DatabaseReference myRef = mFirebaseDatabase.getReference();
+    private DatabaseReference myRef;
 
     //replace with database
     List<Shelter> shelterList;
@@ -47,9 +47,12 @@ public class ShelterManager {
         Log.d("u got here", name.toLowerCase());
         final Shelter[] foundShelter = {null};
 
-        myRef.child("shelters").addValueEventListener(new ValueEventListener() {
+        myRef = mFirebaseDatabase.getReference("shelters");
+
+        myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.d("s.getName", "I'm here");
                 for (DataSnapshot item: dataSnapshot.getChildren()) {
                     Shelter s = item.getValue(Shelter.class);
                     Log.d("s.getName", s.getName());
@@ -68,13 +71,13 @@ public class ShelterManager {
             }
         });
 
-        /*
+
         for (Shelter s : shelterList) {
             if (s.getName().equals(name)) {
                 foundShelter[0] = s;
             }
         }
-        */
+
         return foundShelter[0];
     }
 
