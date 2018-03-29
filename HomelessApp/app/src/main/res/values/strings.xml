@@ -21,6 +21,7 @@
     <string name="data">Data</string>
     <string name="search">Detailed Search</string>
     <string name="clear">Clear Search</string>
+    <string name="mapbutton">Map</string>
 
     <string name="new_user">New user? Sign-up here</string>
 
@@ -45,5 +46,6 @@
     <string name="title_activity_first_registration">FirstRegistration</string>
     <string name="title_activity_reserve_confirm">ReserveConfirmActivity</string>
     <string name="title_activity_confirm_bed">ConfirmBedActivity</string>
+    <string name="title_activity_maps">Map</string>
 
 </resources>

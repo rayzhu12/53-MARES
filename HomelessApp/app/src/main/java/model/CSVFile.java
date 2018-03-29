@@ -27,7 +27,7 @@ public class CSVFile {
      *
      * @return List of all Shelter objects parsed from raw csv file
      */
-    public static List<Shelter> read(){
+    public List<Shelter> read(){
         resultList = new ArrayList();
         shelterList = new ArrayList<>();
         Log.d("3/14", "i reach here");
@@ -56,7 +56,7 @@ public class CSVFile {
     }
 
     // not sure what this does/why its needed but too scared to delete -m
-    public static List<Shelter> returnShelterList() {
+    public List<Shelter> returnShelterList() {
         if (shelterList == null) {
             shelterList = read();
         }

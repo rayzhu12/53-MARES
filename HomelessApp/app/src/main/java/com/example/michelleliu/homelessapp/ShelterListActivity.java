@@ -34,8 +34,8 @@ import model.ShelterManager;
 public class ShelterListActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
     private ListView listView;
     private ArrayAdapter adapter;
-    private ShelterManager sm = ShelterManager.getInstance();
-    private List<Shelter> shelterList;
+    private static ShelterManager sm = ShelterManager.getInstance();
+    private static List<Shelter> shelterList;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -43,6 +43,22 @@ public class ShelterListActivity extends AppCompatActivity implements AdapterVie
     private DatabaseReference myRef;
 
     private static final String TAG = "ShelterListActivity";
+
+    public static List<Shelter> getShelterList() {
+        return shelterList;
+    }
+
+    public static void setShelterList(List<Shelter> shelters) {
+        shelterList = shelters;
+    }
+
+    public static ShelterManager getSm() {
+        return sm;
+    }
+
+    public static void setSm(ShelterManager smh) {
+        sm = smh;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
