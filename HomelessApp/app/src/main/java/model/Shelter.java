@@ -49,21 +49,22 @@ public class Shelter implements Serializable {
     public List<Restriction> parseRestrictions(String inputString) {
         List<Restriction> restrictionList = new ArrayList<>();
         if (inputString.toLowerCase().contains("women")) {
-            restrictionList.add(Restriction.WOMEN);
+            restrictionList.add(Restriction.FEMALE);
         } else if (inputString.toLowerCase().contains("men")) {
-            restrictionList.add(Restriction.MEN);
+            restrictionList.add(Restriction.MALE);
         }
         if (inputString.toLowerCase().contains("families") ||
                 inputString.toLowerCase().contains("anyone")) {
             restrictionList.add(Restriction.FAMILIES);
         }
         if (inputString.toLowerCase().contains("newborn")) {
-            restrictionList.add(Restriction.NEWBORNS);
+            restrictionList.add(Restriction.CHILDREN);
         }
         if (inputString.toLowerCase().contains("adult") ||
                 inputString.toLowerCase().contains("veteran")) {
-            restrictionList.add(Restriction.WOMEN);
-            restrictionList.add(Restriction.MEN);
+            restrictionList.add(Restriction.YOUNG_ADULTS);
+            restrictionList.add(Restriction.FEMALE);
+            restrictionList.add(Restriction.MALE);
         }
 
         return restrictionList;

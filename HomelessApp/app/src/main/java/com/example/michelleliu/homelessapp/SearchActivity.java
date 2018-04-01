@@ -18,6 +18,7 @@ import java.util.List;
 
 import model.FamilyType;
 import model.Gender;
+import model.Restriction;
 import model.Shelter;
 import model.ShelterManager;
 
@@ -28,6 +29,9 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
     private ListView shelters;
     private ArrayAdapter<Shelter> arrayAdapter;
 
+    private List<Shelter> nameMatchList;
+    private List<Shelter> restrictionMatchList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,71 +41,30 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
 
         getSupportActionBar().setTitle("Detailed Search");
 
-//        final Spinner gender = findViewById(R.id.genderSpinner);
-//        ArrayAdapter<String> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, Gender.values());
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        gender.setAdapter(adapter);
+        Button search = (Button) findViewById(R.id.detSearchButton);
+        search.setOnClickListener(new View.OnClickListener() {
+            String entry;
+            @Override
+            public void onClick(View view) {
+                List<Shelter> newShelterList = new ArrayList<>();
+                entry = bar.getText().toString().toLowerCase();
+                nameMatchList = sm.findShelterByString(entry);
 
-        //can do without ifs?
-//        Gender selectedGender;
-//        String genderString = gender.getSelectedItem().toString();
-//        if (genderString.equals("Male")) {
-//            selectedGender = Gender.MALE;
-//        } else if (genderString.equals("Female")) {
-//            selectedGender = Gender.FEMALE;
-//        } else {
-//            selectedGender = Gender.NONBINARY;
-//        }
-
-//        final Spinner familyType = findViewById(R.id.familySpinner);
-//        ArrayAdapter<String> adapter2 = new ArrayAdapter(this,android.R.layout.simple_spinner_item, FamilyType.values());
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        familyType.setAdapter(adapter2);
-//
-//        FamilyType selectedFamilyType;
-//        String familyString = familyType.getSelectedItem().toString();
-//        if (familyString.equals("Individual")) {
-//            selectedFamilyType = FamilyType.INDIVIDUAL;
-//        } else {
-//            selectedFamilyType = FamilyType.FAMILY;
-//        }
-//
-//        Log.d("selected gender", selectedGender.toString());
-//        Log.d("selected family type", selectedFamilyType.toString());
-
-//
-//        Button search = (Button) findViewById(R.id.detSearchButton);
-//        search.setOnClickListener(new View.OnClickListener() {
-//            String entry;
-//            @Override
-//            public void onClick(View view) {
-//                List<Shelter> newShelterList = new ArrayList<>();
-//                entry = bar.getText().toString().toLowerCase();
-//                List<Shelter> nameMatchList = sm.findShelterByString(entry);
-//                Log.d("name match list", nameMatchList.toString());
-//                List<Shelter> genderMatchList = sm.findShelterByGender(selectedGender);
-//                Log.d("genderMatchList", genderMatchList.toString());
-//                List<Shelter> familyTypeMatchList = sm.findShelterByFamilyType(selectedFamilyType);
-//                Log.d("famTypeMatchList", familyTypeMatchList.toString());
-//
-//                //TODO: add no selection option
-//                if (nameMatchList != null) {
-//                    for (Shelter s : nameMatchList) {
-//                        if ((genderMatchList == null || genderMatchList.contains(s))
-//                                && (familyTypeMatchList == null || familyTypeMatchList.contains(s))) {
-//                            newShelterList.add(s);
-//                        }
-//                    }
-//                } else if (genderMatchList != null){
-//                    for (Shelter s : genderMatchList) {
-//                        if (familyTypeMatchList == null || familyTypeMatchList.contains(s)) {
-//                            newShelterList.add(s);
-//                        }
-//                    }
-//                }
-//                populateList(newShelterList);
-//            }
-//        });
+                if (nameMatchList != null) {
+                    if (restrictionMatchList != null) {
+                        List<Shelter> combinedShelterList = new ArrayList<Shelter>();
+                        for (Shelter s: nameMatchList) {
+                            if (restrictionMatchList.contains(s)) {
+                                combinedShelterList.add(s);
+                            }
+                        }
+                        populateList(combinedShelterList);
+                    } else {
+                        populateList(nameMatchList);
+                    }
+                }
+            }
+        });
 
         shelters = findViewById(R.id.shelters);
         shelters.setVisibility(View.VISIBLE);
@@ -121,37 +84,39 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
             }
         });
     }
+
+    //todo: connect it with app/button listener
     public void onRadioButtonClicked(View view) {
         boolean checked = ((RadioButton) view).isChecked();
         switch (view.getId()) {
             case R.id.radio_male:
                 if (checked) {
-
+                    restrictionMatchList = sm.findShelterByRestriction(Restriction.MALE);
                 }
                 break;
             case R.id.radio_female:
                 if (checked) {
-
+                    restrictionMatchList = sm.findShelterByRestriction(Restriction.FEMALE);
                 }
                 break;
             case R.id.radio_nonbinary:
                 if (checked) {
-
+                    restrictionMatchList = sm.findShelterByRestriction(Restriction.NONBINARY);
                 }
                 break;
             case R.id.radio_families:
                 if (checked) {
-
+                    restrictionMatchList = sm.findShelterByRestriction(Restriction.FAMILIES);
                 }
                 break;
             case R.id.radio_ya:
                 if (checked) {
-
+                    restrictionMatchList = sm.findShelterByRestriction(Restriction.YOUNG_ADULTS);
                 }
                 break;
             case R.id.radio_children:
                 if (checked) {
-
+                    restrictionMatchList = sm.findShelterByRestriction(Restriction.CHILDREN);
                 }
                 break;
         }

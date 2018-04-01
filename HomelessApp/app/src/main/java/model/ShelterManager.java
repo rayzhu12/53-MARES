@@ -100,6 +100,7 @@ public class ShelterManager {
     }
 
     // individual, family
+    /*
     public List<Shelter> findShelterByFamilyType(FamilyType familyType) {
         List<Shelter> matches = new ArrayList<>();
         if (familyType.equals(FamilyType.FAMILY)) {
@@ -121,6 +122,7 @@ public class ShelterManager {
         return matches;
     }
 
+
     // male, female, nonbinary
     public List<Shelter> findShelterByGender(Gender gender) {
         List<Shelter> matches = new ArrayList<>();
@@ -136,6 +138,17 @@ public class ShelterManager {
             }
         }
 
+        return matches;
+    }
+    */
+
+    public List<Shelter> findShelterByRestriction(Restriction rest) {
+        List<Shelter> matches = new ArrayList<>();
+        for (Shelter s : shelterList) {
+            if (s.getRestrictionList().contains(rest)) {
+                matches.add(s);
+            }
+        }
         return matches;
     }
 
