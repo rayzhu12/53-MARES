@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
@@ -36,71 +37,71 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
 
         getSupportActionBar().setTitle("Detailed Search");
 
-        final Spinner gender = findViewById(R.id.genderSpinner);
-        ArrayAdapter<String> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, Gender.values());
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        gender.setAdapter(adapter);
+//        final Spinner gender = findViewById(R.id.genderSpinner);
+//        ArrayAdapter<String> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, Gender.values());
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        gender.setAdapter(adapter);
 
         //can do without ifs?
-        Gender selectedGender;
-        String genderString = gender.getSelectedItem().toString();
-        if (genderString.equals("Male")) {
-            selectedGender = Gender.MALE;
-        } else if (genderString.equals("Female")) {
-            selectedGender = Gender.FEMALE;
-        } else {
-            selectedGender = Gender.NONBINARY;
-        }
+//        Gender selectedGender;
+//        String genderString = gender.getSelectedItem().toString();
+//        if (genderString.equals("Male")) {
+//            selectedGender = Gender.MALE;
+//        } else if (genderString.equals("Female")) {
+//            selectedGender = Gender.FEMALE;
+//        } else {
+//            selectedGender = Gender.NONBINARY;
+//        }
 
-        final Spinner familyType = findViewById(R.id.familySpinner);
-        ArrayAdapter<String> adapter2 = new ArrayAdapter(this,android.R.layout.simple_spinner_item, FamilyType.values());
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        familyType.setAdapter(adapter2);
+//        final Spinner familyType = findViewById(R.id.familySpinner);
+//        ArrayAdapter<String> adapter2 = new ArrayAdapter(this,android.R.layout.simple_spinner_item, FamilyType.values());
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        familyType.setAdapter(adapter2);
+//
+//        FamilyType selectedFamilyType;
+//        String familyString = familyType.getSelectedItem().toString();
+//        if (familyString.equals("Individual")) {
+//            selectedFamilyType = FamilyType.INDIVIDUAL;
+//        } else {
+//            selectedFamilyType = FamilyType.FAMILY;
+//        }
+//
+//        Log.d("selected gender", selectedGender.toString());
+//        Log.d("selected family type", selectedFamilyType.toString());
 
-        FamilyType selectedFamilyType;
-        String familyString = familyType.getSelectedItem().toString();
-        if (familyString.equals("Individual")) {
-            selectedFamilyType = FamilyType.INDIVIDUAL;
-        } else {
-            selectedFamilyType = FamilyType.FAMILY;
-        }
-
-        Log.d("selected gender", selectedGender.toString());
-        Log.d("selected family type", selectedFamilyType.toString());
-
-
-        Button search = (Button) findViewById(R.id.detSearchButton);
-        search.setOnClickListener(new View.OnClickListener() {
-            String entry;
-            @Override
-            public void onClick(View view) {
-                List<Shelter> newShelterList = new ArrayList<>();
-                entry = bar.getText().toString().toLowerCase();
-                List<Shelter> nameMatchList = sm.findShelterByString(entry);
-                Log.d("name match list", nameMatchList.toString());
-                List<Shelter> genderMatchList = sm.findShelterByGender(selectedGender);
-                Log.d("genderMatchList", genderMatchList.toString());
-                List<Shelter> familyTypeMatchList = sm.findShelterByFamilyType(selectedFamilyType);
-                Log.d("famTypeMatchList", familyTypeMatchList.toString());
-
-                //TODO: add no selection option
-                if (nameMatchList != null) {
-                    for (Shelter s : nameMatchList) {
-                        if ((genderMatchList == null || genderMatchList.contains(s))
-                                && (familyTypeMatchList == null || familyTypeMatchList.contains(s))) {
-                            newShelterList.add(s);
-                        }
-                    }
-                } else if (genderMatchList != null){
-                    for (Shelter s : genderMatchList) {
-                        if (familyTypeMatchList == null || familyTypeMatchList.contains(s)) {
-                            newShelterList.add(s);
-                        }
-                    }
-                }
-                populateList(newShelterList);
-            }
-        });
+//
+//        Button search = (Button) findViewById(R.id.detSearchButton);
+//        search.setOnClickListener(new View.OnClickListener() {
+//            String entry;
+//            @Override
+//            public void onClick(View view) {
+//                List<Shelter> newShelterList = new ArrayList<>();
+//                entry = bar.getText().toString().toLowerCase();
+//                List<Shelter> nameMatchList = sm.findShelterByString(entry);
+//                Log.d("name match list", nameMatchList.toString());
+//                List<Shelter> genderMatchList = sm.findShelterByGender(selectedGender);
+//                Log.d("genderMatchList", genderMatchList.toString());
+//                List<Shelter> familyTypeMatchList = sm.findShelterByFamilyType(selectedFamilyType);
+//                Log.d("famTypeMatchList", familyTypeMatchList.toString());
+//
+//                //TODO: add no selection option
+//                if (nameMatchList != null) {
+//                    for (Shelter s : nameMatchList) {
+//                        if ((genderMatchList == null || genderMatchList.contains(s))
+//                                && (familyTypeMatchList == null || familyTypeMatchList.contains(s))) {
+//                            newShelterList.add(s);
+//                        }
+//                    }
+//                } else if (genderMatchList != null){
+//                    for (Shelter s : genderMatchList) {
+//                        if (familyTypeMatchList == null || familyTypeMatchList.contains(s)) {
+//                            newShelterList.add(s);
+//                        }
+//                    }
+//                }
+//                populateList(newShelterList);
+//            }
+//        });
 
         shelters = findViewById(R.id.shelters);
         shelters.setVisibility(View.VISIBLE);
@@ -120,7 +121,41 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
             }
         });
     }
+    public void onRadioButtonClicked(View view) {
+        boolean checked = ((RadioButton) view).isChecked();
+        switch (view.getId()) {
+            case R.id.radio_male:
+                if (checked) {
 
+                }
+                break;
+            case R.id.radio_female:
+                if (checked) {
+
+                }
+                break;
+            case R.id.radio_nonbinary:
+                if (checked) {
+
+                }
+                break;
+            case R.id.radio_families:
+                if (checked) {
+
+                }
+                break;
+            case R.id.radio_ya:
+                if (checked) {
+
+                }
+                break;
+            case R.id.radio_children:
+                if (checked) {
+
+                }
+                break;
+        }
+    }
     private void populateList(List<Shelter> newShelterList) {
         List<String> shelterNames = new ArrayList<>();
         if (newShelterList != null) {

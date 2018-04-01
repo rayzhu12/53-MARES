@@ -38,62 +38,121 @@
         android:id="@+id/detSearchButton"
         android:layout_width="185dp"
         android:layout_height="48dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="8dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:backgroundTint="@android:color/holo_purple"
         android:text="@string/search"
         android:textAppearance="@android:style/TextAppearance.Material.Widget.Button.Colored"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/familySpinner" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.402" />
 
     <Button
         android:id="@+id/clearButton"
         android:layout_width="185dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:backgroundTint="@android:color/holo_purple"
         android:text="@string/clear"
         android:textAppearance="@android:style/TextAppearance.Material.Widget.Button.Colored"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/familySpinner" />
-
-    <Spinner
-        android:id="@+id/genderSpinner"
-        android:layout_width="0dp"
-        android:layout_height="28dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detsearch2" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.4" />
 
-    <Spinner
-        android:id="@+id/familySpinner"
-        android:layout_width="0dp"
-        android:layout_height="28dp"
+    <RadioGroup
+        android:layout_width="377dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
+        android:orientation='vertical'
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/genderSpinner" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.135">
+
+        <RadioButton
+            android:id="@+id/radio_female"
+            android:layout_width="106dp"
+            android:layout_height="20dp"
+            android:layout_weight="1"
+            android:text="Female" />
+
+        <RadioButton
+            android:id="@+id/radio_male"
+            android:layout_width="111dp"
+            android:layout_height="21dp"
+            android:text="Male"
+            tools:layout_editor_absoluteX="233dp"
+            tools:layout_editor_absoluteY="109dp" />
+
+        <RadioButton
+            android:id="@+id/radio_nonbinary"
+            android:layout_width="109dp"
+            android:layout_height="19dp"
+            android:text="Nonbinary"
+            tools:layout_editor_absoluteX="233dp"
+            tools:layout_editor_absoluteY="81dp" />
+
+        <RadioButton
+            android:id="@+id/radio_families"
+            android:layout_width="98dp"
+            android:layout_height="20dp"
+            android:text="Families"
+            tools:layout_editor_absoluteX="67dp"
+            tools:layout_editor_absoluteY="104dp" />
+
+        <RadioButton
+            android:id="@+id/radio_ya"
+            android:layout_width="151dp"
+            android:layout_height="20dp"
+            android:text="Young Adults"
+            tools:layout_editor_absoluteX="178dp"
+            tools:layout_editor_absoluteY="104dp" />
+
+        <RadioButton
+            android:id="@+id/radio_children"
+            android:layout_width="match_parent"
+            android:layout_height="21dp"
+            android:layout_weight="1"
+            android:text="Children" />
+
+    </RadioGroup>
 
     <ListView
         android:id="@+id/shelters"
         android:layout_width="384dp"
         android:layout_height="290dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="24dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detSearchButton"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.978" />
+
 </android.support.constraint.ConstraintLayout>
 

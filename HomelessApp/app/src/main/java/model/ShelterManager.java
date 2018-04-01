@@ -117,7 +117,6 @@ public class ShelterManager {
                     matches.add(s);
                 }
             }
-
         }
         return matches;
     }
