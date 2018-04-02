@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        tools:context="com.example.michelleliu.homelessapp.dummy.MapsActivity" />
+        tools:context="com.example.michelleliu.homelessapp.MapsActivity" />
     <RadioGroup
         android:id="@+id/mapfilter"
         android:layout_width="377dp"
@@ -81,6 +81,27 @@
             android:text="Children" />
 
     </RadioGroup>
+
+    <Button
+        android:id="@+id/updatemap"
+        android:layout_width="185dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@android:color/holo_purple"
+        android:text="Update Map"
+        android:textAppearance="@android:style/TextAppearance.Material.Widget.Button.Colored"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.1"
+        tools:text="Update Map" />
 
 </android.support.constraint.ConstraintLayout>
 
