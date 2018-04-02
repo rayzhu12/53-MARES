@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
@@ -51,19 +52,54 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
                 nameMatchList = sm.findShelterByString(entry);
 
                 if (nameMatchList != null) {
+                    Log.d("testing", "here1");
                     if (restrictionMatchList != null) {
+                        Log.d("testing", "here2");
                         List<Shelter> combinedShelterList = new ArrayList<Shelter>();
                         for (Shelter s: nameMatchList) {
                             if (restrictionMatchList.contains(s)) {
+                                Log.d("testing", s + " added");
                                 combinedShelterList.add(s);
                             }
                         }
                         populateList(combinedShelterList);
                     } else {
+                        Log.d("testing", "here3");
                         populateList(nameMatchList);
+                    }
+                } else {
+                    Log.d("testing", "here4");
+                    if (restrictionMatchList != null) {
+                        Log.d("testing", "here5");
+                        populateList(restrictionMatchList);
                     }
                 }
             }
+        });
+
+        RadioButton rb1 = (RadioButton) findViewById(R.id.radio_male);
+        rb1.setOnClickListener(view -> {
+            restrictionMatchList = sm.findShelterByRestriction(Restriction.MALE);
+        });
+        RadioButton rb2 = (RadioButton) findViewById(R.id.radio_female);
+        rb2.setOnClickListener(view -> {
+            restrictionMatchList = sm.findShelterByRestriction(Restriction.FEMALE);
+        });
+        RadioButton rb3 = (RadioButton) findViewById(R.id.radio_nonbinary);
+        rb3.setOnClickListener(view -> {
+            restrictionMatchList = sm.findShelterByRestriction(Restriction.NONBINARY);
+        });
+        RadioButton rb4 = (RadioButton) findViewById(R.id.radio_families);
+        rb4.setOnClickListener(view -> {
+            restrictionMatchList = sm.findShelterByRestriction(Restriction.FAMILIES);
+        });
+        RadioButton rb5 = (RadioButton) findViewById(R.id.radio_ya);
+        rb5.setOnClickListener(view -> {
+            restrictionMatchList = sm.findShelterByRestriction(Restriction.YOUNG_ADULTS);
+        });
+        RadioButton rb6 = (RadioButton) findViewById(R.id.radio_children);
+        rb6.setOnClickListener(view -> {
+            restrictionMatchList = sm.findShelterByRestriction(Restriction.CHILDREN);
         });
 
         shelters = findViewById(R.id.shelters);
@@ -85,42 +121,6 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
         });
     }
 
-    //todo: connect it with app/button listener
-    public void onRadioButtonClicked(View view) {
-        boolean checked = ((RadioButton) view).isChecked();
-        switch (view.getId()) {
-            case R.id.radio_male:
-                if (checked) {
-                    restrictionMatchList = sm.findShelterByRestriction(Restriction.MALE);
-                }
-                break;
-            case R.id.radio_female:
-                if (checked) {
-                    restrictionMatchList = sm.findShelterByRestriction(Restriction.FEMALE);
-                }
-                break;
-            case R.id.radio_nonbinary:
-                if (checked) {
-                    restrictionMatchList = sm.findShelterByRestriction(Restriction.NONBINARY);
-                }
-                break;
-            case R.id.radio_families:
-                if (checked) {
-                    restrictionMatchList = sm.findShelterByRestriction(Restriction.FAMILIES);
-                }
-                break;
-            case R.id.radio_ya:
-                if (checked) {
-                    restrictionMatchList = sm.findShelterByRestriction(Restriction.YOUNG_ADULTS);
-                }
-                break;
-            case R.id.radio_children:
-                if (checked) {
-                    restrictionMatchList = sm.findShelterByRestriction(Restriction.CHILDREN);
-                }
-                break;
-        }
-    }
     private void populateList(List<Shelter> newShelterList) {
         List<String> shelterNames = new ArrayList<>();
         if (newShelterList != null) {
