@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
@@ -84,6 +85,7 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
             }
         });
     }
+//    RadioGroup radioGroup = (RadioGroup) findViewById(R.id.filter);
 
     //todo: connect it with app/button listener
     public void onRadioButtonClicked(View view) {
