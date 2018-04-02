@@ -3,6 +3,7 @@ package com.example.michelleliu.homelessapp;
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.michelleliu.homelessapp.DetailActivity;
 import com.example.michelleliu.homelessapp.R;
@@ -26,6 +27,8 @@ import model.ShelterManager;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener {
 
     private GoogleMap mMap;
+    private ShelterManager sm = ShelterManager.getInstance();
+    private List<Shelter> shelterList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        //Log.d("help", Boolean.toString(sm == null));
     }
 
 
@@ -51,11 +56,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         InputStream inputStream = getResources().openRawResource(R.raw.stats);
+
+
         CSVFile csvFile = new CSVFile(inputStream);
         ShelterListActivity.setShelterList(csvFile.read());
         ShelterListActivity.getSm().setShelterList(ShelterListActivity.getShelterList());
 
-        for (Shelter entry : ShelterListActivity.getShelterList()) {
+        shelterList = sm.getShelterList();
+        for (Shelter entry : shelterList) {
             LatLng coord = new LatLng(entry.getLatitude(), entry.getLongitude());
             mMap.addMarker(new MarkerOptions().position(coord).title(entry.getName()).snippet("tap for details"));
         }
@@ -66,7 +74,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onInfoWindowClick(Marker marker) {
-        ArrayList<Shelter> shelterList = (ArrayList) ShelterListActivity.getShelterList();
+        //ArrayList<Shelter> shelterList = (ArrayList) ShelterListActivity.getShelterList();
         for (Shelter entry : shelterList) {
             if (entry.getName().equals(marker.getTitle())) {
                 Intent intent = new Intent(this, DetailActivity.class);
