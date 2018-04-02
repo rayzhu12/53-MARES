@@ -75,7 +75,7 @@
         app:layout_constraintVertical_bias="0.4" />
 
     <RadioGroup
-        android:id="@+id/radio_group"
+        android:id="@+id/filter"
         android:layout_width="377dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"

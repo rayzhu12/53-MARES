@@ -120,6 +120,7 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
             }
         });
     }
+//    RadioGroup radioGroup = (RadioGroup) findViewById(R.id.filter);
 
     private void populateList(List<Shelter> newShelterList) {
         List<String> shelterNames = new ArrayList<>();
