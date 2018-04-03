@@ -83,17 +83,15 @@
     </RadioGroup>
 
     <Button
-        android:id="@+id/updatemap"
+        android:id="@+id/clearmap"
         android:layout_width="185dp"
         android:layout_height="48dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="8dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:backgroundTint="@android:color/holo_purple"
-        android:text="Update Map"
+        android:text="Clear Map"
         android:textAppearance="@android:style/TextAppearance.Material.Widget.Button.Colored"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -101,7 +99,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.1"
-        tools:text="Update Map" />
+        tools:text="Clear Map" />
 
 </android.support.constraint.ConstraintLayout>
 

@@ -18,7 +18,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.InputStream;
+import java.util.List;
+
+import model.CSVFile;
 import model.Shelter;
+import model.ShelterManager;
 import model.UserInfo;
 import model.UserManager;
 
@@ -38,6 +43,10 @@ public class AppActivity extends AppCompatActivity {
     private DatabaseReference secondRef;
     private String userID;
 
+    private static ShelterManager sm = ShelterManager.getInstance();
+    private static List<Shelter> shelterList;
+
+
     int[] nBed = new int[1];
     String[] sName = new String[1];
 
@@ -56,6 +65,13 @@ public class AppActivity extends AppCompatActivity {
                 startActivity(new Intent(AppActivity.this, ShelterListActivity.class));
             }
         });
+
+        if (shelterList == null) {
+            InputStream inputStream = getResources().openRawResource(R.raw.stats);
+            CSVFile csvFile = new CSVFile(inputStream);
+            shelterList = csvFile.read();
+            sm.setShelterList(shelterList);
+        }
 
         // Adding FirebaseAuth instance to FirebaseAuth object.
         firebaseAuth = FirebaseAuth.getInstance();
@@ -188,6 +204,8 @@ public class AppActivity extends AppCompatActivity {
 //                });
             }
         });
+
+
 
     }
 

@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.RadioButton;
 
 import com.example.michelleliu.homelessapp.DetailActivity;
 import com.example.michelleliu.homelessapp.R;
@@ -21,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.CSVFile;
+import model.Restriction;
 import model.Shelter;
 import model.ShelterManager;
 
@@ -42,7 +46,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //Log.d("help", Boolean.toString(sm == null));
     }
 
-
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
@@ -57,19 +60,55 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
         InputStream inputStream = getResources().openRawResource(R.raw.stats);
 
-
+        /*
         CSVFile csvFile = new CSVFile(inputStream);
         ShelterListActivity.setShelterList(csvFile.read());
         ShelterListActivity.getSm().setShelterList(ShelterListActivity.getShelterList());
+        */
 
         shelterList = sm.getShelterList();
-        for (Shelter entry : shelterList) {
-            LatLng coord = new LatLng(entry.getLatitude(), entry.getLongitude());
-            mMap.addMarker(new MarkerOptions().position(coord).title(entry.getName()).snippet("tap for details"));
-        }
+        populateList(shelterList);
+
+        //final List<Shelter>[] filteredList = new List[];
+
+        RadioButton rb1 = (RadioButton) findViewById(R.id.radio_male);
+        rb1.setOnClickListener(view -> {
+            populateList(sm.findShelterByRestriction(Restriction.MALE));
+        });
+        RadioButton rb2 = (RadioButton) findViewById(R.id.radio_female);
+        rb2.setOnClickListener(view -> {
+            populateList(sm.findShelterByRestriction(Restriction.FEMALE));
+        });
+        RadioButton rb3 = (RadioButton) findViewById(R.id.radio_nonbinary);
+        rb3.setOnClickListener(view -> {
+            populateList(sm.findShelterByRestriction(Restriction.NONBINARY));
+        });
+        RadioButton rb4 = (RadioButton) findViewById(R.id.radio_families);
+        rb4.setOnClickListener(view -> {
+            populateList(sm.findShelterByRestriction(Restriction.FAMILIES));
+        });
+        RadioButton rb5 = (RadioButton) findViewById(R.id.radio_ya);
+        rb5.setOnClickListener(view -> {
+            populateList(sm.findShelterByRestriction(Restriction.YOUNG_ADULTS));
+        });
+        RadioButton rb6 = (RadioButton) findViewById(R.id.radio_children);
+        rb6.setOnClickListener(view -> {
+            populateList(sm.findShelterByRestriction(Restriction.CHILDREN));
+        });
 
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(33.75, -84.39), 12));
         mMap.setOnInfoWindowClickListener(this);
+
+        Button clearMap = findViewById(R.id.clearmap);
+        clearMap.setOnClickListener(v -> populateList(shelterList));
+    }
+
+    public void populateList(List<Shelter> inputList) {
+        mMap.clear();
+        for (Shelter entry : inputList) {
+            LatLng coord = new LatLng(entry.getLatitude(), entry.getLongitude());
+            mMap.addMarker(new MarkerOptions().position(coord).title(entry.getName()).snippet("tap for details"));
+        }
     }
 
     @Override
