@@ -14,7 +14,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class UserManager {
     private FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
-    private DatabaseReference myRef;
+    DatabaseReference myRef;
 
 
     private static final String TAG = "userManager";

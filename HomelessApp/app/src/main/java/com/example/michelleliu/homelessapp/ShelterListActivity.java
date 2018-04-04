@@ -39,8 +39,8 @@ public class ShelterListActivity extends AppCompatActivity implements AdapterVie
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
-    private FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
-    private DatabaseReference myRef;
+    FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
+    DatabaseReference myRef;
 
     private static final String TAG = "ShelterListActivity";
 

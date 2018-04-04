@@ -54,10 +54,10 @@ public class AppActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Button updateData = (Button) findViewById(R.id.updatedata);
+        Button updateData = findViewById(R.id.updatedata);
         updateData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -94,7 +94,7 @@ public class AppActivity extends AppCompatActivity {
 
         }
 
-        Button logout = (Button) findViewById(R.id.logout);
+        Button logout = findViewById(R.id.logout);
         // Adding click listener on logout button.
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -158,7 +158,7 @@ public class AppActivity extends AppCompatActivity {
 //            }
 //        });
 
-        Button releaseBed = (Button) findViewById(R.id.release);
+        Button releaseBed = findViewById(R.id.release);
         // Adding click listener on logout button.
         releaseBed.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -234,11 +234,10 @@ public class AppActivity extends AppCompatActivity {
 
     private void showData(DataSnapshot dataSnapshot) {
         UserInfo uInfo = new UserInfo();
-        System.out.println(dataSnapshot.child(userID));
         uInfo.setName(dataSnapshot.child(userID).getValue(UserInfo.class).getName());
         uInfo.setNumberOfBeds(dataSnapshot.child(userID).getValue(UserInfo.class).getNumberOfBeds());
-        Log.d(TAG, "showData: name: " + uInfo.getName());
-        Log.d(TAG, "showData: bed; " + uInfo.getNumberOfBeds());
+        //Log.d(TAG, "showData: name: " + uInfo.getName());
+        //Log.d(TAG, "showData: bed; " + uInfo.getNumberOfBeds());
     }
 
     @Override
