@@ -36,7 +36,7 @@ public class DetailActivity extends AppCompatActivity {
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference myRef;
     private DatabaseReference secondRef;
-    // --Commented out by Inspection (4/4/2018 3:23 PM):private FirebaseUser firebaseUser;
+    private FirebaseUser firebaseUser;
     private final int[] capacity = new int[1];
     // --Commented out by Inspection (4/4/2018 3:23 PM):private final String[] sName = new String[1];
 
@@ -125,14 +125,11 @@ public class DetailActivity extends AppCompatActivity {
                         //startActivity(new Intent(DetailActivity.this, ConfirmBedActivity.class));
                     } else if ((capacity[0] - numBeds) < 0){
                         Log.d("DetailActivity", "beds not added") ;
-                        Toast.makeText(DetailActivity.this, "There are not this many"
-                                + " free beds at this shelter", Toast.LENGTH_LONG).show();
+                        Toast.makeText(DetailActivity.this, "There are not this many free beds at this shelter", Toast.LENGTH_LONG).show();
                     }
                     else {
                         Log.d("DetailActivity", "beds not added") ;
-                        Toast.makeText(DetailActivity.this, "You already have beds"
-                                + " reserved at " + dataSnapshot.child(userID).child("current"
-                                + "Shelter").getValue().toString(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(DetailActivity.this, "You already have beds reserved at " + dataSnapshot.child(userID).child("currentShelter").getValue().toString(), Toast.LENGTH_LONG).show();
                     }
                 }
 

@@ -14,7 +14,7 @@ public class UserInfo {
     private int numberOfChildren;
     private int numberOfBeds;
     private String currentShelter;
-    // --Commented out by Inspection (4/4/2018 3:25 PM):private String userID;
+    private String userID;
 
     /**
      * the default constructor

@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class CSVFile {
     private static InputStream inputStream;
-    // --Commented out by Inspection (4/4/2018 3:23 PM):private static List resultList;
+    private static List resultList;
     private static List<Shelter> shelterList;
 
     /**

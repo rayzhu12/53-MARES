@@ -32,14 +32,14 @@ public class ItemArrayAdapter extends ArrayAdapter<String[]> {
     }
 
 // --Commented out by Inspection START (4/4/2018 3:23 PM):
-//    /**
-//     * Constructor that takes in context and textViewResourceId
-//     * @param context the context
-//     * @param textViewResourceId the textView Resource ID
-//     */
-//    public ItemArrayAdapter(Context context, int textViewResourceId) {
-//        super(context, textViewResourceId);
-//    }
+    /**
+     * Constructor that takes in context and textViewResourceId
+     * @param context the context
+     * @param textViewResourceId the textView Resource ID
+     */
+    public ItemArrayAdapter(Context context, int textViewResourceId) {
+        super(context, textViewResourceId);
+    }
 // --Commented out by Inspection STOP (4/4/2018 3:23 PM)
 
 // --Commented out by Inspection START (4/4/2018 3:24 PM):
