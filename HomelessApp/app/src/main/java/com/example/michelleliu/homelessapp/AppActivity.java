@@ -110,11 +110,13 @@ public class AppActivity extends AppCompatActivity {
                 // User is signed in
                 Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
                 userID = user.getUid();
-                Toast.makeText(AppActivity.this, "Successfully signed in with: " + user.getEmail(), Toast.LENGTH_LONG).show();
+                Toast.makeText(AppActivity.this, "Successfully signed in with: "
+                        + user.getEmail(), Toast.LENGTH_LONG).show();
             } else {
                 // User is signed out
                 Log.d(TAG, "onAuthStateChanged:signed_out");
-                Toast.makeText(AppActivity.this, "Successfully signed out.", Toast.LENGTH_LONG).show();
+                Toast.makeText(AppActivity.this, "Successfully signed out.",
+                        Toast.LENGTH_LONG).show();
             }
             // ...
         };
@@ -156,7 +158,8 @@ public class AppActivity extends AppCompatActivity {
                    nBed[0] = dataSnapshot.child(userID).getValue(UserInfo.class).getNumberOfBeds();
 
                    if (dataSnapshot.child(userID).child("currentShelter").getValue() != null) {
-                       sName[0] = dataSnapshot.child(userID).child("currentShelter").getValue().toString();
+                       sName[0] = dataSnapshot.child(userID).child("currentShelter")
+                               .getValue().toString();
                    }
                    myRef.child(userID).child("numberOfBeds").setValue(0);
                    myRef.child(userID).child("currentShelter").setValue(null);
@@ -200,9 +203,12 @@ public class AppActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Log.d("AppActivity", "secondRef");
-                int cap = Integer.parseInt(dataSnapshot.child(sName[0]).getValue(Shelter.class).getCapacity());
-                secondRef.child(sName[0]).child("capacity").setValue(Integer.toString(nBed[0] + cap));
-                Toast.makeText(AppActivity.this, "You've released " + nBed[0] + " bed(s) from " + sName[0], Toast.LENGTH_LONG).show();
+                int cap = Integer.parseInt(dataSnapshot.child(sName[0]).getValue(Shelter.class)
+                        .getCapacity());
+                secondRef.child(sName[0]).child("capacity")
+                        .setValue(Integer.toString(nBed[0] + cap));
+                Toast.makeText(AppActivity.this, "You've released " + nBed[0]
+                        + " bed(s) from " + sName[0], Toast.LENGTH_LONG).show();
             }
 
             @Override
@@ -215,7 +221,8 @@ public class AppActivity extends AppCompatActivity {
     private void showData(DataSnapshot dataSnapshot) {
         UserInfo uInfo = new UserInfo();
         uInfo.setName(dataSnapshot.child(userID).getValue(UserInfo.class).getName());
-        uInfo.setNumberOfBeds(dataSnapshot.child(userID).getValue(UserInfo.class).getNumberOfBeds());
+        uInfo.setNumberOfBeds(dataSnapshot.child(userID)
+                .getValue(UserInfo.class).getNumberOfBeds());
         Log.d(TAG, "showData: name: " + uInfo.getName());
         Log.d(TAG, "showData: bed; " + uInfo.getNumberOfBeds());
     }

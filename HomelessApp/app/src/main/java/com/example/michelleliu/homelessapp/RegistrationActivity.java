@@ -56,7 +56,8 @@ public class RegistrationActivity extends AppCompatActivity {
         gender = findViewById(R.id.Gender);
 
         typeOfUser = findViewById(R.id.typeOfUser);
-        ArrayAdapter<String> adapter2 = new ArrayAdapter(this,android.R.layout.simple_spinner_item, adminOrUser.values());
+        ArrayAdapter<String> adapter2 = new ArrayAdapter(
+                this,android.R.layout.simple_spinner_item, adminOrUser.values());
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         typeOfUser.setAdapter(adapter2);
 
@@ -73,11 +74,14 @@ public class RegistrationActivity extends AppCompatActivity {
                     // User is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
                     userID = user.getUid();
-                    Toast.makeText(RegistrationActivity.this, "Successfully signed in with: " + user.getEmail(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegistrationActivity.this,
+                            "Successfully signed in with: " + user.getEmail(),
+                            Toast.LENGTH_LONG).show();
                 } else {
                     // User is signed out
                     Log.d(TAG, "onAuthStateChanged:signed_out");
-                    Toast.makeText(RegistrationActivity.this, "Successfully signed out.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegistrationActivity.this,
+                            "Successfully signed out.", Toast.LENGTH_LONG).show();
                 }
                 // ...
             }

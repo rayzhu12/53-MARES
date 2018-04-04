@@ -59,11 +59,11 @@ public class DetailActivity extends AppCompatActivity {
                 // User is signed in
                 Log.d("DetailActivity", "onAuthStateChanged:signed_in:" + user.getUid());
                 userID = user.getUid();
-                //Toast.makeText(DetailActivity.this, "Successfully signed in with: " + user.getEmail(), Toast.LENGTH_LONG).show();
             } else {
                 // User is signed out
                 Log.d("DetailActivity", "onAuthStateChanged:signed_out");
-                Toast.makeText(DetailActivity.this, "Successfully signed out.", Toast.LENGTH_LONG).show();
+                Toast.makeText(DetailActivity.this, "Successfully signed out."
+                        ,Toast.LENGTH_LONG).show();
             }
             // ...
         };
@@ -76,9 +76,11 @@ public class DetailActivity extends AppCompatActivity {
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                capacityTextView.setText("Capacity: " + dataSnapshot.child(shelter.getName()).getValue(Shelter.class).getCapacity());
+                capacityTextView.setText("Capacity: " + dataSnapshot.child(shelter.getName())
+                        .getValue(Shelter.class).getCapacity());
                 Log.d("DetailActivity", "capacity updated");
-                capacity[0] = Integer.parseInt(dataSnapshot.child(shelter.getName()).getValue(Shelter.class).getCapacity());
+                capacity[0] = Integer.parseInt(dataSnapshot.child(shelter.getName())
+                        .getValue(Shelter.class).getCapacity());
             }
 
             @Override

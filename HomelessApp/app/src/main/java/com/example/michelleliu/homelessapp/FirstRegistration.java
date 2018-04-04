@@ -57,7 +57,8 @@ public class FirstRegistration extends AppCompatActivity {
             }
             // If EditText is false then this block with execute.
             else {
-                Toast.makeText(FirstRegistration.this, "Please fill all form fields.", Toast.LENGTH_LONG).show();
+                Toast.makeText(FirstRegistration.this, "Please fill all form fields."
+                        , Toast.LENGTH_LONG).show();
             }
 
         });
@@ -84,16 +85,19 @@ public class FirstRegistration extends AppCompatActivity {
                     if(task.isSuccessful()){
 
                         // If user registered successfully then show this toast message.
-                        Toast.makeText(FirstRegistration.this,"User Registration Successfully",Toast.LENGTH_LONG).show();
+                        Toast.makeText(FirstRegistration.this
+                                ,"User Registration Successfully",Toast.LENGTH_LONG).show();
                         finish();
-                        Intent intent = new Intent(FirstRegistration.this, RegistrationActivity.class);
+                        Intent intent = new Intent(FirstRegistration.this
+                                , RegistrationActivity.class);
                         startActivity(intent);
 
 
                     }else{
 
                         // If something goes wrong.
-                        Toast.makeText(FirstRegistration.this,"Something Went Wrong.",Toast.LENGTH_LONG).show();
+                        Toast.makeText(FirstRegistration.this,"Something Went Wrong."
+                                ,Toast.LENGTH_LONG).show();
                     }
 
                     // Hiding the progress dialog after all task complete.
