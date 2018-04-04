@@ -56,6 +56,10 @@ public class ItemArrayAdapter extends ArrayAdapter<String[]> {
         super.add(object);
     }
 
+    /**
+     * adds shelter to shelter list
+     * @param shelter the shelter to be added
+     */
     public void add(Shelter shelter) {
         shelterList.add(shelter);
         super.add(shelter.toArray());

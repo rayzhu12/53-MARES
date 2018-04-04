@@ -12,7 +12,6 @@ import java.util.List;
 
 /**
  * @author Michelle
- * @date 3/14/18
  */
 public class ShelterManager {
     private static final ShelterManager _instance = new ShelterManager();
@@ -108,6 +107,11 @@ public class ShelterManager {
         }
     }
 
+    /**
+     * finds shelter by restriction
+     * @param rest the restriction we are filtering shelters by
+     * @return the list of shelters that satisfy the restriction
+     */
     public List<Shelter> findShelterByRestriction(Restriction rest) {
         List<Shelter> matches = new ArrayList<>();
         for (Shelter s : shelterList) {
@@ -121,7 +125,7 @@ public class ShelterManager {
     /**
      * finds the shelter by key
      * @param key the key of the shelter we are searching for
-     * @returnthe shelter associated with the given key
+     * @return the shelter associated with the given key
      */
     public Shelter findShelterByKey(int key) {
         //TODO fix stub

@@ -2,7 +2,6 @@ package model;
 
 /**
  * @author Michelle Liu
- * @date 3/26/18
  */
 public enum Restriction {
     FEMALE, MALE, NONBINARY, FAMILIES, YOUNG_ADULTS, CHILDREN

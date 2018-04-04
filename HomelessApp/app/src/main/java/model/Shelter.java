@@ -6,7 +6,6 @@ import java.util.List;
 
 /**
  * @author Michelle Liu
- * @date 2/26/18
  */
 public class Shelter implements Serializable {
     private int key;
