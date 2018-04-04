@@ -131,10 +131,7 @@
         android:layout_marginBottom="12dp"
         android:layout_marginEnd="21dp"
         android:layout_marginRight="21dp"
-<<<<<<< HEAD
 
-=======
->>>>>>> ca50f9524aa86b9c1a00339226540d21c733131d
         android:text="Reserve"
         app:layout_constraintBottom_toTopOf="@+id/name"
         app:layout_constraintEnd_toEndOf="@+id/numBeds"

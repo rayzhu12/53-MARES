@@ -15,7 +15,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText email, password ;
 
     // Creating button.
-    Button LogIn, ButtonGoToRegistration;
+    private Button LogIn, ButtonGoToRegistration;
 
     // Creating string to hold email and password .
     private String EmailHolder, PasswordHolder ;
@@ -55,12 +57,12 @@ public class MainActivity extends AppCompatActivity {
 //        userDatabaseReference = userDatabase.getReference("users");
 
         // Assigning layout email ID and Password ID.
-        email = findViewById(R.id.email);
-        password = findViewById(R.id.password);
+        email = (EditText)findViewById(R.id.email);
+        password = (EditText)findViewById(R.id.password);
 
         // Assign button layout ID.
-        LogIn = findViewById(R.id.sign_in);
-        ButtonGoToRegistration = findViewById(R.id.new_user);
+        LogIn = (Button)findViewById(R.id.sign_in);
+        ButtonGoToRegistration = (Button)findViewById(R.id.new_user);
 
         // Creating object instance.
         firebaseAuth = FirebaseAuth.getInstance();
