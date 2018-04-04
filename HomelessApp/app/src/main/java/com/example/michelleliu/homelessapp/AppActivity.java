@@ -2,7 +2,6 @@ package com.example.michelleliu.homelessapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -43,7 +42,7 @@ public class AppActivity extends AppCompatActivity {
     private DatabaseReference secondRef;
     private String userID;
 
-    private static ShelterManager sm = ShelterManager.getInstance();
+    private static final ShelterManager sm = ShelterManager.getInstance();
     private static List<Shelter> shelterList;
 
 
@@ -54,16 +53,13 @@ public class AppActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Button updateData = findViewById(R.id.updatedata);
-        updateData.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-                startActivity(new Intent(AppActivity.this, ShelterListActivity.class));
-            }
+        Button updateData = (Button) findViewById(R.id.updatedata);
+        updateData.setOnClickListener(view -> {
+            finish();
+            startActivity(new Intent(AppActivity.this, ShelterListActivity.class));
         });
 
         if (shelterList == null) {
@@ -94,43 +90,36 @@ public class AppActivity extends AppCompatActivity {
 
         }
 
-        Button logout = findViewById(R.id.logout);
+        Button logout = (Button) findViewById(R.id.logout);
         // Adding click listener on logout button.
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Destroying login season.
-                firebaseAuth.signOut();
+        logout.setOnClickListener(view -> {
+            // Destroying login season.
+            firebaseAuth.signOut();
 
-                // Finishing current User Profile activity.
-                finish();
+            // Finishing current User Profile activity.
+            finish();
 
-                // Redirect to Login Activity after click on logout button.
-                Intent intent = new Intent(AppActivity.this, MainActivity.class);
-                startActivity(intent);
+            // Redirect to Login Activity after click on logout button.
+            Intent intent = new Intent(AppActivity.this, MainActivity.class);
+            startActivity(intent);
 
-                // Showing toast message on logout.
-                Toast.makeText(AppActivity.this, "Logged Out Successfully.", Toast.LENGTH_LONG).show();
-            }
+            // Showing toast message on logout.
+            Toast.makeText(AppActivity.this, "Logged Out Successfully.", Toast.LENGTH_LONG).show();
         });
 
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
-                    // User is signed in
-                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-                    userID = user.getUid();
-                    Toast.makeText(AppActivity.this, "Successfully signed in with: " + user.getEmail(), Toast.LENGTH_LONG).show();
-                } else {
-                    // User is signed out
-                    Log.d(TAG, "onAuthStateChanged:signed_out");
-                    Toast.makeText(AppActivity.this, "Successfully signed out.", Toast.LENGTH_LONG).show();
-                }
-                // ...
+        mAuthListener = firebaseAuth -> {
+            FirebaseUser user = firebaseAuth.getCurrentUser();
+            if (user != null) {
+                // User is signed in
+                Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+                userID = user.getUid();
+                Toast.makeText(AppActivity.this, "Successfully signed in with: " + user.getEmail(), Toast.LENGTH_LONG).show();
+            } else {
+                // User is signed out
+                Log.d(TAG, "onAuthStateChanged:signed_out");
+                Toast.makeText(AppActivity.this, "Successfully signed out.", Toast.LENGTH_LONG).show();
             }
-
+            // ...
         };
 
 //        Button reserveBed = (Button) findViewById(R.id.reserve);
@@ -158,35 +147,33 @@ public class AppActivity extends AppCompatActivity {
 //            }
 //        });
 
-        Button releaseBed = findViewById(R.id.release);
+        Button releaseBed = (Button) findViewById(R.id.release);
         // Adding click listener on logout button.
-        releaseBed.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                UserManager manager = new UserManager();
+        releaseBed.setOnClickListener(view -> {
+            UserManager manager = new UserManager();
 
-                // Read from the database testing if this works
-               myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                   @Override
-                   public void onDataChange(DataSnapshot dataSnapshot) {
-                       nBed[0] = dataSnapshot.child(userID).getValue(UserInfo.class).getNumberOfBeds();
+            // Read from the database testing if this works
+           myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+               @Override
+               public void onDataChange(DataSnapshot dataSnapshot) {
+                   nBed[0] = dataSnapshot.child(userID).getValue(UserInfo.class).getNumberOfBeds();
 
-                       if (dataSnapshot.child(userID).child("currentShelter").getValue() != null) {
-                           sName[0] = dataSnapshot.child(userID).child("currentShelter").getValue().toString();
-                       }
-                       myRef.child(userID).child("numberOfBeds").setValue(0);
-                       myRef.child(userID).child("currentShelter").setValue(null);
-                       if (sName[0] != null && nBed[0] > 0) {
-                           updateShelter();
-                       }
-                       showData(dataSnapshot);
+                   if (dataSnapshot.child(userID).child("currentShelter").getValue() != null) {
+                       sName[0] = dataSnapshot.child(userID).child("currentShelter").getValue().toString();
                    }
-
-                   @Override
-                   public void onCancelled(DatabaseError databaseError) {
-                       Log.d(TAG, "failed to read value");
+                   myRef.child(userID).child("numberOfBeds").setValue(0);
+                   myRef.child(userID).child("currentShelter").setValue(null);
+                   if (sName[0] != null && nBed[0] > 0) {
+                       updateShelter();
                    }
-               });
+                   showData(dataSnapshot);
+               }
+
+               @Override
+               public void onCancelled(DatabaseError databaseError) {
+                   Log.d(TAG, "failed to read value");
+               }
+           });
 
 //                myRef.addValueEventListener(new ValueEventListener() {
 //                    @Override
@@ -202,11 +189,7 @@ public class AppActivity extends AppCompatActivity {
 //                        Log.w(TAG, "Failed to read value.", error.toException());
 //                    }
 //                });
-            }
         });
-
-
-
     }
 
     public void useMap(View view) {
@@ -234,10 +217,11 @@ public class AppActivity extends AppCompatActivity {
 
     private void showData(DataSnapshot dataSnapshot) {
         UserInfo uInfo = new UserInfo();
+        System.out.println(dataSnapshot.child(userID));
         uInfo.setName(dataSnapshot.child(userID).getValue(UserInfo.class).getName());
         uInfo.setNumberOfBeds(dataSnapshot.child(userID).getValue(UserInfo.class).getNumberOfBeds());
-        //Log.d(TAG, "showData: name: " + uInfo.getName());
-        //Log.d(TAG, "showData: bed; " + uInfo.getNumberOfBeds());
+        Log.d(TAG, "showData: name: " + uInfo.getName());
+        Log.d(TAG, "showData: bed; " + uInfo.getNumberOfBeds());
     }
 
     @Override

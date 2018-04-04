@@ -1,6 +1,8 @@
 package model;
 
 import android.util.Log;
+
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -11,8 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Michelle Liu
- * @version 1.0
+ * @author Michelle
+ * @date 3/14/18
  */
 public class ShelterManager {
     private static final ShelterManager _instance = new ShelterManager();
@@ -21,7 +23,7 @@ public class ShelterManager {
     //private FirebaseAuth mAuth;
     //private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
-    DatabaseReference myRef;
+    private DatabaseReference myRef;
 
     //replace with database
     List<Shelter> shelterList;
@@ -96,49 +98,6 @@ public class ShelterManager {
             return matchingShelters;
         }
     }
-
-    // individual, family
-    /*
-    public List<Shelter> findShelterByFamilyType(FamilyType familyType) {
-        List<Shelter> matches = new ArrayList<>();
-        if (familyType.equals(FamilyType.FAMILY)) {
-            for (Shelter s : shelterList) {
-                if (s.getRestrictionList().contains(Restriction.FAMILIES)
-                        || s.getRestrictionList().contains(Restriction.NEWBORNS)) {
-                    matches.add(s);
-                }
-            }
-
-        } else if (familyType.equals(FamilyType.INDIVIDUAL)) {
-            for (Shelter s : shelterList) {
-                if (s.getRestrictionList().contains(Restriction.WOMEN)
-                        || s.getRestrictionList().contains(Restriction.MEN)) {
-                    matches.add(s);
-                }
-            }
-        }
-        return matches;
-    }
-
-
-    // male, female, nonbinary
-    public List<Shelter> findShelterByGender(Gender gender) {
-        List<Shelter> matches = new ArrayList<>();
-        for (Shelter s : shelterList) {
-            if (s.getRestrictionList().contains(Restriction.FAMILIES)) {
-                matches.add(s);
-            } else if (gender.equals(Gender.MALE) && s.getRestrictionList()
-                    .contains(Restriction.MEN)) {
-                matches.add(s);
-            } else if (gender.equals(Gender.FEMALE) && s.getRestrictionList()
-                    .contains(Restriction.WOMEN)) {
-                matches.add(s);
-            }
-        }
-
-        return matches;
-    }
-    */
 
     public List<Shelter> findShelterByRestriction(Restriction rest) {
         List<Shelter> matches = new ArrayList<>();

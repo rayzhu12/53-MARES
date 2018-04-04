@@ -69,8 +69,8 @@ public class ItemArrayAdapter extends ArrayAdapter<String[]> {
                     getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             row = inflater.inflate(R.layout.item_layout, parent, false);
             viewHolder = new ItemViewHolder();
-            viewHolder.key = row.findViewById(R.id.key);
-            viewHolder.name = row.findViewById(R.id.name);
+            viewHolder.key = (TextView) row.findViewById(R.id.key);
+            viewHolder.name = (TextView) row.findViewById(R.id.name);
 //            viewHolder.capacity = (TextView) row.findViewById(R.id.capacity);
 //            viewHolder.gender = (TextView) row.findViewById(R.id.gender);
 //            viewHolder.longitude = (TextView) row.findViewById(R.id.longitude);

@@ -1,9 +1,14 @@
 package model;
 
-/**
- * Created by Emily Wang on 2/19/2018.
- */
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
+/**
+ * @author Emily Wang
+ * @date 2/19/2018
+ */
 public class UserInfo {
     private String name;
     private String gender;
@@ -29,6 +34,7 @@ public class UserInfo {
         this.number = number;
         this.typeOfUser = typeOfUser;
         this.numberOfBeds = 0;
+        this.currentShelter = null;
     }
 
     public String getName() {
