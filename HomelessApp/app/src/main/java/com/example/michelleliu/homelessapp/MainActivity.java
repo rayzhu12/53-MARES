@@ -131,19 +131,7 @@ public class MainActivity extends AppCompatActivity {
         PasswordHolder = password.getText().toString().trim();
 
         // Checking Both EditText is empty or not.
-        if(TextUtils.isEmpty(EmailHolder) || TextUtils.isEmpty(PasswordHolder))
-        {
-
-            // If any of EditText is empty then set value as false.
-            EditTextEmptyCheck = false;
-
-        }
-        else {
-
-            // If any of EditText is empty then set value as true.
-            EditTextEmptyCheck = true ;
-
-        }
+        EditTextEmptyCheck = !(TextUtils.isEmpty(EmailHolder) || TextUtils.isEmpty(PasswordHolder));
     }
 
     public void LoginFunction() {

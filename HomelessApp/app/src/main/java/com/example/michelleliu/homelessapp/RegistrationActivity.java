@@ -47,20 +47,10 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
-        // return email.equals("user");
-        if (email.equals("user")) {
-            return true;
-        }
         return email.contains("@");
     }
 
     private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
-        // return password.equals("pass");
-        if (password.equals("pass")) {
-            return true;
-        }
         return password.length() >= 8;
     }
 
@@ -170,14 +160,7 @@ public class RegistrationActivity extends AppCompatActivity {
             genderHolder = gender.getText().toString();
         }
 
-        if (TextUtils.isEmpty(nameHolder) || TextUtils.isEmpty(genderHolder)) {
-
-            EditTextStatus = false;
-
-        } else {
-
-            EditTextStatus = true;
-        }
+        EditTextStatus = !(TextUtils.isEmpty(nameHolder) || TextUtils.isEmpty(genderHolder));
 
     }
 

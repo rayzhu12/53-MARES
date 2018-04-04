@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by michelleliu on 2/26/18.
+ * @author Michelle Liu
+ * @version 1.0
  */
-
 public class Shelter implements Serializable {
     private int key;
     private String name;

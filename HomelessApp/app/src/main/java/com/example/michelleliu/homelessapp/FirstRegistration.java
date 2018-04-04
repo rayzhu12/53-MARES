@@ -166,14 +166,8 @@ public class FirstRegistration extends AppCompatActivity {
             passwordHolder = password.getText().toString().trim();
         }
 
-        if (TextUtils.isEmpty(emailHolder) || TextUtils.isEmpty(passwordHolder)) {
 
-            EditTextStatus = false;
-
-        } else {
-
-            EditTextStatus = true;
-        }
+        EditTextStatus = !(TextUtils.isEmpty(emailHolder) || TextUtils.isEmpty(passwordHolder));
 
     }
 

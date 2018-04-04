@@ -36,8 +36,8 @@ public class DetailActivity extends AppCompatActivity {
     private DatabaseReference myRef;
     private DatabaseReference secondRef;
     FirebaseUser firebaseUser;
-    private int[] capacity = new int[1];
-    private String[] sName = new String[1];
+    private final int[] capacity = new int[1];
+    private final String[] sName = new String[1];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
