@@ -46,7 +46,7 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
 
         //idk what toolbar does
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         //declare the database reference object. This is what we use to access the database.
@@ -74,7 +74,7 @@ public class DetailActivity extends AppCompatActivity {
         shelter = (Shelter) getIntent().getSerializableExtra("passed shelter");
         myRef = mFirebaseDatabase.getReference("shelters");
 
-        TextView capacityTextView = (TextView) findViewById(R.id.capacity);
+        TextView capacityTextView = findViewById(R.id.capacity);
 
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -96,8 +96,8 @@ public class DetailActivity extends AppCompatActivity {
         FloatingActionButton returnToList = findViewById(R.id.fab);
         returnToList.setOnClickListener(v -> finish());
 
-        numOfBeds = (EditText) findViewById(R.id.numBeds);
-        reserveBeds = (Button) findViewById(R.id.reserve);
+        numOfBeds = findViewById(R.id.numBeds);
+        reserveBeds = findViewById(R.id.reserve);
         reserveBeds.setOnClickListener(v -> {
             myRef = mFirebaseDatabase.getReference("users");
             int numBeds = Integer.parseInt(numOfBeds.getText().toString());
@@ -139,22 +139,22 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void updateTextBoxes() {
-        TextView nameTextView = (TextView) findViewById(R.id.name);
+        TextView nameTextView = findViewById(R.id.name);
         nameTextView.setText(shelter.getName());
-        TextView keyTextView = (TextView) findViewById(R.id.key);
+        TextView keyTextView = findViewById(R.id.key);
         keyTextView.setText("Key: " + Integer.toString(shelter.getKey()));
-        //TextView capacityTextView = (TextView) findViewById(R.id.capacity);
+        //TextView capacityTextView = findViewById(R.id.capacity);
         //capacityTextView.setText("Capacity: " + shelter.getCapacity());
-        TextView restrictionsTextView = (TextView) findViewById(R.id.restrictions);
+        TextView restrictionsTextView = findViewById(R.id.restrictions);
         restrictionsTextView.setText("Restrictions: " + shelter.getRestriction());
-        TextView coordinatesTextView = (TextView) findViewById(R.id.coordinates);
+        TextView coordinatesTextView = findViewById(R.id.coordinates);
         coordinatesTextView.setText("Coordinates: (" + Float.toString(shelter.getLongitude())
                 + ", " + Float.toString(shelter.getLatitude()) + ")");
-        TextView addressTextView = (TextView) findViewById(R.id.address);
+        TextView addressTextView = findViewById(R.id.address);
         addressTextView.setText("Address: " + shelter.getAddress());
-        TextView specialNotesTextView = (TextView) findViewById(R.id.specialNotes);
+        TextView specialNotesTextView = findViewById(R.id.specialNotes);
         specialNotesTextView.setText("Special Notes: " + shelter.getSpecialNotes());
-        TextView phoneNumberTextView = (TextView) findViewById(R.id.phoneNumber);
+        TextView phoneNumberTextView = findViewById(R.id.phoneNumber);
         phoneNumberTextView.setText("Phone Number: " + shelter.getPhoneNumber());
     }
 

@@ -53,10 +53,10 @@ public class AppActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Button updateData = (Button) findViewById(R.id.updatedata);
+        Button updateData = findViewById(R.id.updatedata);
         updateData.setOnClickListener(view -> {
             finish();
             startActivity(new Intent(AppActivity.this, ShelterListActivity.class));
@@ -90,7 +90,7 @@ public class AppActivity extends AppCompatActivity {
 
         }
 
-        Button logout = (Button) findViewById(R.id.logout);
+        Button logout = findViewById(R.id.logout);
         // Adding click listener on logout button.
         logout.setOnClickListener(view -> {
             // Destroying login season.
@@ -147,7 +147,7 @@ public class AppActivity extends AppCompatActivity {
 //            }
 //        });
 
-        Button releaseBed = (Button) findViewById(R.id.release);
+        Button releaseBed = findViewById(R.id.release);
         // Adding click listener on logout button.
         releaseBed.setOnClickListener(view -> {
             UserManager manager = new UserManager();
