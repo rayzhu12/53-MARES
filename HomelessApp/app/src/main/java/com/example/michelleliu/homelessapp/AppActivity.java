@@ -30,12 +30,9 @@ public class AppActivity extends AppCompatActivity {
 
     private static final String TAG = "AppActivity";
 
-    FirebaseDatabase mFirebaseDatabase;
+    private FirebaseDatabase mFirebaseDatabase;
     // Creating FirebaseAuth.
-    FirebaseAuth firebaseAuth ;
-
-    // Creating FirebaseAuth.
-    FirebaseUser firebaseUser;
+    private FirebaseAuth firebaseAuth ;
 
     private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference myRef;
@@ -46,8 +43,8 @@ public class AppActivity extends AppCompatActivity {
     private static List<Shelter> shelterList;
 
 
-    int[] nBed = new int[1];
-    String[] sName = new String[1];
+    private int[] nBed = new int[1];
+    private String[] sName = new String[1];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +70,7 @@ public class AppActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference("users");
-        firebaseUser = firebaseAuth.getCurrentUser();
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
 
         // On activity start check whether there is user previously logged in or not.
         if (firebaseAuth.getCurrentUser() == null) {
