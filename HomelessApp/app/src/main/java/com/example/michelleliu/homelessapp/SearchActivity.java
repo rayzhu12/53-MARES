@@ -11,14 +11,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.Spinner;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import model.FamilyType;
-import model.Gender;
 import model.Restriction;
 import model.Shelter;
 import model.ShelterManager;
