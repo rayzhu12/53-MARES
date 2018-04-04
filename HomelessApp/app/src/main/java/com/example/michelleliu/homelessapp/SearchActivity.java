@@ -25,8 +25,8 @@ import model.ShelterManager;
  */
 public class SearchActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
     final String entry = "";
-    private ShelterManager sm = ShelterManager.getInstance();
-    private List<Shelter> shelterList = sm.getShelterList();
+    private final ShelterManager sm = ShelterManager.getInstance();
+    private final List<Shelter> shelterList = sm.getShelterList();
 
     private ListView shelters;
 

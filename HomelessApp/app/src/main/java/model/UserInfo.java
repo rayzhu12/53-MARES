@@ -127,7 +127,7 @@ public class UserInfo {
      * gets the user type
      * @return the type of user
      */
-    public String getUserType() {
+    private String getUserType() {
         return this.typeOfUser;
     }
 

@@ -114,10 +114,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    /**
-     * Checks whether or not the input is empty.
-     */
-    public void CheckEditTextIsEmptyOrNot(){
+    private void CheckEditTextIsEmptyOrNot(){
         // Getting value form Email's EditText and fill into EmailHolder string variable.
         EmailHolder = email.getText().toString().trim();
 
@@ -128,10 +125,7 @@ public class MainActivity extends AppCompatActivity {
         EditTextEmptyCheck = !(TextUtils.isEmpty(EmailHolder) || TextUtils.isEmpty(PasswordHolder));
     }
 
-    /**
-     * Sign-in with Fire Base.
-     */
-    public void LoginFunction() {
+    private void LoginFunction() {
 
         // Setting up message in progressDialog.
         progressDialog.setMessage("Please Wait");

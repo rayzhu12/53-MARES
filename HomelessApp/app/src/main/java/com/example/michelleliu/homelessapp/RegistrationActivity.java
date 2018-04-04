@@ -135,7 +135,7 @@ public class RegistrationActivity extends AppCompatActivity {
     /**
      * Other fields.
      */
-    public void otherFields(){
+    private void otherFields(){
 
         boolean cancel = false;
         View focusView = null;

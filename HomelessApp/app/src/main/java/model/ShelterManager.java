@@ -24,10 +24,10 @@ public class ShelterManager {
 
     //private FirebaseAuth mAuth;
     //private FirebaseAuth.AuthStateListener mAuthListener;
-    private FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
+    private final FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
 
     //replace with database
-    List<Shelter> shelterList;
+    private List<Shelter> shelterList;
 
 
     /**

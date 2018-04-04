@@ -16,8 +16,8 @@ import model.Shelter;
  */
 
 public class ItemArrayAdapter extends ArrayAdapter<String[]> {
-    private List<String[]> scoreList = new ArrayList<>();
-    private List<Shelter> shelterList = new ArrayList<>();
+    private final List<String[]> scoreList = new ArrayList<>();
+    private final List<Shelter> shelterList = new ArrayList<>();
 
     static class ItemViewHolder {
         TextView key;

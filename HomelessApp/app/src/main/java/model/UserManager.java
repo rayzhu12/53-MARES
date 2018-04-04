@@ -12,7 +12,7 @@ import com.google.firebase.database.ValueEventListener;
  * @author Emily Wang
  */
 public class UserManager {
-    private FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
+    private final FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
 
 
     private static final String TAG = "userManager";

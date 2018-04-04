@@ -47,8 +47,8 @@ public class AppActivity extends AppCompatActivity {
     private static List<Shelter> shelterList;
 
 
-    private int[] nBed = new int[1];
-    private String[] sName = new String[1];
+    private final int[] nBed = new int[1];
+    private final String[] sName = new String[1];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -200,10 +200,10 @@ public class AppActivity extends AppCompatActivity {
      * Uses the map
      * @param view the view
      */
-    public void useMap(View view) {
-        Intent intent = new Intent(this, MapsActivity.class);
-        startActivity(intent);
-    }
+//    public void useMap(View view) {
+//        Intent intent = new Intent(this, MapsActivity.class);
+//        startActivity(intent);
+//    }
 
     private void updateShelter() {
         secondRef = mFirebaseDatabase.getReference("shelters");

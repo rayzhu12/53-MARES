@@ -27,7 +27,7 @@ public class MapsActivity extends FragmentActivity
         implements OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener {
 
     private GoogleMap mMap;
-    private ShelterManager sm = ShelterManager.getInstance();
+    private final ShelterManager sm = ShelterManager.getInstance();
     private List<Shelter> shelterList;
 
     @Override
@@ -97,7 +97,7 @@ public class MapsActivity extends FragmentActivity
      * Shows the given shelters on the map.
      * @param inputList the list of input Shelters
      */
-    public void populateList(List<Shelter> inputList) {
+    private void populateList(List<Shelter> inputList) {
         mMap.clear();
         for (Shelter entry : inputList) {
             LatLng coord = new LatLng(entry.getLatitude(), entry.getLongitude());

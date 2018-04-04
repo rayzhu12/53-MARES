@@ -57,7 +57,7 @@ public class Shelter implements Serializable {
      * @param inputString the string to be parsed
      * @return list of parsed restrictions
      */
-    public List<Restriction> parseRestrictions(String inputString) {
+    private List<Restriction> parseRestrictions(String inputString) {
         List<Restriction> restrictionList = new ArrayList<>();
         if (inputString.toLowerCase().contains("women")) {
             restrictionList.add(Restriction.FEMALE);
