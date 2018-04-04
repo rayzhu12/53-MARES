@@ -71,10 +71,7 @@ public class FirstRegistration extends AppCompatActivity {
         });
     }
 
-    /**
-     * Function that handles user registration.
-     */
-    public void UserRegistrationFunction() {
+    private void UserRegistrationFunction() {
 
         // Showing progress dialog at user registration time.
         progressDialog.setMessage("Please Wait, We are Registering Your Data on Server");
@@ -109,11 +106,7 @@ public class FirstRegistration extends AppCompatActivity {
                 });
     }
 
-    /**
-     * Checks whether or not email and password are valid
-     * upon registration before adding user to the database.
-     */
-    public void CheckEditTextIsEmptyOrNot(){
+    private void CheckEditTextIsEmptyOrNot(){
 
         boolean cancel = false;
         View focusView = null;

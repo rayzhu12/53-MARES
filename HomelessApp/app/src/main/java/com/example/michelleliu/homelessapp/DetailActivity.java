@@ -28,7 +28,7 @@ import model.UserInfo;
 public class DetailActivity extends AppCompatActivity {
 
     private EditText numOfBeds;
-    Button reserveBeds;
+    private Button reserveBeds;
     private Shelter shelter;
     private String userID;
 
@@ -37,7 +37,7 @@ public class DetailActivity extends AppCompatActivity {
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference myRef;
     private DatabaseReference secondRef;
-    FirebaseUser firebaseUser;
+    private FirebaseUser firebaseUser;
     private final int[] capacity = new int[1];
     private final String[] sName = new String[1];
 
@@ -190,7 +190,8 @@ public class DetailActivity extends AppCompatActivity {
     private void showData(DataSnapshot dataSnapshot) {
         UserInfo uInfo = new UserInfo();
         uInfo.setName(dataSnapshot.child(userID).getValue(UserInfo.class).getName());
-        uInfo.setNumberOfBeds(dataSnapshot.child(userID).getValue(UserInfo.class).getNumberOfBeds());
+        uInfo.setNumberOfBeds(dataSnapshot.child(
+                userID).getValue(UserInfo.class).getNumberOfBeds());
         Log.d("DetailActivity", "showData: name: " + uInfo.getName());
         Log.d("DetailActivity", "showData: bed; " + uInfo.getNumberOfBeds());
     }

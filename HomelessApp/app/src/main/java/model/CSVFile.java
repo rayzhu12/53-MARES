@@ -13,9 +13,9 @@ import java.util.List;
  * @author Raymond Zhu
  */
 public class CSVFile {
-    static InputStream inputStream;
-    static List resultList;
-    static List<Shelter> shelterList;
+    private static InputStream inputStream;
+    private static List resultList;
+    private static List<Shelter> shelterList;
 
     /**
      * the constructor for this class

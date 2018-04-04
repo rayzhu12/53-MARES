@@ -97,7 +97,8 @@ public class MapsActivity extends FragmentActivity
         mMap.clear();
         for (Shelter entry : inputList) {
             LatLng coord = new LatLng(entry.getLatitude(), entry.getLongitude());
-            mMap.addMarker(new MarkerOptions().position(coord).title(entry.getName()).snippet("tap for details"));
+            mMap.addMarker(new MarkerOptions().position(coord).title(entry.getName()).snippet("tap "
+                + "for details"));
         }
     }
 
