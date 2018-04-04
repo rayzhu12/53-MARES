@@ -19,6 +19,10 @@ import model.Restriction;
 import model.Shelter;
 import model.ShelterManager;
 
+/**
+ * Maps Activity
+ * @author snack overflow
+ */
 public class MapsActivity extends FragmentActivity
         implements OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener {
 

@@ -13,6 +13,10 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+/**
+ * First registration
+ * @author snack overflow
+ */
 public class FirstRegistration extends AppCompatActivity {
 
     private EditText email;

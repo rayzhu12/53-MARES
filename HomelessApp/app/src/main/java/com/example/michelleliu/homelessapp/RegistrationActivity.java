@@ -19,6 +19,10 @@ import com.google.firebase.auth.FirebaseUser;
 
 import model.UserManager;
 
+/**
+ * registration activity
+ * @author snack overflow
+ */
 public class RegistrationActivity extends AppCompatActivity {
     private static final String TAG = "registration";
 
