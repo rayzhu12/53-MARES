@@ -10,7 +10,6 @@ import com.google.firebase.database.ValueEventListener;
 
 /**
  * @author Emily Wang
- * @date 3/26/2018
  */
 public class UserManager {
     private FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();

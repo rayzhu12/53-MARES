@@ -2,7 +2,6 @@ package model;
 
 /**
  * @author Emily Wang
- * @date 2/19/2018
  */
 public class UserInfo {
     private String name;
