@@ -21,6 +21,10 @@ import com.google.firebase.database.ValueEventListener;
 import model.Shelter;
 import model.UserInfo;
 
+/**
+ * The Detail Activity
+ * @author dummy
+ */
 public class DetailActivity extends AppCompatActivity {
 
     private EditText numOfBeds;
