@@ -123,6 +123,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Checks whether or not the input is empty.
+     */
     public void CheckEditTextIsEmptyOrNot(){
         // Getting value form Email's EditText and fill into EmailHolder string variable.
         EmailHolder = email.getText().toString().trim();
@@ -146,6 +149,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Sign-in with Fire Base.
+     */
     public void LoginFunction() {
 
         // Setting up message in progressDialog.
