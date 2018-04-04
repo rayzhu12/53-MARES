@@ -28,7 +28,8 @@ import model.CSVFile;
 import model.Shelter;
 import model.ShelterManager;
 
-public class ShelterListActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class ShelterListActivity extends AppCompatActivity
+        implements AdapterView.OnItemClickListener {
     private ListView listView;
     private ArrayAdapter adapter;
     private static ShelterManager sm = ShelterManager.getInstance();
@@ -88,11 +89,14 @@ public class ShelterListActivity extends AppCompatActivity implements AdapterVie
                 if (user != null) {
                     // User is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-                    Toast.makeText(ShelterListActivity.this, "Successfully signed in with: " + user.getEmail(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(ShelterListActivity.this,
+                            "Successfully signed in with: " + user.getEmail(),
+                            Toast.LENGTH_LONG).show();
                 } else {
                     // User is signed out
                     Log.d(TAG, "onAuthStateChanged:signed_out");
-                    Toast.makeText(ShelterListActivity.this, "Successfully signed out.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ShelterListActivity.this, "Successfully signed out.",
+                            Toast.LENGTH_LONG).show();
                 }
                 // ...
             }
@@ -144,7 +148,8 @@ public class ShelterListActivity extends AppCompatActivity implements AdapterVie
         populateList(shelterList);
 
         // search bar stuff
-        // keep generic search by name function in ShelterListA or move to SearchA and call from here?
+        // keep generic search by name function in ShelterListA
+        // or move to SearchA and call from here?
         EditText bar = findViewById(R.id.searchbar);
         bar.addTextChangedListener(new TextWatcher() {
             @Override
@@ -188,7 +193,6 @@ public class ShelterListActivity extends AppCompatActivity implements AdapterVie
         if (!parent.getItemAtPosition(position).equals("Shelter Name")) {
             Intent intent = new Intent(ShelterListActivity.this, DetailActivity.class);
             String shelterName = (String) parent.getItemAtPosition(position);
-            //todo: change to retrieve from database
             Shelter selectedShelter = sm.findShelterByName(shelterName);
             //Log.d("selected shelter", (String) parent.getItemAtPosition(position));
             intent.putExtra("passed shelter", selectedShelter);

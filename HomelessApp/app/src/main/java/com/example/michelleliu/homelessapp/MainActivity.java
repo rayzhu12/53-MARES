@@ -86,7 +86,8 @@ public class MainActivity extends AppCompatActivity {
             // If EditText is false then this block with execute.
             else {
 
-                Toast.makeText(MainActivity.this, "Please fill all form fields.", Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, "Please fill all form fields.",
+                        Toast.LENGTH_LONG).show();
 
             }
 
@@ -134,7 +135,8 @@ public class MainActivity extends AppCompatActivity {
         // Showing progressDialog.
         progressDialog.show();
 
-        // Calling  signInWithEmailAndPassword function with firebase object and passing EmailHolder and PasswordHolder inside it.
+        // Calling  signInWithEmailAndPassword function with firebase object
+        // and passing EmailHolder and PasswordHolder inside it.
         firebaseAuth.signInWithEmailAndPassword(EmailHolder, PasswordHolder)
                 .addOnCompleteListener(this, task -> {
 
@@ -156,8 +158,11 @@ public class MainActivity extends AppCompatActivity {
                         // Hiding the progress dialog.
                         progressDialog.dismiss();
 
-                        // Showing toast message when email or password not found in Firebase Online database.
-                        Toast.makeText(MainActivity.this, "Email or Password Not found, Please Try Again", Toast.LENGTH_LONG).show();
+                        // Showing toast message when email or password not found in
+                        // Firebase Online database.
+                        Toast.makeText(MainActivity.this,
+                                "Email or Password Not found, Please Try Again",
+                                Toast.LENGTH_LONG).show();
                     }
                 });
     }

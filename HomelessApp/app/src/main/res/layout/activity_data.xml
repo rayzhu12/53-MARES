@@ -23,7 +23,11 @@
             android:id="@+id/detailsearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+<<<<<<< HEAD
+            android:text="@string/search"/>
+=======
             android:text="@string/search" />
+>>>>>>> 9495a476b5382fa9103a450c54590c04d59a534c
 
         <Button
             android:id="@+id/home"

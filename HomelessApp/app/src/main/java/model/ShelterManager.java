@@ -128,7 +128,6 @@ public class ShelterManager {
      * @return the shelter associated with the given key
      */
     public Shelter findShelterByKey(int key) {
-        //TODO fix stub
         Shelter foundShelter = null;
         if (key >= shelterList.size()) {
             throw new IllegalArgumentException("Key is not in shelter list.");
