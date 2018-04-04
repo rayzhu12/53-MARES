@@ -18,10 +18,22 @@ public class UserManager {
 
 
     private static final String TAG = "userManager";
+
+    /**
+     * the default constructor
+     */
     public UserManager() {
 
     }
 
+    /**
+     * the constructor
+     * @param id the ID
+     * @param name the name
+     * @param age the age
+     * @param gender the gender
+     * @param type the type
+     */
     public void addNewUser(String id, String name, int age, String gender, String type) {
         UserInfo userInfo = new UserInfo(id, name, age, gender, type);
 

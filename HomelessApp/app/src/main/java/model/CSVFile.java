@@ -18,6 +18,10 @@ public class CSVFile {
     static List resultList;
     static List<Shelter> shelterList;
 
+    /**
+     * the constructor for this class
+     * @param inputStream the input stream
+     */
     public CSVFile(InputStream inputStream){
         this.inputStream = inputStream;
     }
@@ -56,7 +60,10 @@ public class CSVFile {
         return shelterList;
     }
 
-    // not sure what this does/why its needed but too scared to delete -m
+    /**
+     * return Shelter List
+     * @return shelter list
+     */
     public List<Shelter> returnShelterList() {
         if (shelterList == null) {
             shelterList = read();

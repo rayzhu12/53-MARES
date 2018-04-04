@@ -18,6 +18,11 @@ import java.util.List;
  */
 public class ShelterManager {
     private static final ShelterManager _instance = new ShelterManager();
+
+    /**
+     * gets the instance
+     * @return the instance
+     */
     public static ShelterManager getInstance() { return _instance; }
 
     //private FirebaseAuth mAuth;
@@ -29,11 +34,18 @@ public class ShelterManager {
     List<Shelter> shelterList;
 
 
-
-
+    /**
+     * gets the shelter list
+     * @return the shelter list
+     */
     public List<Shelter> getShelterList() {
         return shelterList;
     }
+
+    /**
+     * sets the shelter list
+     * @param shelterList the shelter list
+     */
     public void setShelterList(List<Shelter> shelterList) {
         this.shelterList = shelterList;
     }
@@ -99,6 +111,57 @@ public class ShelterManager {
         }
     }
 
+<<<<<<< HEAD
+    // individual, family
+    /*
+    public List<Shelter> findShelterByFamilyType(FamilyType familyType) {
+        List<Shelter> matches = new ArrayList<>();
+        if (familyType.equals(FamilyType.FAMILY)) {
+            for (Shelter s : shelterList) {
+                if (s.getRestrictionList().contains(Restriction.FAMILIES)
+                        || s.getRestrictionList().contains(Restriction.NEWBORNS)) {
+                    matches.add(s);
+                }
+            }
+
+        } else if (familyType.equals(FamilyType.INDIVIDUAL)) {
+            for (Shelter s : shelterList) {
+                if (s.getRestrictionList().contains(Restriction.WOMEN)
+                        || s.getRestrictionList().contains(Restriction.MEN)) {
+                    matches.add(s);
+                }
+            }
+        }
+        return matches;
+    }
+
+
+    // male, female, nonbinary
+    public List<Shelter> findShelterByGender(Gender gender) {
+        List<Shelter> matches = new ArrayList<>();
+        for (Shelter s : shelterList) {
+            if (s.getRestrictionList().contains(Restriction.FAMILIES)) {
+                matches.add(s);
+            } else if (gender.equals(Gender.MALE) && s.getRestrictionList()
+                    .contains(Restriction.MEN)) {
+                matches.add(s);
+            } else if (gender.equals(Gender.FEMALE) && s.getRestrictionList()
+                    .contains(Restriction.WOMEN)) {
+                matches.add(s);
+            }
+        }
+
+        return matches;
+    }
+    */
+
+    /**
+     * finds shelter by restriction
+     * @param rest the restriction we are filtering shelters by
+     * @return the list of shelters that satisfy the restriction
+     */
+=======
+>>>>>>> ae1049dc0317d0a0d3cc6e6fab06d2445dc564ac
     public List<Shelter> findShelterByRestriction(Restriction rest) {
         List<Shelter> matches = new ArrayList<>();
         for (Shelter s : shelterList) {
@@ -109,6 +172,11 @@ public class ShelterManager {
         return matches;
     }
 
+    /**
+     * finds the shelter by key
+     * @param key the key of the shelter we are searching for
+     * @returnthe shelter associated with the given key
+     */
     public Shelter findShelterByKey(int key) {
         //TODO fix stub
         Shelter foundShelter = null;
