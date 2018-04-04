@@ -64,6 +64,7 @@ public class RegistrationActivity extends AppCompatActivity {
         return password.length() >= 8;
     }
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
