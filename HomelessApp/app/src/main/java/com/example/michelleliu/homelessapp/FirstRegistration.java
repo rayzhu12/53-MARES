@@ -71,6 +71,9 @@ public class FirstRegistration extends AppCompatActivity {
         });
     }
 
+    /**
+     * Function that handles user registration.
+     */
     public void UserRegistrationFunction() {
 
         // Showing progress dialog at user registration time.
@@ -106,6 +109,10 @@ public class FirstRegistration extends AppCompatActivity {
                 });
     }
 
+    /**
+     * Checks whether or not email and password are valid
+     * upon registration before adding user to the database.
+     */
     public void CheckEditTextIsEmptyOrNot(){
 
         boolean cancel = false;

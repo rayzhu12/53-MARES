@@ -82,6 +82,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         clearMap.setOnClickListener(v -> populateList(shelterList));
     }
 
+    /**
+     * Shows the given shelters on the map.
+     * @param inputList the list of input Shelters
+     */
     public void populateList(List<Shelter> inputList) {
         mMap.clear();
         for (Shelter entry : inputList) {

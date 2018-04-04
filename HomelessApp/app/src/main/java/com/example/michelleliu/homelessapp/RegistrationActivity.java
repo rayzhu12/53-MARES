@@ -39,6 +39,9 @@ public class RegistrationActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
+    /**
+     * Admin or User
+     */
     public enum adminOrUser {
         Admin,
         User
@@ -122,6 +125,9 @@ public class RegistrationActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Other fields.
+     */
     public void otherFields(){
 
         boolean cancel = false;
