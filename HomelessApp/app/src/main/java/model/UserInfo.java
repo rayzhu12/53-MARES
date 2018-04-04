@@ -45,7 +45,6 @@ public class UserInfo {
         this.number = number;
         this.typeOfUser = typeOfUser;
         this.numberOfBeds = 0;
-        this.currentShelter = null;
     }
 
     /**
