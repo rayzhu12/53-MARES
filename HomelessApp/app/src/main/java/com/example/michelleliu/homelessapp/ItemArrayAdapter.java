@@ -12,7 +12,7 @@ import java.util.List;
 import model.Shelter;
 
 /**
- * Created by Raymond on 2/24/2018.
+ * @author Raymond Zhu
  */
 
 public class ItemArrayAdapter extends ArrayAdapter<String[]> {
