@@ -4,8 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -26,8 +24,8 @@ public class FirstRegistration extends AppCompatActivity {
     private EditText email;
     private EditText password;
     private EditText confirmPass;
-    private Button nextRegister;
-    private Button logIn;
+    Button nextRegister;
+    Button logIn;
 
     private String emailHolder;
     private String passwordHolder;
@@ -44,13 +42,13 @@ public class FirstRegistration extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first_registration);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-       email = (EditText) findViewById(R.id.email);
-       password = (EditText) findViewById(R.id.password);
+       email = findViewById(R.id.email);
+       password = findViewById(R.id.password);
 
-       nextRegister = (Button) findViewById(R.id.nextRegister);
+       nextRegister = findViewById(R.id.nextRegister);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -72,14 +70,29 @@ public class FirstRegistration extends AppCompatActivity {
 
         });
 
+<<<<<<< HEAD
         logIn = (Button) findViewById(R.id.logIn);
         logIn.setOnClickListener(view -> {
             finish();
             Intent intent = new Intent(FirstRegistration.this, MainActivity.class);
             startActivity(intent);
+=======
+        logIn = findViewById(R.id.logIn);
+        logIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                Intent intent = new Intent(FirstRegistration.this, MainActivity.class);
+                startActivity(intent);
+            }
+
+>>>>>>> ca50f9524aa86b9c1a00339226540d21c733131d
         });
     }
 
+    /**
+     * Function that handles user registration.
+     */
     public void UserRegistrationFunction() {
 
         // Showing progress dialog at user registration time.
@@ -112,6 +125,10 @@ public class FirstRegistration extends AppCompatActivity {
                 });
     }
 
+    /**
+     * Checks whether or not email and password are valid
+     * upon registration before adding user to the database.
+     */
     public void CheckEditTextIsEmptyOrNot(){
 
         boolean cancel = false;

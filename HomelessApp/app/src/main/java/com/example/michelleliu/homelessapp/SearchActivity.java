@@ -25,7 +25,7 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
     private List<Shelter> shelterList = sm.getShelterList();
 
     private ListView shelters;
-    private ArrayAdapter<Shelter> arrayAdapter;
+    ArrayAdapter<Shelter> arrayAdapter;
 
     private List<Shelter> nameMatchList;
     private List<Shelter> restrictionMatchList;
@@ -39,7 +39,7 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
 
         getSupportActionBar().setTitle("Detailed Search");
 
-        Button search = (Button) findViewById(R.id.detSearchButton);
+        Button search = findViewById(R.id.detSearchButton);
         search.setOnClickListener(new View.OnClickListener() {
             String entry;
             @Override
@@ -74,6 +74,7 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
             }
         });
 
+<<<<<<< HEAD
         RadioButton rb1 = (RadioButton) findViewById(R.id.radio_male);
         rb1.setOnClickListener(view -> restrictionMatchList = sm.findShelterByRestriction(Restriction.MALE));
         RadioButton rb2 = (RadioButton) findViewById(R.id.radio_female);
@@ -86,13 +87,39 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
         rb5.setOnClickListener(view -> restrictionMatchList = sm.findShelterByRestriction(Restriction.YOUNG_ADULTS));
         RadioButton rb6 = (RadioButton) findViewById(R.id.radio_children);
         rb6.setOnClickListener(view -> restrictionMatchList = sm.findShelterByRestriction(Restriction.CHILDREN));
+=======
+        RadioButton rb1 = findViewById(R.id.radio_male);
+        rb1.setOnClickListener(view -> {
+            restrictionMatchList = sm.findShelterByRestriction(Restriction.MALE);
+        });
+        RadioButton rb2 = findViewById(R.id.radio_female);
+        rb2.setOnClickListener(view -> {
+            restrictionMatchList = sm.findShelterByRestriction(Restriction.FEMALE);
+        });
+        RadioButton rb3 = findViewById(R.id.radio_nonbinary);
+        rb3.setOnClickListener(view -> {
+            restrictionMatchList = sm.findShelterByRestriction(Restriction.NONBINARY);
+        });
+        RadioButton rb4 = findViewById(R.id.radio_families);
+        rb4.setOnClickListener(view -> {
+            restrictionMatchList = sm.findShelterByRestriction(Restriction.FAMILIES);
+        });
+        RadioButton rb5 = findViewById(R.id.radio_ya);
+        rb5.setOnClickListener(view -> {
+            restrictionMatchList = sm.findShelterByRestriction(Restriction.YOUNG_ADULTS);
+        });
+        RadioButton rb6 = findViewById(R.id.radio_children);
+        rb6.setOnClickListener(view -> {
+            restrictionMatchList = sm.findShelterByRestriction(Restriction.CHILDREN);
+        });
+>>>>>>> ca50f9524aa86b9c1a00339226540d21c733131d
 
         shelters = findViewById(R.id.shelters);
         shelters.setVisibility(View.VISIBLE);
         populateList(shelterList);
 
         //todo: clear should not bring up same page again, just clear the values
-        Button clear = (Button) findViewById(R.id.clearButton);
+        Button clear = findViewById(R.id.clearButton);
         clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

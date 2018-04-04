@@ -1,8 +1,6 @@
 package model;
 
 import android.util.Log;
-
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,7 +21,7 @@ public class ShelterManager {
     //private FirebaseAuth mAuth;
     //private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
-    private DatabaseReference myRef;
+    DatabaseReference myRef;
 
     //replace with database
     List<Shelter> shelterList;

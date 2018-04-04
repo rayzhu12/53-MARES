@@ -31,10 +31,21 @@ public class ItemArrayAdapter extends ArrayAdapter<String[]> {
 //        TextView number;
     }
 
+    /**
+     * Constructor that takes in context and textViewResourceId
+     * @param context the context
+     * @param textViewResourceId the textView Resource ID
+     */
     public ItemArrayAdapter(Context context, int textViewResourceId) {
         super(context, textViewResourceId);
     }
 
+    /**
+     * Constructor that takes in context, textViewResourceId, and object.
+     * @param context the context
+     * @param textViewResourceId the textView Resource ID
+     * @param object the object
+     */
     public ItemArrayAdapter(Context context, int textViewResourceId, List object) {
         super(context, textViewResourceId, object);
     }
@@ -45,6 +56,10 @@ public class ItemArrayAdapter extends ArrayAdapter<String[]> {
         super.add(object);
     }
 
+    /**
+     * Adds each shelter to the ArrayAdapter.
+     * @param shelter the shelter
+     */
     public void add(Shelter shelter) {
         shelterList.add(shelter);
         super.add(shelter.toArray());
@@ -69,8 +84,8 @@ public class ItemArrayAdapter extends ArrayAdapter<String[]> {
                     getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             row = inflater.inflate(R.layout.item_layout, parent, false);
             viewHolder = new ItemViewHolder();
-            viewHolder.key = (TextView) row.findViewById(R.id.key);
-            viewHolder.name = (TextView) row.findViewById(R.id.name);
+            viewHolder.key = row.findViewById(R.id.key);
+            viewHolder.name = row.findViewById(R.id.name);
 //            viewHolder.capacity = (TextView) row.findViewById(R.id.capacity);
 //            viewHolder.gender = (TextView) row.findViewById(R.id.gender);
 //            viewHolder.longitude = (TextView) row.findViewById(R.id.longitude);

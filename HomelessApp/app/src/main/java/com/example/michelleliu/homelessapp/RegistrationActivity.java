@@ -1,7 +1,6 @@
 package com.example.michelleliu.homelessapp;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -13,27 +12,12 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
-
-import java.util.List;
-
-import model.Model;
-import model.UserInfo;
 import model.UserManager;
 
 public class RegistrationActivity extends AppCompatActivity {
@@ -51,12 +35,15 @@ public class RegistrationActivity extends AppCompatActivity {
     private Boolean EditTextStatus;
 
     private Spinner typeOfUser;
-    private Button register;
+    Button register;
     private ProgressDialog progressDialog;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
+    /**
+     * Admin or User
+     */
     public enum adminOrUser {
         Admin,
         User
@@ -80,17 +67,18 @@ public class RegistrationActivity extends AppCompatActivity {
         return password.length() >= 8;
     }
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        name = (EditText) findViewById(R.id.Name);
-        age = (EditText) findViewById(R.id.Age);
-        gender = (EditText) findViewById(R.id.Gender);
+        name = findViewById(R.id.Name);
+        age = findViewById(R.id.Age);
+        gender = findViewById(R.id.Gender);
 
-        typeOfUser = (Spinner) findViewById(R.id.typeOfUser);
+        typeOfUser = findViewById(R.id.typeOfUser);
         ArrayAdapter<String> adapter2 = new ArrayAdapter(this,android.R.layout.simple_spinner_item, adminOrUser.values());
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         typeOfUser.setAdapter(adapter2);
@@ -118,7 +106,7 @@ public class RegistrationActivity extends AppCompatActivity {
             }
         };
 
-        register = (Button) findViewById(R.id.create_account);
+        register = findViewById(R.id.create_account);
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -153,6 +141,9 @@ public class RegistrationActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Other fields.
+     */
     public void otherFields(){
 
         boolean cancel = false;
