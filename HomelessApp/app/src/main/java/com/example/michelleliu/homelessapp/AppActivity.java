@@ -160,7 +160,7 @@ public class AppActivity extends AppCompatActivity {
                    }
                    myRef.child(userID).child("numberOfBeds").setValue(0);
                    myRef.child(userID).child("currentShelter").setValue(null);
-                   if (sName[0] != null && nBed[0] > 0) {
+                   if ((sName[0] != null) && (nBed[0] > 0)) {
                        updateShelter();
                    }
                    showData(dataSnapshot);

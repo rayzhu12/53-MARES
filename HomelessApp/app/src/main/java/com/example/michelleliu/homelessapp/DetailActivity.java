@@ -105,7 +105,7 @@ public class DetailActivity extends AppCompatActivity {
                     if (numBeds == 0) {
                         Toast.makeText(DetailActivity.this, "You cannot reseve zero beds", Toast.LENGTH_LONG).show();
                     }
-                    if (dataSnapshot.child(userID).getValue(UserInfo.class).getNumberOfBeds() == 0 && capacity[0] - numBeds > 0) {
+                    if ((dataSnapshot.child(userID).getValue(UserInfo.class).getNumberOfBeds() == 0) && ((capacity[0] - numBeds) > 0)) {
                         myRef.child(userID).child("numberOfBeds").setValue(numBeds);
                         myRef.child(userID).child("currentShelter").setValue(shelter.getName());
                         Toast.makeText(DetailActivity.this, "You've reserved " + numBeds + " beds from " + shelter.getName(), Toast.LENGTH_LONG).show();
@@ -115,7 +115,7 @@ public class DetailActivity extends AppCompatActivity {
                         capacityTextView.setText("Capacity: " + capacity[0]);
 
                         //startActivity(new Intent(DetailActivity.this, ConfirmBedActivity.class));
-                    } else if (capacity[0] - numBeds < 0){
+                    } else if ((capacity[0] - numBeds) < 0){
                         Log.d("DetailActivity", "beds not added") ;
                         Toast.makeText(DetailActivity.this, "There are not this many free beds at this shelter", Toast.LENGTH_LONG).show();
                     }

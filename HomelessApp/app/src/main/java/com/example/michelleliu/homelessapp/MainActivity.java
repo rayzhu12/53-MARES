@@ -13,10 +13,12 @@ import com.google.firebase.auth.FirebaseAuth;
 public class MainActivity extends AppCompatActivity {
 
     // Creating EditText .
-    private EditText email, password ;
+    private EditText email;
+    private EditText password ;
 
     // Creating string to hold email and password .
-    private String EmailHolder, PasswordHolder ;
+    private String EmailHolder;
+    private String PasswordHolder ;
 
     //Creating Boolean to hold EditText empty true false value
     private Boolean EditTextEmptyCheck;
@@ -31,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     //DatabaseReference userDatabaseReference;
 
     // Creating Boolean variable that holds EditText is empty or not status.
-    Boolean EditTextStatus ;
+    //Boolean EditTextStatus ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

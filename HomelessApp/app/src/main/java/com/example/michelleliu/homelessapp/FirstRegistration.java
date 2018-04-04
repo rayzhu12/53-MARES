@@ -19,7 +19,7 @@ public class FirstRegistration extends AppCompatActivity {
 
     private EditText email;
     private EditText password;
-    private EditText confirmPass;
+    //private EditText confirmPass;
 
     private String emailHolder;
     private String passwordHolder;
@@ -27,10 +27,10 @@ public class FirstRegistration extends AppCompatActivity {
 
     private ProgressDialog progressDialog;
 
-    private FirebaseDatabase mFirebaseDatabase;
+    //private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
-    private DatabaseReference myRef;
+    //private FirebaseAuth.AuthStateListener mAuthListener;
+    //private DatabaseReference myRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
