@@ -28,6 +28,10 @@ import model.CSVFile;
 import model.Shelter;
 import model.ShelterManager;
 
+/**
+ * Shelter List Activity
+ * @author snack overflow
+ */
 public class ShelterListActivity extends AppCompatActivity
         implements AdapterView.OnItemClickListener {
     private ListView listView;

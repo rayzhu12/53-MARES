@@ -109,12 +109,15 @@ public class DetailActivity extends AppCompatActivity {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if (numBeds == 0) {
-                        Toast.makeText(DetailActivity.this, "You cannot reseve zero beds", Toast.LENGTH_LONG).show();
+                        Toast.makeText(DetailActivity.this,
+                                "You cannot reseve zero beds", Toast.LENGTH_LONG).show();
                     }
-                    if ((dataSnapshot.child(userID).getValue(UserInfo.class).getNumberOfBeds() == 0) && ((capacity[0] - numBeds) > 0)) {
+                    if ((dataSnapshot.child(userID).getValue(UserInfo.class).getNumberOfBeds() == 0)
+                            && ((capacity[0] - numBeds) > 0)) {
                         myRef.child(userID).child("numberOfBeds").setValue(numBeds);
                         myRef.child(userID).child("currentShelter").setValue(shelter.getName());
-                        Toast.makeText(DetailActivity.this, "You've reserved " + numBeds + " beds from " + shelter.getName(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(DetailActivity.this, "You've reserved " + numBeds
+                                + " beds from " + shelter.getName(), Toast.LENGTH_LONG).show();
                         updateShelter(numBeds);
                         Log.d("DetailActivity", "beds added");
                         showData(dataSnapshot);
@@ -123,11 +126,14 @@ public class DetailActivity extends AppCompatActivity {
                         //startActivity(new Intent(DetailActivity.this, ConfirmBedActivity.class));
                     } else if ((capacity[0] - numBeds) < 0){
                         Log.d("DetailActivity", "beds not added") ;
-                        Toast.makeText(DetailActivity.this, "There are not this many free beds at this shelter", Toast.LENGTH_LONG).show();
+                        Toast.makeText(DetailActivity.this, "There are not this many"
+                                + " free beds at this shelter", Toast.LENGTH_LONG).show();
                     }
                     else {
                         Log.d("DetailActivity", "beds not added") ;
-                        Toast.makeText(DetailActivity.this, "You already have beds reserved at " + dataSnapshot.child(userID).child("currentShelter").getValue().toString(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(DetailActivity.this, "You already have beds"
+                                + " reserved at " + dataSnapshot.child(userID).child("current"
+                                + "Shelter").getValue().toString(), Toast.LENGTH_LONG).show();
                     }
                 }
 
@@ -166,8 +172,10 @@ public class DetailActivity extends AppCompatActivity {
         secondRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                secondRef.child(shelter.getName()).child("capacity").setValue((Integer.toString(capacity[0] - numBeds)));
-                capacity[0] = Integer.parseInt(dataSnapshot.child(shelter.getName()).getValue(Shelter.class).getCapacity());
+                secondRef.child(shelter.getName()).child(
+                        "capacity").setValue((Integer.toString(capacity[0] - numBeds)));
+                capacity[0] = Integer.parseInt(dataSnapshot.child(
+                        shelter.getName()).getValue(Shelter.class).getCapacity());
                 Log.d("DetailActivity", "shelter cap updated");
             }
 

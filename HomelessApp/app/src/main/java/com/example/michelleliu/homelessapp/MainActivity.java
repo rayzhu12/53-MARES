@@ -10,6 +10,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 
+/**
+ * Main activity
+ * @author snack overflow
+ */
 public class MainActivity extends AppCompatActivity {
 
     // Creating EditText .

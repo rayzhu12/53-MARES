@@ -19,6 +19,10 @@ import model.Restriction;
 import model.Shelter;
 import model.ShelterManager;
 
+/**
+ * Search activity
+ * @author snack overflow
+ */
 public class SearchActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
     final String entry = "";
     private ShelterManager sm = ShelterManager.getInstance();
