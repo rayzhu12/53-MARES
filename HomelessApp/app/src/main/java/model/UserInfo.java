@@ -14,7 +14,7 @@ public class UserInfo {
     private int numberOfChildren;
     private int numberOfBeds;
     private String currentShelter;
-    private String userID;
+    // --Commented out by Inspection (4/4/2018 3:25 PM):private String userID;
 
     /**
      * the default constructor
@@ -25,13 +25,12 @@ public class UserInfo {
 
     /**
      * the constructor
-     * @param userID the user ID
      * @param name the name
      * @param age the age
      * @param number the number
      * @param typeOfUser the type of user
      */
-    public UserInfo(String userID, String name, int age, String number, String typeOfUser) {
+    public UserInfo(String name, int age, String number, String typeOfUser) {
         this.name = name;
 //        this.email = email;
 //        this.password = password;

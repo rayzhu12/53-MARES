@@ -31,24 +31,28 @@ public class ItemArrayAdapter extends ArrayAdapter<String[]> {
 //        TextView number;
     }
 
-    /**
-     * Constructor that takes in context and textViewResourceId
-     * @param context the context
-     * @param textViewResourceId the textView Resource ID
-     */
-    public ItemArrayAdapter(Context context, int textViewResourceId) {
-        super(context, textViewResourceId);
-    }
+// --Commented out by Inspection START (4/4/2018 3:23 PM):
+//    /**
+//     * Constructor that takes in context and textViewResourceId
+//     * @param context the context
+//     * @param textViewResourceId the textView Resource ID
+//     */
+//    public ItemArrayAdapter(Context context, int textViewResourceId) {
+//        super(context, textViewResourceId);
+//    }
+// --Commented out by Inspection STOP (4/4/2018 3:23 PM)
 
-    /**
-     * Constructor that takes in context, textViewResourceId, and object.
-     * @param context the context
-     * @param textViewResourceId the textView Resource ID
-     * @param object the object
-     */
-    public ItemArrayAdapter(Context context, int textViewResourceId, List object) {
-        super(context, textViewResourceId, object);
-    }
+// --Commented out by Inspection START (4/4/2018 3:24 PM):
+//    /**
+//     * Constructor that takes in context, textViewResourceId, and object.
+//     * @param context the context
+//     * @param textViewResourceId the textView Resource ID
+//     * @param object the object
+//     */
+//    public ItemArrayAdapter(Context context, int textViewResourceId, List object) {
+//        super(context, textViewResourceId, object);
+//    }
+// --Commented out by Inspection STOP (4/4/2018 3:24 PM)
 
     @Override
     public void add(String[] object) {
@@ -56,14 +60,16 @@ public class ItemArrayAdapter extends ArrayAdapter<String[]> {
         super.add(object);
     }
 
-    /**
-     * adds shelter to shelter list
-     * @param shelter the shelter to be added
-     */
-    public void add(Shelter shelter) {
-        shelterList.add(shelter);
-        super.add(shelter.toArray());
-    }
+// --Commented out by Inspection START (4/4/2018 3:24 PM):
+//    /**
+//     * adds shelter to shelter list
+//     * @param shelter the shelter to be added
+//     */
+//    public void add(Shelter shelter) {
+//        shelterList.add(shelter);
+//        super.add(shelter.toArray());
+//    }
+// --Commented out by Inspection STOP (4/4/2018 3:24 PM)
 
     @Override
     public int getCount() {

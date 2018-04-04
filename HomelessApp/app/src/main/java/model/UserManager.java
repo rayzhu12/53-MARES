@@ -33,7 +33,7 @@ public class UserManager {
      * @param type the type
      */
     public void addNewUser(String id, String name, int age, String gender, String type) {
-        UserInfo userInfo = new UserInfo(id, name, age, gender, type);
+        UserInfo userInfo = new UserInfo(name, age, gender, type);
 
         //declare the database reference object. This is what we use to access the database.
         //NOTE: Unless you are signed in, this will not be useable.

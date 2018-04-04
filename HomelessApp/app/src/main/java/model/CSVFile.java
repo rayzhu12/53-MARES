@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class CSVFile {
     private static InputStream inputStream;
-    private static List resultList;
+    // --Commented out by Inspection (4/4/2018 3:23 PM):private static List resultList;
     private static List<Shelter> shelterList;
 
     /**
@@ -59,6 +59,7 @@ public class CSVFile {
         return shelterList;
     }
 
+// --Commented out by Inspection START (4/4/2018 3:23 PM):
     /**
      * return Shelter List
      * @return shelter list
@@ -69,6 +70,7 @@ public class CSVFile {
         }
         return shelterList;
     }
+// --Commented out by Inspection STOP (4/4/2018 3:23 PM)
 
 //    debug printmethod
 //    String printRow(String[] row) {

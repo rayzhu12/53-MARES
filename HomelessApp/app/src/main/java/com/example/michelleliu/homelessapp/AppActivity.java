@@ -74,7 +74,7 @@ public class AppActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference("users");
-        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        // FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
 
         // On activity start check whether there is user previously logged in or not.
         if (firebaseAuth.getCurrentUser() == null) {
