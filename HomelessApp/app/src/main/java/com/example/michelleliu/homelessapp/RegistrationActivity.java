@@ -105,8 +105,10 @@ public class RegistrationActivity extends AppCompatActivity {
 
                 if (EditTextStatus) {
                     UserManager manage = new UserManager();
-                    manage.addNewUser(userID, nameHolder, ageHolder, genderHolder, typeOfUser.getSelectedItem().toString());
-                    Toast.makeText(RegistrationActivity.this, "User added to database", Toast.LENGTH_LONG).show();
+                    manage.addNewUser(userID, nameHolder, ageHolder, genderHolder,
+                            typeOfUser.getSelectedItem().toString());
+                    Toast.makeText(RegistrationActivity.this,
+                            "User added to database", Toast.LENGTH_LONG).show();
                     name.setText("");
                     gender.setText("");
                     age.setText("");
@@ -118,7 +120,8 @@ public class RegistrationActivity extends AppCompatActivity {
                     Intent intent = new Intent(RegistrationActivity.this, AppActivity.class);
                     startActivity(intent);
                 }else{
-                    Toast.makeText(RegistrationActivity.this, "Fill out all the fields", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegistrationActivity.this,
+                            "Fill out all the fields", Toast.LENGTH_LONG).show();
                 }
             }
         });
