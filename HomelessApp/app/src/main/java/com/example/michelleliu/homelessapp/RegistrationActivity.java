@@ -1,6 +1,5 @@
 package com.example.michelleliu.homelessapp;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -35,7 +34,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private Boolean EditTextStatus;
 
     private Spinner typeOfUser;
-    private ProgressDialog progressDialog;
+    //private ProgressDialog progressDialog;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -46,14 +45,6 @@ public class RegistrationActivity extends AppCompatActivity {
     public enum adminOrUser {
         Admin,
         User
-    }
-
-    private boolean isEmailValid(String email) {
-        return email.contains("@");
-    }
-
-    private boolean isPasswordValid(String password) {
-        return password.length() >= 8;
     }
 
     @Override
@@ -75,7 +66,7 @@ public class RegistrationActivity extends AppCompatActivity {
         //declare the database reference object. This is what we use to access the database.
         //NOTE: Unless you are signed in, this will not be useable.
         mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = mAuth.getCurrentUser();
+        //FirebaseUser user = mAuth.getCurrentUser();
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override

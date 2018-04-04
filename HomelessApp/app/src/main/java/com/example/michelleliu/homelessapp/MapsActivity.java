@@ -13,7 +13,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import java.io.InputStream;
 import java.util.List;
 
 import model.Restriction;
@@ -50,7 +49,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        InputStream inputStream = getResources().openRawResource(R.raw.stats);
+        //InputStream inputStream = getResources().openRawResource(R.raw.stats);
 
         /*
         CSVFile csvFile = new CSVFile(inputStream);
