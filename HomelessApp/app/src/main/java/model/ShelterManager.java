@@ -28,7 +28,6 @@ public class ShelterManager {
     //private FirebaseAuth mAuth;
     //private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
-    private DatabaseReference myRef;
 
     //replace with database
     List<Shelter> shelterList;
@@ -59,7 +58,7 @@ public class ShelterManager {
         Log.d("u got here", name.toLowerCase());
         Shelter[] foundShelter = new Shelter[1];
 
-        myRef = mFirebaseDatabase.getReference("shelters");
+        DatabaseReference myRef = mFirebaseDatabase.getReference("shelters");
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override

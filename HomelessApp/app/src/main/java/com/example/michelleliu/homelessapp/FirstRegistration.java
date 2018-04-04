@@ -26,8 +26,6 @@ public class FirstRegistration extends AppCompatActivity {
     private EditText email;
     private EditText password;
     private EditText confirmPass;
-    private Button nextRegister;
-    private Button logIn;
 
     private String emailHolder;
     private String passwordHolder;
@@ -50,7 +48,7 @@ public class FirstRegistration extends AppCompatActivity {
        email = findViewById(R.id.email);
        password = findViewById(R.id.password);
 
-       nextRegister = findViewById(R.id.nextRegister);
+        Button nextRegister = findViewById(R.id.nextRegister);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -72,7 +70,7 @@ public class FirstRegistration extends AppCompatActivity {
 
         });
 
-        logIn = findViewById(R.id.logIn);
+        Button logIn = findViewById(R.id.logIn);
         logIn.setOnClickListener(view -> {
             finish();
             Intent intent = new Intent(FirstRegistration.this, MainActivity.class);

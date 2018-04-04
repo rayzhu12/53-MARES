@@ -25,7 +25,6 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
     private List<Shelter> shelterList = sm.getShelterList();
 
     private ListView shelters;
-    private ArrayAdapter<Shelter> arrayAdapter;
 
     private List<Shelter> nameMatchList;
     private List<Shelter> restrictionMatchList;
@@ -113,7 +112,7 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
             for (Shelter shelter : newShelterList) {
                 shelterNames.add(shelter.getName());
             }
-            arrayAdapter = new ArrayAdapter(this, R.layout.listview_layout, shelterNames);
+            ArrayAdapter<Shelter> arrayAdapter = new ArrayAdapter(this, R.layout.listview_layout, shelterNames);
             shelters.setAdapter(arrayAdapter);
             shelters.setOnItemClickListener(this);
         }
