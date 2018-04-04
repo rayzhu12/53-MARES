@@ -52,7 +52,7 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
                     Log.d("testing", "here1");
                     if (restrictionMatchList != null) {
                         Log.d("testing", "here2");
-                        List<Shelter> combinedShelterList = new ArrayList<Shelter>();
+                        List<Shelter> combinedShelterList = new ArrayList<>();
                         for (Shelter s: nameMatchList) {
                             if (restrictionMatchList.contains(s)) {
                                 Log.d("testing", s + " added");
