@@ -31,10 +31,21 @@ public class ItemArrayAdapter extends ArrayAdapter<String[]> {
 //        TextView number;
     }
 
+    /**
+     * Constructor that takes in context and textViewResourceId
+     * @param context the context
+     * @param textViewResourceId the textView Resource ID
+     */
     public ItemArrayAdapter(Context context, int textViewResourceId) {
         super(context, textViewResourceId);
     }
 
+    /**
+     * Constructor that takes in context, textViewResourceId, and object.
+     * @param context the context
+     * @param textViewResourceId the textView Resource ID
+     * @param object the object
+     */
     public ItemArrayAdapter(Context context, int textViewResourceId, List object) {
         super(context, textViewResourceId, object);
     }
@@ -45,6 +56,10 @@ public class ItemArrayAdapter extends ArrayAdapter<String[]> {
         super.add(object);
     }
 
+    /**
+     * Adds each shelter to the ArrayAdapter.
+     * @param shelter the shelter
+     */
     public void add(Shelter shelter) {
         shelterList.add(shelter);
         super.add(shelter.toArray());

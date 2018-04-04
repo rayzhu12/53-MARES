@@ -209,6 +209,10 @@ public class AppActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Takes in the view to use Maps.
+     * @param view the view
+     */
     public void useMap(View view) {
         Intent intent = new Intent(this, MapsActivity.class);
         startActivity(intent);
