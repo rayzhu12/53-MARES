@@ -57,14 +57,14 @@ public class RegistrationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        name = (EditText) findViewById(R.id.Name);
-        age = (EditText) findViewById(R.id.Age);
-        gender = (EditText) findViewById(R.id.Gender);
+        name = findViewById(R.id.Name);
+        age = findViewById(R.id.Age);
+        gender = findViewById(R.id.Gender);
 
-        typeOfUser = (Spinner) findViewById(R.id.typeOfUser);
+        typeOfUser = findViewById(R.id.typeOfUser);
         ArrayAdapter<String> adapter2 = new ArrayAdapter(this,android.R.layout.simple_spinner_item, adminOrUser.values());
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         typeOfUser.setAdapter(adapter2);
@@ -92,7 +92,7 @@ public class RegistrationActivity extends AppCompatActivity {
             }
         };
 
-        register = (Button) findViewById(R.id.create_account);
+        register = findViewById(R.id.create_account);
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

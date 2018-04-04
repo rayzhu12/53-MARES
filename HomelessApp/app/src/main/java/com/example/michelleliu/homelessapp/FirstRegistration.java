@@ -44,13 +44,13 @@ public class FirstRegistration extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first_registration);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-       email = (EditText) findViewById(R.id.email);
-       password = (EditText) findViewById(R.id.password);
+       email = findViewById(R.id.email);
+       password = findViewById(R.id.password);
 
-       nextRegister = (Button) findViewById(R.id.nextRegister);
+       nextRegister = findViewById(R.id.nextRegister);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -72,7 +72,7 @@ public class FirstRegistration extends AppCompatActivity {
 
         });
 
-        logIn = (Button) findViewById(R.id.logIn);
+        logIn = findViewById(R.id.logIn);
         logIn.setOnClickListener(view -> {
             finish();
             Intent intent = new Intent(FirstRegistration.this, MainActivity.class);

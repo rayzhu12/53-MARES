@@ -111,57 +111,6 @@ public class ShelterManager {
         }
     }
 
-<<<<<<< HEAD
-    // individual, family
-    /*
-    public List<Shelter> findShelterByFamilyType(FamilyType familyType) {
-        List<Shelter> matches = new ArrayList<>();
-        if (familyType.equals(FamilyType.FAMILY)) {
-            for (Shelter s : shelterList) {
-                if (s.getRestrictionList().contains(Restriction.FAMILIES)
-                        || s.getRestrictionList().contains(Restriction.NEWBORNS)) {
-                    matches.add(s);
-                }
-            }
-
-        } else if (familyType.equals(FamilyType.INDIVIDUAL)) {
-            for (Shelter s : shelterList) {
-                if (s.getRestrictionList().contains(Restriction.WOMEN)
-                        || s.getRestrictionList().contains(Restriction.MEN)) {
-                    matches.add(s);
-                }
-            }
-        }
-        return matches;
-    }
-
-
-    // male, female, nonbinary
-    public List<Shelter> findShelterByGender(Gender gender) {
-        List<Shelter> matches = new ArrayList<>();
-        for (Shelter s : shelterList) {
-            if (s.getRestrictionList().contains(Restriction.FAMILIES)) {
-                matches.add(s);
-            } else if (gender.equals(Gender.MALE) && s.getRestrictionList()
-                    .contains(Restriction.MEN)) {
-                matches.add(s);
-            } else if (gender.equals(Gender.FEMALE) && s.getRestrictionList()
-                    .contains(Restriction.WOMEN)) {
-                matches.add(s);
-            }
-        }
-
-        return matches;
-    }
-    */
-
-    /**
-     * finds shelter by restriction
-     * @param rest the restriction we are filtering shelters by
-     * @return the list of shelters that satisfy the restriction
-     */
-=======
->>>>>>> ae1049dc0317d0a0d3cc6e6fab06d2445dc564ac
     public List<Shelter> findShelterByRestriction(Restriction rest) {
         List<Shelter> matches = new ArrayList<>();
         for (Shelter s : shelterList) {

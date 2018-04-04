@@ -57,12 +57,12 @@ public class MainActivity extends AppCompatActivity {
 //        userDatabaseReference = userDatabase.getReference("users");
 
         // Assigning layout email ID and Password ID.
-        email = (EditText)findViewById(R.id.email);
-        password = (EditText)findViewById(R.id.password);
+        email = findViewById(R.id.email);
+        password = findViewById(R.id.password);
 
         // Assign button layout ID.
-        LogIn = (Button)findViewById(R.id.sign_in);
-        ButtonGoToRegistration = (Button)findViewById(R.id.new_user);
+        LogIn = findViewById(R.id.sign_in);
+        ButtonGoToRegistration = findViewById(R.id.new_user);
 
         // Creating object instance.
         firebaseAuth = FirebaseAuth.getInstance();
