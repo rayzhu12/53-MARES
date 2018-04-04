@@ -194,7 +194,7 @@ public class ShelterListActivity extends AppCompatActivity
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Log.d("selected shelter", (String) parent.getItemAtPosition(position));
-        if (!parent.getItemAtPosition(position).equals("Shelter Name")) {
+        if (!"Shelter Name".equals(parent.getItemAtPosition(position))) {
             Intent intent = new Intent(ShelterListActivity.this, DetailActivity.class);
             String shelterName = (String) parent.getItemAtPosition(position);
             Shelter selectedShelter = sm.findShelterByName(shelterName);

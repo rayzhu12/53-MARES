@@ -28,7 +28,6 @@ import model.UserInfo;
 public class DetailActivity extends AppCompatActivity {
 
     private EditText numOfBeds;
-    private Button reserveBeds;
     private Shelter shelter;
     private String userID;
 
@@ -100,7 +99,7 @@ public class DetailActivity extends AppCompatActivity {
         returnToList.setOnClickListener(v -> finish());
 
         numOfBeds = findViewById(R.id.numBeds);
-        reserveBeds = findViewById(R.id.reserve);
+        Button reserveBeds = findViewById(R.id.reserve);
         reserveBeds.setOnClickListener(v -> {
             myRef = mFirebaseDatabase.getReference("users");
             int numBeds = Integer.parseInt(numOfBeds.getText().toString());

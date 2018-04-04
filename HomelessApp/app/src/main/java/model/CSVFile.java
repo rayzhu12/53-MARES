@@ -40,7 +40,7 @@ public class CSVFile {
             String csvLine;
             while ((csvLine = reader.readLine()) != null) {
                 String[] row = csvLine.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
-                if (!row[0].equals("Unique Key")) {
+                if (!"Unique Key".equals(row[0])) {
                     shelterList.add(new Shelter(row));
                 }
             }

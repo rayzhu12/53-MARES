@@ -196,10 +196,10 @@ public class AppActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     * Uses the map
-     * @param view the view
-     */
+//    /**
+//     * Uses the map
+//     * @param view the view
+//     */
 //    public void useMap(View view) {
 //        Intent intent = new Intent(this, MapsActivity.class);
 //        startActivity(intent);

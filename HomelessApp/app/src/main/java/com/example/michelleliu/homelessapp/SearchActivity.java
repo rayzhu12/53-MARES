@@ -130,7 +130,7 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if (!parent.getItemAtPosition(position).equals("Shelter Name")) {
+        if (!"Shelter Name".equals(parent.getItemAtPosition(position))) {
             Intent intent = new Intent(SearchActivity.this, DetailActivity.class);
             String shelterName = (String) parent.getItemAtPosition(position);
             Shelter selectedShelter = sm.findShelterByName(shelterName);
