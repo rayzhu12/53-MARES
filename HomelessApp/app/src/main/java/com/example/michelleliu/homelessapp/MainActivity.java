@@ -15,7 +15,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText email, password ;
 
     // Creating button.
-    Button LogIn, ButtonGoToRegistration;
+    private Button LogIn, ButtonGoToRegistration;
 
     // Creating string to hold email and password .
     private String EmailHolder, PasswordHolder ;
@@ -55,12 +57,12 @@ public class MainActivity extends AppCompatActivity {
 //        userDatabaseReference = userDatabase.getReference("users");
 
         // Assigning layout email ID and Password ID.
-        email = findViewById(R.id.email);
-        password = findViewById(R.id.password);
+        email = (EditText)findViewById(R.id.email);
+        password = (EditText)findViewById(R.id.password);
 
         // Assign button layout ID.
-        LogIn = findViewById(R.id.sign_in);
-        ButtonGoToRegistration = findViewById(R.id.new_user);
+        LogIn = (Button)findViewById(R.id.sign_in);
+        ButtonGoToRegistration = (Button)findViewById(R.id.new_user);
 
         // Creating object instance.
         firebaseAuth = FirebaseAuth.getInstance();
@@ -79,44 +81,38 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // Adding click listener to Sign Up Button.
-        LogIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        LogIn.setOnClickListener(view -> {
 
-                // Calling method to check EditText is empty or no status.
-                CheckEditTextIsEmptyOrNot();
+            // Calling method to check EditText is empty or no status.
+            CheckEditTextIsEmptyOrNot();
 
-                // If EditText is true then this block with execute.
-                if(EditTextEmptyCheck){
+            // If EditText is true then this block with execute.
+            if(EditTextEmptyCheck){
 
-                    // If EditText is not empty than UserRegistrationFunction method will call.
-                    LoginFunction();
-
-                }
-                // If EditText is false then this block with execute.
-                else {
-
-                    Toast.makeText(MainActivity.this, "Please fill all form fields.", Toast.LENGTH_LONG).show();
-
-                }
+                // If EditText is not empty than UserRegistrationFunction method will call.
+                LoginFunction();
 
             }
+            // If EditText is false then this block with execute.
+            else {
+
+                Toast.makeText(MainActivity.this, "Please fill all form fields.", Toast.LENGTH_LONG).show();
+
+            }
+
         });
 
 
         // Adding click listener to ButtonGoToLoginActivity button.
-        ButtonGoToRegistration.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        ButtonGoToRegistration.setOnClickListener(view -> {
 
-                // Finishing current Main Activity.
-                finish();
+            // Finishing current Main Activity.
+            finish();
 
-                // Opening the Login Activity using Intent.
-                Intent intent = new Intent(MainActivity.this, FirstRegistration.class);
-                startActivity(intent);
+            // Opening the Login Activity using Intent.
+            Intent intent = new Intent(MainActivity.this, FirstRegistration.class);
+            startActivity(intent);
 
-            }
         });
 
 
@@ -134,19 +130,7 @@ public class MainActivity extends AppCompatActivity {
         PasswordHolder = password.getText().toString().trim();
 
         // Checking Both EditText is empty or not.
-        if(TextUtils.isEmpty(EmailHolder) || TextUtils.isEmpty(PasswordHolder))
-        {
-
-            // If any of EditText is empty then set value as false.
-            EditTextEmptyCheck = false;
-
-        }
-        else {
-
-            // If any of EditText is empty then set value as true.
-            EditTextEmptyCheck = true ;
-
-        }
+        EditTextEmptyCheck = !(TextUtils.isEmpty(EmailHolder) || TextUtils.isEmpty(PasswordHolder));
     }
 
     /**
@@ -162,31 +146,28 @@ public class MainActivity extends AppCompatActivity {
 
         // Calling  signInWithEmailAndPassword function with firebase object and passing EmailHolder and PasswordHolder inside it.
         firebaseAuth.signInWithEmailAndPassword(EmailHolder, PasswordHolder)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
+                .addOnCompleteListener(this, task -> {
 
-                        // If task done Successful.
-                        if (task.isSuccessful()) {
+                    // If task done Successful.
+                    if (task.isSuccessful()) {
 
-                            // Hiding the progress dialog.
-                            progressDialog.dismiss();
+                        // Hiding the progress dialog.
+                        progressDialog.dismiss();
 
-                            // Closing the current Login Activity.
-                            finish();
+                        // Closing the current Login Activity.
+                        finish();
 
 
-                            // Opening the UserProfileActivity.
-                            Intent intent = new Intent(MainActivity.this, AppActivity.class);
-                            startActivity(intent);
-                        } else {
+                        // Opening the UserProfileActivity.
+                        Intent intent = new Intent(MainActivity.this, AppActivity.class);
+                        startActivity(intent);
+                    } else {
 
-                            // Hiding the progress dialog.
-                            progressDialog.dismiss();
+                        // Hiding the progress dialog.
+                        progressDialog.dismiss();
 
-                            // Showing toast message when email or password not found in Firebase Online database.
-                            Toast.makeText(MainActivity.this, "Email or Password Not found, Please Try Again", Toast.LENGTH_LONG).show();
-                        }
+                        // Showing toast message when email or password not found in Firebase Online database.
+                        Toast.makeText(MainActivity.this, "Email or Password Not found, Please Try Again", Toast.LENGTH_LONG).show();
                     }
                 });
     }

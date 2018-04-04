@@ -35,50 +35,36 @@ public class RegistrationActivity extends AppCompatActivity {
     private Boolean EditTextStatus;
 
     private Spinner typeOfUser;
-    Button register;
+    private Button register;
     private ProgressDialog progressDialog;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
-    /**
-     * Admin or User
-     */
     public enum adminOrUser {
         Admin,
-        User;
+        User
     }
 
     private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
-        // return email.equals("user");
-        if (email.equals("user")) {
-            return true;
-        }
         return email.contains("@");
     }
 
     private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
-        // return password.equals("pass");
-        if (password.equals("pass")) {
-            return true;
-        }
         return password.length() >= 8;
     }
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        name = findViewById(R.id.Name);
-        age = findViewById(R.id.Age);
-        gender = findViewById(R.id.Gender);
+        name = (EditText) findViewById(R.id.Name);
+        age = (EditText) findViewById(R.id.Age);
+        gender = (EditText) findViewById(R.id.Gender);
 
-        typeOfUser = findViewById(R.id.typeOfUser);
+        typeOfUser = (Spinner) findViewById(R.id.typeOfUser);
         ArrayAdapter<String> adapter2 = new ArrayAdapter(this,android.R.layout.simple_spinner_item, adminOrUser.values());
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         typeOfUser.setAdapter(adapter2);
@@ -106,7 +92,7 @@ public class RegistrationActivity extends AppCompatActivity {
             }
         };
 
-        register = findViewById(R.id.create_account);
+        register = (Button) findViewById(R.id.create_account);
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -141,9 +127,6 @@ public class RegistrationActivity extends AppCompatActivity {
 
     }
 
-    /**
-     * Other fields.
-     */
     public void otherFields(){
 
         boolean cancel = false;
@@ -176,14 +159,7 @@ public class RegistrationActivity extends AppCompatActivity {
             genderHolder = gender.getText().toString();
         }
 
-        if (TextUtils.isEmpty(nameHolder) || TextUtils.isEmpty(genderHolder)) {
-
-            EditTextStatus = false;
-
-        } else {
-
-            EditTextStatus = true;
-        }
+        EditTextStatus = !(TextUtils.isEmpty(nameHolder) || TextUtils.isEmpty(genderHolder));
 
     }
 

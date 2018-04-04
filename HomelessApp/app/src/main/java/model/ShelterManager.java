@@ -1,6 +1,8 @@
 package model;
 
 import android.util.Log;
+
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -11,9 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by michelleliu on 3/14/18.
+ * @author Michelle
+ * @date 3/14/18
  */
-
 public class ShelterManager {
     private static final ShelterManager _instance = new ShelterManager();
 
@@ -26,7 +28,7 @@ public class ShelterManager {
     //private FirebaseAuth mAuth;
     //private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
-    DatabaseReference myRef;
+    private DatabaseReference myRef;
 
     //replace with database
     List<Shelter> shelterList;
@@ -109,6 +111,7 @@ public class ShelterManager {
         }
     }
 
+<<<<<<< HEAD
     // individual, family
     /*
     public List<Shelter> findShelterByFamilyType(FamilyType familyType) {
@@ -157,6 +160,8 @@ public class ShelterManager {
      * @param rest the restriction we are filtering shelters by
      * @return the list of shelters that satisfy the restriction
      */
+=======
+>>>>>>> ae1049dc0317d0a0d3cc6e6fab06d2445dc564ac
     public List<Shelter> findShelterByRestriction(Restriction rest) {
         List<Shelter> matches = new ArrayList<>();
         for (Shelter s : shelterList) {

@@ -3,9 +3,14 @@ package com.example.michelleliu.homelessapp;
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 
+import com.example.michelleliu.homelessapp.DetailActivity;
+import com.example.michelleliu.homelessapp.R;
+import com.example.michelleliu.homelessapp.ShelterListActivity;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -15,8 +20,10 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
+import model.CSVFile;
 import model.Restriction;
 import model.Shelter;
 import model.ShelterManager;
@@ -64,30 +71,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         //final List<Shelter>[] filteredList = new List[];
 
-        RadioButton rb1 = findViewById(R.id.radio_male);
-        rb1.setOnClickListener(view -> {
-            populateList(sm.findShelterByRestriction(Restriction.MALE));
-        });
-        RadioButton rb2 = findViewById(R.id.radio_female);
-        rb2.setOnClickListener(view -> {
-            populateList(sm.findShelterByRestriction(Restriction.FEMALE));
-        });
-        RadioButton rb3 = findViewById(R.id.radio_nonbinary);
-        rb3.setOnClickListener(view -> {
-            populateList(sm.findShelterByRestriction(Restriction.NONBINARY));
-        });
-        RadioButton rb4 = findViewById(R.id.radio_families);
-        rb4.setOnClickListener(view -> {
-            populateList(sm.findShelterByRestriction(Restriction.FAMILIES));
-        });
-        RadioButton rb5 = findViewById(R.id.radio_ya);
-        rb5.setOnClickListener(view -> {
-            populateList(sm.findShelterByRestriction(Restriction.YOUNG_ADULTS));
-        });
-        RadioButton rb6 = findViewById(R.id.radio_children);
-        rb6.setOnClickListener(view -> {
-            populateList(sm.findShelterByRestriction(Restriction.CHILDREN));
-        });
+        RadioButton rb1 = (RadioButton) findViewById(R.id.radio_male);
+        rb1.setOnClickListener(view -> populateList(sm.findShelterByRestriction(Restriction.MALE)));
+        RadioButton rb2 = (RadioButton) findViewById(R.id.radio_female);
+        rb2.setOnClickListener(view -> populateList(sm.findShelterByRestriction(Restriction.FEMALE)));
+        RadioButton rb3 = (RadioButton) findViewById(R.id.radio_nonbinary);
+        rb3.setOnClickListener(view -> populateList(sm.findShelterByRestriction(Restriction.NONBINARY)));
+        RadioButton rb4 = (RadioButton) findViewById(R.id.radio_families);
+        rb4.setOnClickListener(view -> populateList(sm.findShelterByRestriction(Restriction.FAMILIES)));
+        RadioButton rb5 = (RadioButton) findViewById(R.id.radio_ya);
+        rb5.setOnClickListener(view -> populateList(sm.findShelterByRestriction(Restriction.YOUNG_ADULTS)));
+        RadioButton rb6 = (RadioButton) findViewById(R.id.radio_children);
+        rb6.setOnClickListener(view -> populateList(sm.findShelterByRestriction(Restriction.CHILDREN)));
 
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(33.75, -84.39), 12));
         mMap.setOnInfoWindowClickListener(this);
@@ -96,10 +91,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         clearMap.setOnClickListener(v -> populateList(shelterList));
     }
 
-    /**
-     * Shows the given shelters on the map.
-     * @param inputList the list of input Shelters
-     */
     public void populateList(List<Shelter> inputList) {
         mMap.clear();
         for (Shelter entry : inputList) {

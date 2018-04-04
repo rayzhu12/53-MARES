@@ -1,8 +1,5 @@
 package model;
 
-/**
- * Created by Raymond the dummy on 2/23/2018.
- */
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -12,6 +9,10 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Raymond Zhu
+ * @date 2/23/2018
+ */
 public class CSVFile {
     static InputStream inputStream;
     static List resultList;

@@ -9,12 +9,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 /**
- * Created by Emily Wang on 3/26/2018.
+ * @author Emily Wang
+ * @date 3/26/2018
  */
-
 public class UserManager {
     private FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
-    DatabaseReference myRef;
+    private DatabaseReference myRef;
 
 
     private static final String TAG = "userManager";
@@ -69,6 +69,7 @@ public class UserManager {
 
     private void showData(DataSnapshot dataSnapshot, String userID) {
         UserInfo uInfo = new UserInfo();
+        System.out.println(dataSnapshot.child(userID));
         uInfo.setName(dataSnapshot.child(userID).getValue(UserInfo.class).getName());
         uInfo.setNumberOfBeds(dataSnapshot.child(userID).getValue(UserInfo.class).getNumberOfBeds());
         Log.d(TAG, "showData: name: " + uInfo.getName());

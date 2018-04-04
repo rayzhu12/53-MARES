@@ -17,8 +17,11 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -36,39 +39,23 @@ public class ShelterListActivity extends AppCompatActivity implements AdapterVie
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
-    FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
-    DatabaseReference myRef;
+    private FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
+    private DatabaseReference myRef;
 
     private static final String TAG = "ShelterListActivity";
 
-    /**
-     * gets the shelter list.
-     * @return the shelter list
-     */
     public static List<Shelter> getShelterList() {
         return shelterList;
     }
 
-    /**
-     * sets the shelter list.
-     * @param shelters the list of shelters
-     */
     public static void setShelterList(List<Shelter> shelters) {
         shelterList = shelters;
     }
 
-    /**
-     * gets shelter  manager.
-     * @return the shelter manager
-     */
     public static ShelterManager getSm() {
         return sm;
     }
 
-    /**
-     * sets shelter manager.
-     * @param smh the shelter manager
-     */
     public static void setSm(ShelterManager smh) {
         sm = smh;
     }
