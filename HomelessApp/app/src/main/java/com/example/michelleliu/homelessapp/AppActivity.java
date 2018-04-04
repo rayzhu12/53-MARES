@@ -26,6 +26,10 @@ import model.ShelterManager;
 import model.UserInfo;
 import model.UserManager;
 
+/**
+ * App activity
+ * @author snack overflow
+ */
 public class AppActivity extends AppCompatActivity {
 
     private static final String TAG = "AppActivity";
