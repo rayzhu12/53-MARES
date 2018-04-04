@@ -65,12 +65,12 @@ public class UserManager {
         myRef.child("shelters").child("test1").setValue(6);
     }
 
-    private void showData(DataSnapshot dataSnapshot, String userID) {
-        UserInfo uInfo = new UserInfo();
-        uInfo.setName(dataSnapshot.child(userID).getValue(UserInfo.class).getName());
-        uInfo.setNumberOfBeds(dataSnapshot.child(userID).getValue(
-                UserInfo.class).getNumberOfBeds());
-        Log.d(TAG, "showData: name: " + uInfo.getName());
-        Log.d(TAG, "showData: bed; " + uInfo.getNumberOfBeds());
-    }
+//    private void showData(DataSnapshot dataSnapshot, String userID) {
+//        UserInfo uInfo = new UserInfo();
+//        uInfo.setName(dataSnapshot.child(userID).getValue(UserInfo.class).getName());
+//        uInfo.setNumberOfBeds(dataSnapshot.child(userID).getValue(
+//                UserInfo.class).getNumberOfBeds());
+//        Log.d(TAG, "showData: name: " + uInfo.getName());
+//        Log.d(TAG, "showData: bed; " + uInfo.getNumberOfBeds());
+//    }
 }

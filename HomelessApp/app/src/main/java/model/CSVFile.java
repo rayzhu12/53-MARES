@@ -14,7 +14,6 @@ import java.util.List;
  */
 public class CSVFile {
     private static InputStream inputStream;
-    private static List resultList;
     private static List<Shelter> shelterList;
 
     /**
@@ -32,7 +31,7 @@ public class CSVFile {
      * @return List of all Shelter objects parsed from raw csv file
      */
     public List<Shelter> read(){
-        resultList = new ArrayList();
+        List resultList = new ArrayList();
         shelterList = new ArrayList<>();
         Log.d("3/14", "i reach here");
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));

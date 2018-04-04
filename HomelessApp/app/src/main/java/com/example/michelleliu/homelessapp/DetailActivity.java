@@ -36,7 +36,6 @@ public class DetailActivity extends AppCompatActivity {
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference myRef;
     private DatabaseReference secondRef;
-    private FirebaseUser firebaseUser;
     private final int[] capacity = new int[1];
     // --Commented out by Inspection (4/4/2018 3:23 PM):private final String[] sName = new String[1];
 
@@ -54,7 +53,7 @@ public class DetailActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference();
-        firebaseUser = mAuth.getCurrentUser();
+        FirebaseUser firebaseUser = mAuth.getCurrentUser();
 
         mAuthListener = firebaseAuth -> {
             FirebaseUser user = firebaseAuth.getCurrentUser();
