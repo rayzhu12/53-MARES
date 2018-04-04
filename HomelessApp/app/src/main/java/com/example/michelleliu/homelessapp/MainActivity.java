@@ -2,30 +2,18 @@ package com.example.michelleliu.homelessapp;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
 
     // Creating EditText .
     private EditText email, password ;
-
-    // Creating button.
-    private Button LogIn, ButtonGoToRegistration;
 
     // Creating string to hold email and password .
     private String EmailHolder, PasswordHolder ;
@@ -61,8 +49,8 @@ public class MainActivity extends AppCompatActivity {
         password = findViewById(R.id.password);
 
         // Assign button layout ID.
-        LogIn = findViewById(R.id.sign_in);
-        ButtonGoToRegistration = findViewById(R.id.new_user);
+        Button logIn = findViewById(R.id.sign_in);
+        Button buttonGoToRegistration = findViewById(R.id.new_user);
 
         // Creating object instance.
         firebaseAuth = FirebaseAuth.getInstance();
@@ -81,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // Adding click listener to Sign Up Button.
-        LogIn.setOnClickListener(view -> {
+        logIn.setOnClickListener(view -> {
 
             // Calling method to check EditText is empty or no status.
             CheckEditTextIsEmptyOrNot();
@@ -104,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         // Adding click listener to ButtonGoToLoginActivity button.
-        ButtonGoToRegistration.setOnClickListener(view -> {
+        buttonGoToRegistration.setOnClickListener(view -> {
 
             // Finishing current Main Activity.
             finish();

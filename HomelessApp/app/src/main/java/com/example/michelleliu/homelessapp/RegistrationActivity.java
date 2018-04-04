@@ -35,7 +35,6 @@ public class RegistrationActivity extends AppCompatActivity {
     private Boolean EditTextStatus;
 
     private Spinner typeOfUser;
-    private Button register;
     private ProgressDialog progressDialog;
 
     private FirebaseAuth mAuth;
@@ -54,6 +53,7 @@ public class RegistrationActivity extends AppCompatActivity {
         return password.length() >= 8;
     }
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
@@ -92,7 +92,7 @@ public class RegistrationActivity extends AppCompatActivity {
             }
         };
 
-        register = findViewById(R.id.create_account);
+        Button register = findViewById(R.id.create_account);
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

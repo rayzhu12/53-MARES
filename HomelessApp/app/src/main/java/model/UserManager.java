@@ -14,7 +14,6 @@ import com.google.firebase.database.ValueEventListener;
  */
 public class UserManager {
     private FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
-    private DatabaseReference myRef;
 
 
     private static final String TAG = "userManager";
@@ -40,7 +39,7 @@ public class UserManager {
         //declare the database reference object. This is what we use to access the database.
         //NOTE: Unless you are signed in, this will not be useable.
 //        mFirebaseDatabase = FirebaseDatabase.getInstance();
-        myRef = mFirebaseDatabase.getReference();
+        DatabaseReference myRef = mFirebaseDatabase.getReference();
 
         // Read from the database
         myRef.addValueEventListener(new ValueEventListener() {

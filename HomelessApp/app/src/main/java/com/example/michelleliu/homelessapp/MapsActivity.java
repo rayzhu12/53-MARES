@@ -3,14 +3,8 @@ package com.example.michelleliu.homelessapp;
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
-
-import com.example.michelleliu.homelessapp.DetailActivity;
-import com.example.michelleliu.homelessapp.R;
-import com.example.michelleliu.homelessapp.ShelterListActivity;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -20,10 +14,8 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 
-import model.CSVFile;
 import model.Restriction;
 import model.Shelter;
 import model.ShelterManager;
