@@ -6,9 +6,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 /**
- * Created by Emily Wang on 2/19/2018.
+ * @author Emily Wang
+ * @date 2/19/2018
  */
-
 public class UserInfo {
     private String name;
     private String gender;

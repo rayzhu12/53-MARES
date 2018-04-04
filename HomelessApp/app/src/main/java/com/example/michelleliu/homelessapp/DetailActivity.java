@@ -56,22 +56,19 @@ public class DetailActivity extends AppCompatActivity {
         myRef = mFirebaseDatabase.getReference();
         firebaseUser = mAuth.getCurrentUser();
 
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
-                    // User is signed in
-                    Log.d("DetailActivity", "onAuthStateChanged:signed_in:" + user.getUid());
-                    userID = user.getUid();
-                    //Toast.makeText(DetailActivity.this, "Successfully signed in with: " + user.getEmail(), Toast.LENGTH_LONG).show();
-                } else {
-                    // User is signed out
-                    Log.d("DetailActivity", "onAuthStateChanged:signed_out");
-                    Toast.makeText(DetailActivity.this, "Successfully signed out.", Toast.LENGTH_LONG).show();
-                }
-                // ...
+        mAuthListener = firebaseAuth -> {
+            FirebaseUser user = firebaseAuth.getCurrentUser();
+            if (user != null) {
+                // User is signed in
+                Log.d("DetailActivity", "onAuthStateChanged:signed_in:" + user.getUid());
+                userID = user.getUid();
+                //Toast.makeText(DetailActivity.this, "Successfully signed in with: " + user.getEmail(), Toast.LENGTH_LONG).show();
+            } else {
+                // User is signed out
+                Log.d("DetailActivity", "onAuthStateChanged:signed_out");
+                Toast.makeText(DetailActivity.this, "Successfully signed out.", Toast.LENGTH_LONG).show();
             }
+            // ...
         };
 
         shelter = (Shelter) getIntent().getSerializableExtra("passed shelter");
@@ -94,6 +91,54 @@ public class DetailActivity extends AppCompatActivity {
             });
 
         // replace with something bc this looks uggo
+        updateTextBoxes();
+
+        FloatingActionButton returnToList = findViewById(R.id.fab);
+        returnToList.setOnClickListener(v -> finish());
+
+        numOfBeds = (EditText) findViewById(R.id.numBeds);
+        reserveBeds = (Button) findViewById(R.id.reserve);
+        reserveBeds.setOnClickListener(v -> {
+            myRef = mFirebaseDatabase.getReference("users");
+            int numBeds = Integer.parseInt(numOfBeds.getText().toString());
+
+            myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (numBeds == 0) {
+                        Toast.makeText(DetailActivity.this, "You cannot reseve zero beds", Toast.LENGTH_LONG).show();
+                    }
+                    if (dataSnapshot.child(userID).getValue(UserInfo.class).getNumberOfBeds() == 0 && capacity[0] - numBeds > 0) {
+                        myRef.child(userID).child("numberOfBeds").setValue(numBeds);
+                        myRef.child(userID).child("currentShelter").setValue(shelter.getName());
+                        Toast.makeText(DetailActivity.this, "You've reserved " + numBeds + " beds from " + shelter.getName(), Toast.LENGTH_LONG).show();
+                        updateShelter(numBeds);
+                        Log.d("DetailActivity", "beds added");
+                        showData(dataSnapshot);
+                        capacityTextView.setText("Capacity: " + capacity[0]);
+
+                        //startActivity(new Intent(DetailActivity.this, ConfirmBedActivity.class));
+                    } else if (capacity[0] - numBeds < 0){
+                        Log.d("DetailActivity", "beds not added") ;
+                        Toast.makeText(DetailActivity.this, "There are not this many free beds at this shelter", Toast.LENGTH_LONG).show();
+                    }
+                    else {
+                        Log.d("DetailActivity", "beds not added") ;
+                        Toast.makeText(DetailActivity.this, "You already have beds reserved at " + dataSnapshot.child(userID).child("currentShelter").getValue().toString(), Toast.LENGTH_LONG).show();
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    Log.d("DetailActivity", "failed to read value");
+                }
+            });
+
+            //capacityTextView.setText("Capacity: " + capacity[0]);
+        });
+    }
+
+    private void updateTextBoxes() {
         TextView nameTextView = (TextView) findViewById(R.id.name);
         nameTextView.setText(shelter.getName());
         TextView keyTextView = (TextView) findViewById(R.id.key);
@@ -111,58 +156,6 @@ public class DetailActivity extends AppCompatActivity {
         specialNotesTextView.setText("Special Notes: " + shelter.getSpecialNotes());
         TextView phoneNumberTextView = (TextView) findViewById(R.id.phoneNumber);
         phoneNumberTextView.setText("Phone Number: " + shelter.getPhoneNumber());
-
-        FloatingActionButton returnToList = findViewById(R.id.fab);
-        returnToList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
-        numOfBeds = (EditText) findViewById(R.id.numBeds);
-        reserveBeds = (Button) findViewById(R.id.reserve);
-        reserveBeds.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                myRef = mFirebaseDatabase.getReference("users");
-                int numBeds = Integer.parseInt(numOfBeds.getText().toString());
-
-                myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        if (numBeds == 0) {
-                            Toast.makeText(DetailActivity.this, "You cannot reseve zero beds", Toast.LENGTH_LONG).show();
-                        }
-                        if (dataSnapshot.child(userID).getValue(UserInfo.class).getNumberOfBeds() == 0 && capacity[0] - numBeds > 0) {
-                            myRef.child(userID).child("numberOfBeds").setValue(numBeds);
-                            myRef.child(userID).child("currentShelter").setValue(shelter.getName());
-                            Toast.makeText(DetailActivity.this, "You've reserved " + numBeds + " beds from " + shelter.getName(), Toast.LENGTH_LONG).show();
-                            updateShelter(numBeds);
-                            Log.d("DetailActivity", "beds added");
-                            showData(dataSnapshot);
-                            capacityTextView.setText("Capacity: " + capacity[0]);
-
-                            //startActivity(new Intent(DetailActivity.this, ConfirmBedActivity.class));
-                        } else if (capacity[0] - numBeds < 0){
-                            Log.d("DetailActivity", "beds not added") ;
-                            Toast.makeText(DetailActivity.this, "There are not this many free beds at this shelter", Toast.LENGTH_LONG).show();
-                        }
-                        else {
-                            Log.d("DetailActivity", "beds not added") ;
-                            Toast.makeText(DetailActivity.this, "You already have beds reserved at " + dataSnapshot.child(userID).child("currentShelter").getValue().toString(), Toast.LENGTH_LONG).show();
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        Log.d("DetailActivity", "failed to read value");
-                    }
-                });
-
-                //capacityTextView.setText("Capacity: " + capacity[0]);
-            }
-        });
     }
 
     private void updateShelter(int numBeds) {

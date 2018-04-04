@@ -1,9 +1,9 @@
 package model;
 
 /**
- * Created by michelleliu on 3/26/18.
+ * @author Michelle Liu
+ * @date 3/26/18
  */
-
 public enum Restriction {
     FEMALE, MALE, NONBINARY, FAMILIES, YOUNG_ADULTS, CHILDREN
     //WOMEN ("Women"), FAMILIES ("Families with children"), MEN("Men"), NEWBORNS("Newborn"), CHILDREN("Children");

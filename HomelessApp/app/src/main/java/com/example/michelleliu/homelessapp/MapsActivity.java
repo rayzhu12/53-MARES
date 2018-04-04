@@ -72,29 +72,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //final List<Shelter>[] filteredList = new List[];
 
         RadioButton rb1 = (RadioButton) findViewById(R.id.radio_male);
-        rb1.setOnClickListener(view -> {
-            populateList(sm.findShelterByRestriction(Restriction.MALE));
-        });
+        rb1.setOnClickListener(view -> populateList(sm.findShelterByRestriction(Restriction.MALE)));
         RadioButton rb2 = (RadioButton) findViewById(R.id.radio_female);
-        rb2.setOnClickListener(view -> {
-            populateList(sm.findShelterByRestriction(Restriction.FEMALE));
-        });
+        rb2.setOnClickListener(view -> populateList(sm.findShelterByRestriction(Restriction.FEMALE)));
         RadioButton rb3 = (RadioButton) findViewById(R.id.radio_nonbinary);
-        rb3.setOnClickListener(view -> {
-            populateList(sm.findShelterByRestriction(Restriction.NONBINARY));
-        });
+        rb3.setOnClickListener(view -> populateList(sm.findShelterByRestriction(Restriction.NONBINARY)));
         RadioButton rb4 = (RadioButton) findViewById(R.id.radio_families);
-        rb4.setOnClickListener(view -> {
-            populateList(sm.findShelterByRestriction(Restriction.FAMILIES));
-        });
+        rb4.setOnClickListener(view -> populateList(sm.findShelterByRestriction(Restriction.FAMILIES)));
         RadioButton rb5 = (RadioButton) findViewById(R.id.radio_ya);
-        rb5.setOnClickListener(view -> {
-            populateList(sm.findShelterByRestriction(Restriction.YOUNG_ADULTS));
-        });
+        rb5.setOnClickListener(view -> populateList(sm.findShelterByRestriction(Restriction.YOUNG_ADULTS)));
         RadioButton rb6 = (RadioButton) findViewById(R.id.radio_children);
-        rb6.setOnClickListener(view -> {
-            populateList(sm.findShelterByRestriction(Restriction.CHILDREN));
-        });
+        rb6.setOnClickListener(view -> populateList(sm.findShelterByRestriction(Restriction.CHILDREN)));
 
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(33.75, -84.39), 12));
         mMap.setOnInfoWindowClickListener(this);

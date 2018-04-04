@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Emily Wang on 2/19/2018.
+ * @author Emily Wang
+ * @date 2/19/2018
  */
-
 public class Model {
     /** Singleton instance */
     private static final Model _instance = new Model();

@@ -44,7 +44,7 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
             String entry;
             @Override
             public void onClick(View view) {
-                List<Shelter> newShelterList = new ArrayList<>();
+                //List<Shelter> newShelterList = new ArrayList<>();
                 entry = bar.getText().toString().toLowerCase();
                 nameMatchList = sm.findShelterByString(entry);
 
@@ -52,7 +52,7 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
                     Log.d("testing", "here1");
                     if (restrictionMatchList != null) {
                         Log.d("testing", "here2");
-                        List<Shelter> combinedShelterList = new ArrayList<Shelter>();
+                        List<Shelter> combinedShelterList = new ArrayList<>();
                         for (Shelter s: nameMatchList) {
                             if (restrictionMatchList.contains(s)) {
                                 Log.d("testing", s + " added");
@@ -75,29 +75,17 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
         });
 
         RadioButton rb1 = (RadioButton) findViewById(R.id.radio_male);
-        rb1.setOnClickListener(view -> {
-            restrictionMatchList = sm.findShelterByRestriction(Restriction.MALE);
-        });
+        rb1.setOnClickListener(view -> restrictionMatchList = sm.findShelterByRestriction(Restriction.MALE));
         RadioButton rb2 = (RadioButton) findViewById(R.id.radio_female);
-        rb2.setOnClickListener(view -> {
-            restrictionMatchList = sm.findShelterByRestriction(Restriction.FEMALE);
-        });
+        rb2.setOnClickListener(view -> restrictionMatchList = sm.findShelterByRestriction(Restriction.FEMALE));
         RadioButton rb3 = (RadioButton) findViewById(R.id.radio_nonbinary);
-        rb3.setOnClickListener(view -> {
-            restrictionMatchList = sm.findShelterByRestriction(Restriction.NONBINARY);
-        });
+        rb3.setOnClickListener(view -> restrictionMatchList = sm.findShelterByRestriction(Restriction.NONBINARY));
         RadioButton rb4 = (RadioButton) findViewById(R.id.radio_families);
-        rb4.setOnClickListener(view -> {
-            restrictionMatchList = sm.findShelterByRestriction(Restriction.FAMILIES);
-        });
+        rb4.setOnClickListener(view -> restrictionMatchList = sm.findShelterByRestriction(Restriction.FAMILIES));
         RadioButton rb5 = (RadioButton) findViewById(R.id.radio_ya);
-        rb5.setOnClickListener(view -> {
-            restrictionMatchList = sm.findShelterByRestriction(Restriction.YOUNG_ADULTS);
-        });
+        rb5.setOnClickListener(view -> restrictionMatchList = sm.findShelterByRestriction(Restriction.YOUNG_ADULTS));
         RadioButton rb6 = (RadioButton) findViewById(R.id.radio_children);
-        rb6.setOnClickListener(view -> {
-            restrictionMatchList = sm.findShelterByRestriction(Restriction.CHILDREN);
-        });
+        rb6.setOnClickListener(view -> restrictionMatchList = sm.findShelterByRestriction(Restriction.CHILDREN));
 
         shelters = findViewById(R.id.shelters);
         shelters.setVisibility(View.VISIBLE);

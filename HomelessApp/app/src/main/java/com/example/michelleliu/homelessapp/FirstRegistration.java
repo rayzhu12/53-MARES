@@ -56,34 +56,27 @@ public class FirstRegistration extends AppCompatActivity {
 
         progressDialog = new ProgressDialog(FirstRegistration.this);
 
-        nextRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Calling method to check EditText is empty or no status.
-                CheckEditTextIsEmptyOrNot();
+        nextRegister.setOnClickListener(view -> {
+            // Calling method to check EditText is empty or no status.
+            CheckEditTextIsEmptyOrNot();
 
-                // If EditText is true then this block with execute.
-                if(EditTextStatus){
-                    // If EditText is not empty than UserRegistrationFunction method will call.
-                    UserRegistrationFunction();
-                }
-                // If EditText is false then this block with execute.
-                else {
-                    Toast.makeText(FirstRegistration.this, "Please fill all form fields.", Toast.LENGTH_LONG).show();
-                }
-
+            // If EditText is true then this block with execute.
+            if(EditTextStatus){
+                // If EditText is not empty than UserRegistrationFunction method will call.
+                UserRegistrationFunction();
             }
+            // If EditText is false then this block with execute.
+            else {
+                Toast.makeText(FirstRegistration.this, "Please fill all form fields.", Toast.LENGTH_LONG).show();
+            }
+
         });
 
         logIn = (Button) findViewById(R.id.logIn);
-        logIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-                Intent intent = new Intent(FirstRegistration.this, MainActivity.class);
-                startActivity(intent);
-            }
-
+        logIn.setOnClickListener(view -> {
+            finish();
+            Intent intent = new Intent(FirstRegistration.this, MainActivity.class);
+            startActivity(intent);
         });
     }
 
@@ -95,30 +88,27 @@ public class FirstRegistration extends AppCompatActivity {
 
         // Creating createUserWithEmailAndPassword method and pass email and password inside it.
         mAuth.createUserWithEmailAndPassword(emailHolder, passwordHolder).
-                addOnCompleteListener(FirstRegistration.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
+                addOnCompleteListener(FirstRegistration.this, task -> {
 
-                        // Checking if user is registered successfully.
-                        if(task.isSuccessful()){
+                    // Checking if user is registered successfully.
+                    if(task.isSuccessful()){
 
-                            // If user registered successfully then show this toast message.
-                            Toast.makeText(FirstRegistration.this,"User Registration Successfully",Toast.LENGTH_LONG).show();
-                            finish();
-                            Intent intent = new Intent(FirstRegistration.this, RegistrationActivity.class);
-                            startActivity(intent);
+                        // If user registered successfully then show this toast message.
+                        Toast.makeText(FirstRegistration.this,"User Registration Successfully",Toast.LENGTH_LONG).show();
+                        finish();
+                        Intent intent = new Intent(FirstRegistration.this, RegistrationActivity.class);
+                        startActivity(intent);
 
 
-                        }else{
+                    }else{
 
-                            // If something goes wrong.
-                            Toast.makeText(FirstRegistration.this,"Something Went Wrong.",Toast.LENGTH_LONG).show();
-                        }
-
-                        // Hiding the progress dialog after all task complete.
-                        progressDialog.dismiss();
-
+                        // If something goes wrong.
+                        Toast.makeText(FirstRegistration.this,"Something Went Wrong.",Toast.LENGTH_LONG).show();
                     }
+
+                    // Hiding the progress dialog after all task complete.
+                    progressDialog.dismiss();
+
                 });
     }
 

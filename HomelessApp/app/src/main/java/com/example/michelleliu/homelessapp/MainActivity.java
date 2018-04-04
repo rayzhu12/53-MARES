@@ -81,44 +81,38 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // Adding click listener to Sign Up Button.
-        LogIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        LogIn.setOnClickListener(view -> {
 
-                // Calling method to check EditText is empty or no status.
-                CheckEditTextIsEmptyOrNot();
+            // Calling method to check EditText is empty or no status.
+            CheckEditTextIsEmptyOrNot();
 
-                // If EditText is true then this block with execute.
-                if(EditTextEmptyCheck){
+            // If EditText is true then this block with execute.
+            if(EditTextEmptyCheck){
 
-                    // If EditText is not empty than UserRegistrationFunction method will call.
-                    LoginFunction();
-
-                }
-                // If EditText is false then this block with execute.
-                else {
-
-                    Toast.makeText(MainActivity.this, "Please fill all form fields.", Toast.LENGTH_LONG).show();
-
-                }
+                // If EditText is not empty than UserRegistrationFunction method will call.
+                LoginFunction();
 
             }
+            // If EditText is false then this block with execute.
+            else {
+
+                Toast.makeText(MainActivity.this, "Please fill all form fields.", Toast.LENGTH_LONG).show();
+
+            }
+
         });
 
 
         // Adding click listener to ButtonGoToLoginActivity button.
-        ButtonGoToRegistration.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        ButtonGoToRegistration.setOnClickListener(view -> {
 
-                // Finishing current Main Activity.
-                finish();
+            // Finishing current Main Activity.
+            finish();
 
-                // Opening the Login Activity using Intent.
-                Intent intent = new Intent(MainActivity.this, FirstRegistration.class);
-                startActivity(intent);
+            // Opening the Login Activity using Intent.
+            Intent intent = new Intent(MainActivity.this, FirstRegistration.class);
+            startActivity(intent);
 
-            }
         });
 
 
@@ -158,31 +152,28 @@ public class MainActivity extends AppCompatActivity {
 
         // Calling  signInWithEmailAndPassword function with firebase object and passing EmailHolder and PasswordHolder inside it.
         firebaseAuth.signInWithEmailAndPassword(EmailHolder, PasswordHolder)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
+                .addOnCompleteListener(this, task -> {
 
-                        // If task done Successful.
-                        if (task.isSuccessful()) {
+                    // If task done Successful.
+                    if (task.isSuccessful()) {
 
-                            // Hiding the progress dialog.
-                            progressDialog.dismiss();
+                        // Hiding the progress dialog.
+                        progressDialog.dismiss();
 
-                            // Closing the current Login Activity.
-                            finish();
+                        // Closing the current Login Activity.
+                        finish();
 
 
-                            // Opening the UserProfileActivity.
-                            Intent intent = new Intent(MainActivity.this, AppActivity.class);
-                            startActivity(intent);
-                        } else {
+                        // Opening the UserProfileActivity.
+                        Intent intent = new Intent(MainActivity.this, AppActivity.class);
+                        startActivity(intent);
+                    } else {
 
-                            // Hiding the progress dialog.
-                            progressDialog.dismiss();
+                        // Hiding the progress dialog.
+                        progressDialog.dismiss();
 
-                            // Showing toast message when email or password not found in Firebase Online database.
-                            Toast.makeText(MainActivity.this, "Email or Password Not found, Please Try Again", Toast.LENGTH_LONG).show();
-                        }
+                        // Showing toast message when email or password not found in Firebase Online database.
+                        Toast.makeText(MainActivity.this, "Email or Password Not found, Please Try Again", Toast.LENGTH_LONG).show();
                     }
                 });
     }

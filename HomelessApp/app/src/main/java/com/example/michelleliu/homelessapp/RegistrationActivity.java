@@ -59,7 +59,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
     public enum adminOrUser {
         Admin,
-        User;
+        User
     }
 
     private boolean isEmailValid(String email) {

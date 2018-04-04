@@ -9,9 +9,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 /**
- * Created by Emily Wang on 3/26/2018.
+ * @author Emily Wang
+ * @date 3/26/2018
  */
-
 public class UserManager {
     private FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference myRef;
