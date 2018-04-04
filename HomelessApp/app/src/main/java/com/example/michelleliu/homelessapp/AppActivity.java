@@ -217,7 +217,6 @@ public class AppActivity extends AppCompatActivity {
 
     private void showData(DataSnapshot dataSnapshot) {
         UserInfo uInfo = new UserInfo();
-        System.out.println(dataSnapshot.child(userID));
         uInfo.setName(dataSnapshot.child(userID).getValue(UserInfo.class).getName());
         uInfo.setNumberOfBeds(dataSnapshot.child(userID).getValue(UserInfo.class).getNumberOfBeds());
         Log.d(TAG, "showData: name: " + uInfo.getName());
