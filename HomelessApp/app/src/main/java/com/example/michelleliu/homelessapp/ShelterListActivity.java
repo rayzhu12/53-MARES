@@ -172,6 +172,7 @@ public class ShelterListActivity extends AppCompatActivity
             }
         });
 
+        listView = findViewById(R.id.listView);
         myRef = mFirebaseDatabase.getReference("shelters");
         readData(new FireBaseCallBack() {
             @Override
@@ -220,7 +221,6 @@ public class ShelterListActivity extends AppCompatActivity
                 }
 
                 firebaseCallBack.onCallBack(shelterNames);
-                listView = findViewById(R.id.listView);
                 populateList();
             }
 

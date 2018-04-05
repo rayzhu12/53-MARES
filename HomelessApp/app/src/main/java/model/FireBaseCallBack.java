@@ -8,5 +8,9 @@ import java.util.List;
  */
 
 public interface FireBaseCallBack {
+    /**
+     * CallBack Function
+     * @param list to be utilized in classes that implement this interface
+     */
     void onCallBack(List<String> list);
 }

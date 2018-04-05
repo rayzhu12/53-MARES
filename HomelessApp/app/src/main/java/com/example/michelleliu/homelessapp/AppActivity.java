@@ -54,18 +54,15 @@ public class AppActivity extends AppCompatActivity {
     private final int[] nBed = new int[1];
     private final String[] sName = new String[1];
 
+    private int nBeds = 0;
+    private String shelterName = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        Button updateData = findViewById(R.id.updatedata);
-        updateData.setOnClickListener(view -> {
-            finish();
-            startActivity(new Intent(AppActivity.this, ShelterListActivity.class));
-        });
 
         if (shelterList == null) {
             InputStream inputStream = getResources().openRawResource(R.raw.stats);
@@ -77,8 +74,6 @@ public class AppActivity extends AppCompatActivity {
         // Adding FirebaseAuth instance to FirebaseAuth object.
         firebaseAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
-        myRef = mFirebaseDatabase.getReference("users");
-        // FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
 
         // On activity start check whether there is user previously logged in or not.
         if (firebaseAuth.getCurrentUser() == null) {
@@ -95,22 +90,15 @@ public class AppActivity extends AppCompatActivity {
 
         }
 
+        Button updateData = findViewById(R.id.updatedata);
+        updateData.setOnClickListener(view -> {
+            finish();
+            startActivity(new Intent(AppActivity.this, ShelterListActivity.class));
+        });
+
         Button logout = findViewById(R.id.logout);
         // Adding click listener on logout button.
-        logout.setOnClickListener(view -> {
-            // Destroying login season.
-            firebaseAuth.signOut();
-
-            // Finishing current User Profile activity.
-            finish();
-
-            // Redirect to Login Activity after click on logout button.
-            Intent intent = new Intent(AppActivity.this, MainActivity.class);
-            startActivity(intent);
-
-            // Showing toast message on logout.
-            Toast.makeText(AppActivity.this, "Logged Out Successfully.", Toast.LENGTH_LONG).show();
-        });
+        logout.setOnClickListener(logOutListener);
 
         mAuthListener = firebaseAuth -> {
             FirebaseUser user = firebaseAuth.getCurrentUser();
@@ -132,40 +120,16 @@ public class AppActivity extends AppCompatActivity {
         Button releaseBed = findViewById(R.id.release);
         // Adding click listener on logout button.
         releaseBed.setOnClickListener(view -> {
-            UserManager manager = new UserManager();
 
-            // Read from the database testing if this works
-           myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-               @Override
-               public void onDataChange(DataSnapshot dataSnapshot) {
-                   nBed[0] = dataSnapshot.child(userID).getValue(UserInfo.class).getNumberOfBeds();
+            myRef = mFirebaseDatabase.getReference("users");
+            readData(new FireBaseCallBack() {
+                @Override
+                public void onCallBack(List<String> list) {
 
-                   if (dataSnapshot.child(userID).child("currentShelter").getValue() != null) {
-                       sName[0] = dataSnapshot.child(userID).child("currentShelter")
-                               .getValue().toString();
-                   }
-                   myRef.child(userID).child("numberOfBeds").setValue(0);
-                   myRef.child(userID).child("currentShelter").setValue(null);
-                   if ((sName[0] != null) && (nBed[0] > 0)) {
-                       updateShelter();
-                   }
-                   showData(dataSnapshot);
-               }
-
-               @Override
-               public void onCancelled(DatabaseError databaseError) {
-                   Log.d(TAG, "failed to read value");
-               }
-           });
+                }
+            });
         });
 
-        secondRef = mFirebaseDatabase.getReference("shelters");
-        readData(new FireBaseCallBack() {
-            @Override
-            public void onCallBack(List<String> list) {
-                Log.d(TAG, shelterNames.toString());
-            }
-        });
     }
 
     /**
@@ -183,30 +147,36 @@ public class AppActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Log.d("AppActivity", "secondRef");
-                int cap = Integer.parseInt(dataSnapshot.child(sName[0]).getValue(Shelter.class)
-                        .getCapacity());
-                secondRef.child(sName[0]).child("capacity")
-                        .setValue(Integer.toString(nBed[0] + cap));
-                Toast.makeText(AppActivity.this, "You've released " + nBed[0]
-                        + " bed(s) from " + sName[0], Toast.LENGTH_LONG).show();
+//                int cap = Integer.parseInt(dataSnapshot.child(sName[0]).getValue(Shelter.class)
+//                        .getCapacity());
+                int cap = Integer.parseInt(dataSnapshot.child(shelterName).child("capacity").getValue(String.class));
+//                secondRef.child(sName[0]).child("capacity")
+//                        .setValue(Integer.toString(nBed[0] + cap));
+                secondRef.child(shelterName).child("capacity").setValue(Integer.toString(nBeds + cap));
+                Toast.makeText(AppActivity.this, "You've released " + nBeds
+                        + " bed(s) from " + shelterName, Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
+                Log.d(TAG, databaseError.getMessage());
             }
         });
     }
+
 
     private void readData(FireBaseCallBack firebaseCallBack) {
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    String shelterName = ds.child("name").getValue(String.class);
-                    shelterNames.add(shelterName);
-                }
+                nBeds = dataSnapshot.child(userID).child("numberOfBeds").getValue(Integer.class);
+                shelterName = dataSnapshot.child(userID).child("currentShelter").getValue(String.class);
 
+                myRef.child(userID).child("numberOfBeds").setValue(0);
+                myRef.child(userID).child("currentShelter").setValue(null);
+                if ((shelterName != null) && (nBeds > 0)) {
+                    updateShelter();
+                }
                 firebaseCallBack.onCallBack(shelterNames);
             }
 
@@ -215,9 +185,25 @@ public class AppActivity extends AppCompatActivity {
                 Log.d(TAG, databaseError.getMessage());
             }
         };
-        secondRef.addListenerForSingleValueEvent(valueEventListener);
+        myRef.addListenerForSingleValueEvent(valueEventListener);
     }
 
+    private View.OnClickListener logOutListener = new View.OnClickListener() {
+        public void onClick(View view) {
+            // Destroying login season.
+            firebaseAuth.signOut();
+
+            // Finishing current User Profile activity.
+            finish();
+
+            // Redirect to Login Activity after click on logout button.
+            Intent intent = new Intent(AppActivity.this, MainActivity.class);
+            startActivity(intent);
+
+            // Showing toast message on logout.
+            Toast.makeText(AppActivity.this, "Logged Out Successfully.", Toast.LENGTH_LONG).show();
+        }
+    };
 
     private void showData(DataSnapshot dataSnapshot) {
         UserInfo uInfo = new UserInfo();
