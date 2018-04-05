@@ -18,9 +18,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import model.CSVFile;
+import model.FireBaseCallBack;
 import model.Shelter;
 import model.ShelterManager;
 import model.UserInfo;
@@ -45,6 +47,8 @@ public class AppActivity extends AppCompatActivity {
 
     private static final ShelterManager sm = ShelterManager.getInstance();
     private static List<Shelter> shelterList;
+
+    private final List<String> shelterNames = new ArrayList<>();
 
 
     private final int[] nBed = new int[1];
@@ -125,31 +129,6 @@ public class AppActivity extends AppCompatActivity {
             // ...
         };
 
-//        Button reserveBed = (Button) findViewById(R.id.reserve);
-//        // Adding click listener on logout button.
-//        reserveBed.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                myRef.child(userID).child("numberOfBeds").setValue(5);
-//                // Read from the database
-//                myRef.addValueEventListener(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange (DataSnapshot dataSnapshot){
-//                        // This method is called once with the initial value and again
-//                        // whenever data at this location is updated.
-//                        showData(dataSnapshot);
-//                    }
-//
-//                    @Override
-//                    public void onCancelled (DatabaseError error){
-//                        // Failed to read value
-//                        Log.w(TAG, "Failed to read value.", error.toException());
-//                    }
-//                });
-//            }
-//        });
-
         Button releaseBed = findViewById(R.id.release);
         // Adding click listener on logout button.
         releaseBed.setOnClickListener(view -> {
@@ -178,21 +157,14 @@ public class AppActivity extends AppCompatActivity {
                    Log.d(TAG, "failed to read value");
                }
            });
+        });
 
-//                myRef.addValueEventListener(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange (DataSnapshot dataSnapshot){
-//                        // This method is called once with the initial value and again
-//                        // whenever data at this location is updated.
-//                        showData(dataSnapshot);
-//                    }
-//
-//                    @Override
-//                    public void onCancelled (DatabaseError error){
-//                        // Failed to read value
-//                        Log.w(TAG, "Failed to read value.", error.toException());
-//                    }
-//                });
+        secondRef = mFirebaseDatabase.getReference("shelters");
+        readData(new FireBaseCallBack() {
+            @Override
+            public void onCallBack(List<String> list) {
+                Log.d(TAG, shelterNames.toString());
+            }
         });
     }
 
@@ -225,6 +197,27 @@ public class AppActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void readData(FireBaseCallBack firebaseCallBack) {
+        ValueEventListener valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    String shelterName = ds.child("name").getValue(String.class);
+                    shelterNames.add(shelterName);
+                }
+
+                firebaseCallBack.onCallBack(shelterNames);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.d(TAG, databaseError.getMessage());
+            }
+        };
+        secondRef.addListenerForSingleValueEvent(valueEventListener);
+    }
+
 
     private void showData(DataSnapshot dataSnapshot) {
         UserInfo uInfo = new UserInfo();

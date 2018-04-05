@@ -17,14 +17,18 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-import java.io.InputStream;
+//import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.CSVFile;
+//import model.CSVFile;
+import model.FireBaseCallBack;
 import model.Shelter;
 import model.ShelterManager;
 
@@ -37,44 +41,47 @@ public class ShelterListActivity extends AppCompatActivity
     private ListView listView;
     private ArrayAdapter adapter;
     private static ShelterManager sm = ShelterManager.getInstance();
-    private static List<Shelter> shelterList;
+    //private static List<Shelter> shelterList;
+
+    private final List<String> shelterNames = new ArrayList<>();
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    private DatabaseReference myRef;
 
     private static final String TAG = "ShelterListActivity";
 
-    /**
-     * gets the shelter list.
-     * @return the shelter list
-     */
-    public static List<Shelter> getShelterList() {
-        return shelterList;
-    }
+//    /**
+//     * gets the shelter list.
+//     * @return the shelter list
+//     */
+//    //public static List<Shelter> getShelterList() {
+//        return shelterList;
+//    }
 
-    /**
-     * sets the shelter list.
-     * @param shelters the list of shelters
-     */
-    public static void setShelterList(List<Shelter> shelters) {
-        shelterList = shelters;
-    }
+//    /**
+//     * sets the shelter list.
+//     * @param shelters the list of shelters
+//     */
+//    //public static void setShelterList(List<Shelter> shelters) {
+//        shelterList = shelters;
+//    }
 
-    /**
-     * gets shelter  manager.
-     * @return the shelter manager
-     */
-    public static ShelterManager getSm() {
-        return sm;
-    }
+//    /**
+//     * gets shelter  manager.
+//     * @return the shelter manager
+//     */
+//    public static ShelterManager getSm() {
+//        return sm;
+//    }
 
-    /**
-     * sets shelter manager.
-     * @param smh the shelter manager
-     */
-    public static void setSm(ShelterManager smh) {
-        sm = smh;
-    }
+//    /**
+//     * sets shelter manager.
+//     * @param smh the shelter manager
+//     */
+//    public static void setSm(ShelterManager smh) {
+//        sm = smh;
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +91,6 @@ public class ShelterListActivity extends AppCompatActivity
         mAuth = FirebaseAuth.getInstance();
         //FirebaseUser user = mAuth.getCurrentUser();
         FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = mFirebaseDatabase.getReference();
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -93,9 +99,6 @@ public class ShelterListActivity extends AppCompatActivity
                 if (user != null) {
                     // User is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-                    Toast.makeText(ShelterListActivity.this,
-                            "Successfully signed in with: " + user.getEmail(),
-                            Toast.LENGTH_LONG).show();
                 } else {
                     // User is signed out
                     Log.d(TAG, "onAuthStateChanged:signed_out");
@@ -107,11 +110,11 @@ public class ShelterListActivity extends AppCompatActivity
         };
 
         //adds the initial shelter data if not already populated
-        if (shelterList == null) {
-            InputStream inputStream = getResources().openRawResource(R.raw.stats);
-            CSVFile csvFile = new CSVFile(inputStream);
-            shelterList = csvFile.read();
-            sm.setShelterList(shelterList);
+//        if (shelterList == null) {
+//            InputStream inputStream = getResources().openRawResource(R.raw.stats);
+//            CSVFile csvFile = new CSVFile(inputStream);
+//            shelterList = csvFile.read();
+//            sm.setShelterList(shelterList);
 
 //            DatabaseReference mDatabase = myRef.child("shelters");
 //            mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -128,7 +131,7 @@ public class ShelterListActivity extends AppCompatActivity
 //
 //                }
 //            });
-        }
+//        }
 
         Button returnHome = findViewById(R.id.home);
         returnHome.setOnClickListener(new View.OnClickListener() {
@@ -146,10 +149,6 @@ public class ShelterListActivity extends AppCompatActivity
             }
         });
 
-        //eventually switch out of listview?? (pls!!!!)
-
-        listView = findViewById(R.id.listView);
-        populateList(shelterList);
 
         // search bar stuff
         // keep generic search by name function in ShelterListA
@@ -172,18 +171,25 @@ public class ShelterListActivity extends AppCompatActivity
 
             }
         });
+
+        myRef = mFirebaseDatabase.getReference("shelters");
+        readData(new FireBaseCallBack() {
+            @Override
+            public void onCallBack(List<String> list) {}
+        });
     }
 
     /**
      * Populates the class listView with elements of input shelter List. Can be changed if switch
      * out of listview
-     * @param newShelterList list of shelters to be added
      */
-    private void populateList(List<Shelter> newShelterList) {
-        List<String> shelterNames = new ArrayList<>();
-        for (Shelter shelter : newShelterList) {
-            shelterNames.add(shelter.getName());
-        }
+    private void populateList() {
+        //List<String> shelterNames = new ArrayList<>();
+//        for (Shelter shelter : newShelterList) {
+//            shelterNames.add(shelter.getName());
+//        }
+
+        Log.d(TAG, "in populateList" + shelterNames.toString());
 
         adapter = new ArrayAdapter(this, R.layout.listview_layout, shelterNames);
         listView.setAdapter(adapter);
@@ -202,6 +208,28 @@ public class ShelterListActivity extends AppCompatActivity
             intent.putExtra("passed shelter", selectedShelter);
             startActivity(intent);
         }
+    }
+
+    private void readData(FireBaseCallBack firebaseCallBack) {
+        ValueEventListener valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    String shelterName = ds.child("name").getValue(String.class);
+                    shelterNames.add(shelterName);
+                }
+
+                firebaseCallBack.onCallBack(shelterNames);
+                listView = findViewById(R.id.listView);
+                populateList();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.d(TAG, databaseError.getMessage());
+            }
+        };
+        myRef.addListenerForSingleValueEvent(valueEventListener);
     }
 
     @Override

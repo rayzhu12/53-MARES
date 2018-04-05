@@ -44,12 +44,11 @@ public class FirstRegistration extends AppCompatActivity {
        email = findViewById(R.id.email);
        password = findViewById(R.id.password);
 
-        Button nextRegister = findViewById(R.id.nextRegister);
-
         mAuth = FirebaseAuth.getInstance();
 
         progressDialog = new ProgressDialog(FirstRegistration.this);
 
+        Button nextRegister = findViewById(R.id.nextRegister);
         nextRegister.setOnClickListener(view -> {
             // Calling method to check EditText is empty or no status.
             CheckEditTextIsEmptyOrNot();
@@ -82,8 +81,9 @@ public class FirstRegistration extends AppCompatActivity {
         progressDialog.show();
 
         // Creating createUserWithEmailAndPassword method and pass email and password inside it.
-        mAuth.createUserWithEmailAndPassword(emailHolder, passwordHolder).
-                addOnCompleteListener(FirstRegistration.this, task -> {
+        //chained method given by FireBase documentation
+        mAuth.createUserWithEmailAndPassword(emailHolder, passwordHolder)
+                .addOnCompleteListener(FirstRegistration.this, task -> {
 
                     // Checking if user is registered successfully.
                     if(task.isSuccessful()){
@@ -127,12 +127,6 @@ public class FirstRegistration extends AppCompatActivity {
             cancel = true;
         }
 
-//        if (!(password.getText().toString().equals(confirmPass.getText().toString()))) {
-//            confirmPass.setError("The passwords must match.");
-//            focusView = confirmPass;
-//            cancel = true;
-//        }
-
         // Check for a valid email address.
         if (TextUtils.isEmpty(email.getText().toString())) {
             email.setError(getString(R.string.error_field_required));
@@ -165,7 +159,7 @@ public class FirstRegistration extends AppCompatActivity {
         return email.contains("@");
     }
 
-    private boolean isPasswordValid(String password) {
+    private boolean isPasswordValid(CharSequence password) {
         return password.length() >= 8;
     }
 

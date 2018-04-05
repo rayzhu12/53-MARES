@@ -167,20 +167,6 @@ public class UserInfo {
         return ("Name: " + name + " User Type: " + typeOfUser);
     }
 
-    /***************************************************************
-     * Need to update this if it's still necessary
-     ***************************************************************/
-    @Override
-    public boolean equals(Object u2) {
-        if (u2 == this) {
-            return true;
-        }
-        if (! (u2 instanceof UserInfo)) {
-            return false;
-        }
-        UserInfo user2 = (UserInfo) u2;
-        return (user2.getName().equals(this.name) && user2.getUserType().equals(this.typeOfUser));
-    }
 }
 
 

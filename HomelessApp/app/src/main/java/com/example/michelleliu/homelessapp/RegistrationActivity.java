@@ -95,42 +95,44 @@ public class RegistrationActivity extends AppCompatActivity {
         };
 
         Button register = findViewById(R.id.create_account);
-        register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d(TAG, "onClick: Submit pressed.");
-                otherFields();
-
-                Log.d(TAG, "onClick: Attempting to submit to database: \n" +
-                        "name: " + nameHolder + "\n" +
-                        "gender: " + genderHolder + "\n" +
-                        "age: " + ageHolder + "\n"
-                );
-
-                if (EditTextStatus) {
-                    UserManager manage = new UserManager();
-                    manage.addNewUser(userID, nameHolder, ageHolder, genderHolder,
-                            typeOfUser.getSelectedItem().toString());
-                    Toast.makeText(RegistrationActivity.this,
-                            "User added to database", Toast.LENGTH_LONG).show();
-                    name.setText("");
-                    gender.setText("");
-                    age.setText("");
-
-                    // Finishing current Login Activity.
-                    finish();
-
-                    // Opening UserProfileActivity .
-                    Intent intent = new Intent(RegistrationActivity.this, AppActivity.class);
-                    startActivity(intent);
-                }else{
-                    Toast.makeText(RegistrationActivity.this,
-                            "Fill out all the fields", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
+        register.setOnClickListener(onClickListener);
 
     }
+
+    private final View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Log.d(TAG, "onClick: Submit pressed.");
+            otherFields();
+
+            Log.d(TAG, "onClick: Attempting to submit to database: \n" +
+                    "name: " + nameHolder + "\n" +
+                    "gender: " + genderHolder + "\n" +
+                    "age: " + ageHolder + "\n"
+            );
+
+            if (EditTextStatus) {
+                UserManager manage = new UserManager();
+                manage.addNewUser(userID, nameHolder, ageHolder, genderHolder,
+                        typeOfUser.getSelectedItem().toString());
+                Toast.makeText(RegistrationActivity.this,
+                        "User added to database", Toast.LENGTH_LONG).show();
+                name.setText("");
+                gender.setText("");
+                age.setText("");
+
+                // Finishing current Login Activity.
+                finish();
+
+                // Opening UserProfileActivity .
+                Intent intent = new Intent(RegistrationActivity.this, AppActivity.class);
+                startActivity(intent);
+            }else{
+                Toast.makeText(RegistrationActivity.this,
+                        "Fill out all the fields", Toast.LENGTH_LONG).show();
+            }
+        }
+    };
 
     /**
      * Other fields.

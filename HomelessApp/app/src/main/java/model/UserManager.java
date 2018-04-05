@@ -24,6 +24,7 @@ public class UserManager {
 
     }
 
+
     /**
      * the constructor
      * @param id the ID
@@ -47,9 +48,6 @@ public class UserManager {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                if (dataSnapshot.child("test1").exists()) {
-                    Log.d(TAG, "true");
-                }
                 Log.d(TAG, "onDataChange: Added information to database: \n" +
                         dataSnapshot.getValue());
             }
@@ -62,7 +60,6 @@ public class UserManager {
         });
 
         myRef.child("users").child(id).setValue(userInfo);
-        myRef.child("shelters").child("test1").setValue(6);
     }
 
 //    private void showData(DataSnapshot dataSnapshot, String userID) {
