@@ -19,8 +19,6 @@ public class Shelter implements Serializable {
     private String specialNotes;
     private String phoneNumber;
 
-    private String[] arrayInfo;
-
     /**
      * default constructor for this class
      */
@@ -48,7 +46,6 @@ public class Shelter implements Serializable {
             specialNotes = info[7];
             phoneNumber = info[8];
 
-            arrayInfo = info;
         }
     }
 
@@ -165,13 +162,13 @@ public class Shelter implements Serializable {
                 + latitude + " " + address + " " + specialNotes + " " + phoneNumber + "]";
     }
 
-    /**
-     * prints the array in a manner readable to the user
-     * @return a returnable version of the array
-     */
-    public String[] toArray() {
-        return arrayInfo;
-    }
+//    /**
+//     * prints the array in a manner readable to the user
+//     * @return a returnable version of the array
+//     */
+//    public String[] toArray() {
+//        return arrayInfo;
+//    }
 }
 
 

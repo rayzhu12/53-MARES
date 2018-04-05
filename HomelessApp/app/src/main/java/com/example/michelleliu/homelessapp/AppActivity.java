@@ -25,8 +25,6 @@ import model.CSVFile;
 import model.FireBaseCallBack;
 import model.Shelter;
 import model.ShelterManager;
-import model.UserInfo;
-import model.UserManager;
 
 /**
  * App activity
@@ -49,10 +47,6 @@ public class AppActivity extends AppCompatActivity {
     private static List<Shelter> shelterList;
 
     private final List<String> shelterNames = new ArrayList<>();
-
-
-    private final int[] nBed = new int[1];
-    private final String[] sName = new String[1];
 
     private int nBeds = 0;
     private String shelterName = "";
@@ -137,12 +131,10 @@ public class AppActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Log.d("AppActivity", "secondRef");
-//                int cap = Integer.parseInt(dataSnapshot.child(sName[0]).getValue(Shelter.class)
-//                        .getCapacity());
-                int cap = Integer.parseInt(dataSnapshot.child(shelterName).child("capacity").getValue(String.class));
-//                secondRef.child(sName[0]).child("capacity")
-//                        .setValue(Integer.toString(nBed[0] + cap));
-                secondRef.child(shelterName).child("capacity").setValue(Integer.toString(nBeds + cap));
+                int cap = Integer.parseInt(dataSnapshot.child(shelterName).child("capacity")
+                        .getValue(String.class));
+                secondRef.child(shelterName).child("capacity")
+                        .setValue(Integer.toString(nBeds + cap));
                 Toast.makeText(AppActivity.this, "You've released " + nBeds
                         + " bed(s) from " + shelterName, Toast.LENGTH_LONG).show();
             }
@@ -160,8 +152,8 @@ public class AppActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 nBeds = dataSnapshot.child(userID).child("numberOfBeds").getValue(Integer.class);
-                shelterName = dataSnapshot.child(userID).child("currentShelter").getValue(String.class);
-
+                shelterName = dataSnapshot.child(userID).child("currentShelter")
+                        .getValue(String.class);
                 myRef.child(userID).child("numberOfBeds").setValue(0);
                 myRef.child(userID).child("currentShelter").setValue(null);
                 if ((shelterName != null) && (nBeds > 0)) {
@@ -178,7 +170,7 @@ public class AppActivity extends AppCompatActivity {
         myRef.addListenerForSingleValueEvent(valueEventListener);
     }
 
-    private View.OnClickListener releaseBedListener = new View.OnClickListener() {
+    private final View.OnClickListener releaseBedListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             myRef = mFirebaseDatabase.getReference("users");
@@ -191,7 +183,7 @@ public class AppActivity extends AppCompatActivity {
         }
     };
 
-    private View.OnClickListener logOutListener = new View.OnClickListener() {
+    private final View.OnClickListener logOutListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             // Destroying login season.

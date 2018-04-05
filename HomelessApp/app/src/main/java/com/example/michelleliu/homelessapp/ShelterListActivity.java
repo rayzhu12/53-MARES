@@ -40,7 +40,7 @@ public class ShelterListActivity extends AppCompatActivity
         implements AdapterView.OnItemClickListener {
     private ListView listView;
     private ArrayAdapter adapter;
-    private static ShelterManager sm = ShelterManager.getInstance();
+    private final static ShelterManager sm = ShelterManager.getInstance();
     //private static List<Shelter> shelterList;
 
     private final List<String> shelterNames = new ArrayList<>();
@@ -144,7 +144,9 @@ public class ShelterListActivity extends AppCompatActivity
         myRef = mFirebaseDatabase.getReference("shelters");
         readData(new FireBaseCallBack() {
             @Override
-            public void onCallBack(List<String> list) {}
+            public void onCallBack(List<String> list) {
+                Log.d(TAG, list.toString());
+            }
         });
     }
 

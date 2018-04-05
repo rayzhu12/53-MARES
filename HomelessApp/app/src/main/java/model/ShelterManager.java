@@ -122,21 +122,21 @@ public class ShelterManager {
         return matches;
     }
 
-    /**
-     * finds the shelter by key
-     * @param key the key of the shelter we are searching for
-     * @return the shelter associated with the given key
-     */
-    public Shelter findShelterByKey(int key) {
-        Shelter foundShelter = null;
-        if (key >= shelterList.size()) {
-            throw new IllegalArgumentException("Key is not in shelter list.");
-        }
-        for (Shelter s : shelterList) {
-            if (s.getKey() == key) {
-                foundShelter = s;
-            }
-        }
-        return foundShelter;
-    }
+//    /**
+//     * finds the shelter by key
+//     * @param key the key of the shelter we are searching for
+//     * @return the shelter associated with the given key
+//     */
+//    public Shelter findShelterByKey(int key) {
+//        Shelter foundShelter = null;
+//        if (key >= shelterList.size()) {
+//            throw new IllegalArgumentException("Key is not in shelter list.");
+//        }
+//        for (Shelter s : shelterList) {
+//            if (s.getKey() == key) {
+//                foundShelter = s;
+//            }
+//        }
+//        return foundShelter;
+//    }
 }
