@@ -75,6 +75,37 @@ public class AppActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
 
+        loggedIn();
+
+        Button updateData = findViewById(R.id.updatedata);
+        updateData.setOnClickListener(view -> {
+            finish();
+            startActivity(new Intent(AppActivity.this, ShelterListActivity.class));
+        });
+
+        Button logout = findViewById(R.id.logout);
+        logout.setOnClickListener(logOutListener);
+
+        Button releaseBed = findViewById(R.id.release);
+        releaseBed.setOnClickListener(releaseBedListener);
+
+        mAuthListener = firebaseAuth -> {
+            FirebaseUser user = firebaseAuth.getCurrentUser();
+            if (user != null) {
+                // User is signed in
+                Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+                userID = user.getUid();
+                Toast.makeText(AppActivity.this, "Successfully signed in with: "
+                        + user.getEmail(), Toast.LENGTH_LONG).show();
+            } else {
+                // User is signed out
+                Log.d(TAG, "onAuthStateChanged:signed_out");
+            }
+        };
+
+    }
+
+    private void loggedIn() {
         // On activity start check whether there is user previously logged in or not.
         if (firebaseAuth.getCurrentUser() == null) {
 
@@ -89,47 +120,6 @@ public class AppActivity extends AppCompatActivity {
             Toast.makeText(AppActivity.this, "Please Log in to continue", Toast.LENGTH_LONG).show();
 
         }
-
-        Button updateData = findViewById(R.id.updatedata);
-        updateData.setOnClickListener(view -> {
-            finish();
-            startActivity(new Intent(AppActivity.this, ShelterListActivity.class));
-        });
-
-        Button logout = findViewById(R.id.logout);
-        // Adding click listener on logout button.
-        logout.setOnClickListener(logOutListener);
-
-        mAuthListener = firebaseAuth -> {
-            FirebaseUser user = firebaseAuth.getCurrentUser();
-            if (user != null) {
-                // User is signed in
-                Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-                userID = user.getUid();
-                Toast.makeText(AppActivity.this, "Successfully signed in with: "
-                        + user.getEmail(), Toast.LENGTH_LONG).show();
-            } else {
-                // User is signed out
-                Log.d(TAG, "onAuthStateChanged:signed_out");
-                Toast.makeText(AppActivity.this, "Successfully signed out.",
-                        Toast.LENGTH_LONG).show();
-            }
-            // ...
-        };
-
-        Button releaseBed = findViewById(R.id.release);
-        // Adding click listener on logout button.
-        releaseBed.setOnClickListener(view -> {
-
-            myRef = mFirebaseDatabase.getReference("users");
-            readData(new FireBaseCallBack() {
-                @Override
-                public void onCallBack(List<String> list) {
-
-                }
-            });
-        });
-
     }
 
     /**
@@ -188,7 +178,21 @@ public class AppActivity extends AppCompatActivity {
         myRef.addListenerForSingleValueEvent(valueEventListener);
     }
 
+    private View.OnClickListener releaseBedListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            myRef = mFirebaseDatabase.getReference("users");
+            readData(new FireBaseCallBack() {
+                @Override
+                public void onCallBack(List<String> list) {
+
+                }
+            });
+        }
+    };
+
     private View.OnClickListener logOutListener = new View.OnClickListener() {
+        @Override
         public void onClick(View view) {
             // Destroying login season.
             firebaseAuth.signOut();
@@ -204,15 +208,6 @@ public class AppActivity extends AppCompatActivity {
             Toast.makeText(AppActivity.this, "Logged Out Successfully.", Toast.LENGTH_LONG).show();
         }
     };
-
-    private void showData(DataSnapshot dataSnapshot) {
-        UserInfo uInfo = new UserInfo();
-        uInfo.setName(dataSnapshot.child(userID).getValue(UserInfo.class).getName());
-        uInfo.setNumberOfBeds(dataSnapshot.child(userID)
-                .getValue(UserInfo.class).getNumberOfBeds());
-        Log.d(TAG, "showData: name: " + uInfo.getName());
-        Log.d(TAG, "showData: bed; " + uInfo.getNumberOfBeds());
-    }
 
     @Override
     public void onStart() {

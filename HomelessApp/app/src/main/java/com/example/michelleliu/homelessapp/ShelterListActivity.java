@@ -51,38 +51,6 @@ public class ShelterListActivity extends AppCompatActivity
 
     private static final String TAG = "ShelterListActivity";
 
-//    /**
-//     * gets the shelter list.
-//     * @return the shelter list
-//     */
-//    //public static List<Shelter> getShelterList() {
-//        return shelterList;
-//    }
-
-//    /**
-//     * sets the shelter list.
-//     * @param shelters the list of shelters
-//     */
-//    //public static void setShelterList(List<Shelter> shelters) {
-//        shelterList = shelters;
-//    }
-
-//    /**
-//     * gets shelter  manager.
-//     * @return the shelter manager
-//     */
-//    public static ShelterManager getSm() {
-//        return sm;
-//    }
-
-//    /**
-//     * sets shelter manager.
-//     * @param smh the shelter manager
-//     */
-//    public static void setSm(ShelterManager smh) {
-//        sm = smh;
-//    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
