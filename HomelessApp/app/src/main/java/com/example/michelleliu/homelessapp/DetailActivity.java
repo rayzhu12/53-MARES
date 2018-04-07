@@ -37,7 +37,7 @@ public class DetailActivity extends AppCompatActivity {
     private DatabaseReference myRef;
     private DatabaseReference secondRef;
     private final int[] capacity = new int[1];
-    // --Commented out by Inspection (4/4/2018 3:23 PM):private final String[] sName = new String[1];
+    // private final String[] sName = new String[1];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +49,7 @@ public class DetailActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         //declare the database reference object. This is what we use to access the database.
-        //NOTE: Unless you are signed in, this will not be useable.
+        //NOTE: Unless you are signed in, this will not be usable.
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference();
@@ -91,7 +91,7 @@ public class DetailActivity extends AppCompatActivity {
             }
             });
 
-        // replace with something bc this looks uggo
+        // replace with something bc this looks ugly
         updateTextBoxes();
 
         FloatingActionButton returnToList = findViewById(R.id.fab);
@@ -108,7 +108,7 @@ public class DetailActivity extends AppCompatActivity {
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if (numBeds == 0) {
                         Toast.makeText(DetailActivity.this,
-                                "You cannot reseve zero beds", Toast.LENGTH_LONG).show();
+                                "You cannot reserve zero beds", Toast.LENGTH_LONG).show();
                     }
                     if ((dataSnapshot.child(userID).getValue(UserInfo.class).getNumberOfBeds() == 0)
                             && ((capacity[0] - numBeds) > 0)) {
@@ -131,7 +131,9 @@ public class DetailActivity extends AppCompatActivity {
                     else {
                         Log.d("DetailActivity", "beds not added") ;
                         Toast.makeText(DetailActivity.this,
-                                "You already have beds reserved at " + dataSnapshot.child(userID).child("currentShelter").getValue().toString(), Toast.LENGTH_LONG).show();
+                                "You already have beds reserved at " + dataSnapshot.child(
+                                        userID).child("currentShelter").getValue().toString(),
+                                        Toast.LENGTH_LONG).show();
                     }
                 }
 

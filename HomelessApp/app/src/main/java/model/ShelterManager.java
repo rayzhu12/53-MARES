@@ -66,7 +66,6 @@ public class ShelterManager {
 //                    Log.d("s.getName", s.getName());
 //                    Log.d("name.toLowercase", name.toLowerCase());
 //                    if (s.getName().toLowerCase().equals(name.toLowerCase())) {
-//                        Log.d("hereherehere", name.toLowerCase());
 //                        foundShelter[0] = s;
 //                    }
 //

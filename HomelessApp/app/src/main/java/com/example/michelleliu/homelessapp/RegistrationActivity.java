@@ -69,7 +69,7 @@ public class RegistrationActivity extends AppCompatActivity {
         typeOfUser.setAdapter(adapter2);
 
         //declare the database reference object. This is what we use to access the database.
-        //NOTE: Unless you are signed in, this will not be useable.
+        //NOTE: Unless you are signed in, this will not be usable.
         mAuth = FirebaseAuth.getInstance();
         //FirebaseUser user = mAuth.getCurrentUser();
 

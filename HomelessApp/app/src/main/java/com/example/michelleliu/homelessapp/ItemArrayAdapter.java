@@ -1,6 +1,7 @@
 package com.example.michelleliu.homelessapp;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +16,7 @@ import model.Shelter;
  * @author Raymond Zhu
  */
 
-public class ItemArrayAdapter extends ArrayAdapter<String[]> {
+class ItemArrayAdapter extends ArrayAdapter<String[]> {
     private final List<String[]> scoreList = new ArrayList<>();
     private final List<Shelter> shelterList = new ArrayList<>();
 
@@ -81,13 +82,15 @@ public class ItemArrayAdapter extends ArrayAdapter<String[]> {
         return this.scoreList.get(index);
     }
 
+    @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         View row = convertView;
         ItemViewHolder viewHolder;
         if (row == null) {
             LayoutInflater inflater = (LayoutInflater) this.getContext().
                     getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            assert inflater != null;
             row = inflater.inflate(R.layout.item_layout, parent, false);
             viewHolder = new ItemViewHolder();
             viewHolder.key = row.findViewById(R.id.key);
@@ -103,6 +106,7 @@ public class ItemArrayAdapter extends ArrayAdapter<String[]> {
             viewHolder = (ItemViewHolder)row.getTag();
         }
         String[] stat = getItem(position);
+        assert stat != null;
         viewHolder.key.setText(stat[0]);
         viewHolder.name.setText(stat[1]);
 //        viewHolder.capacity.setText(stat[2]);

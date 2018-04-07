@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
         // Showing progressDialog.
         progressDialog.show();
 
-        // Calling  signInWithEmailAndPassword function with firebase object
+        // Calling  signInWithEmailAndPassword function with Firebase object
         // and passing EmailHolder and PasswordHolder inside it.
         firebaseAuth.signInWithEmailAndPassword(EmailHolder, PasswordHolder)
                 .addOnCompleteListener(this, task -> {

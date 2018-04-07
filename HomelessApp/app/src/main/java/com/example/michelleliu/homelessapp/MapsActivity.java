@@ -97,7 +97,7 @@ public class MapsActivity extends FragmentActivity
      * Shows the given shelters on the map.
      * @param inputList the list of input Shelters
      */
-    private void populateList(List<Shelter> inputList) {
+    private void populateList(Iterable<Shelter> inputList) {
         mMap.clear();
         for (Shelter entry : inputList) {
             LatLng coord = new LatLng(entry.getLatitude(), entry.getLongitude());

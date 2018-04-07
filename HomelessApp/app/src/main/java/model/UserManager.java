@@ -37,7 +37,7 @@ public class UserManager {
         UserInfo userInfo = new UserInfo(name, age, gender, type);
 
         //declare the database reference object. This is what we use to access the database.
-        //NOTE: Unless you are signed in, this will not be useable.
+        //NOTE: Unless you are signed in, this will not be usable.
 //        mFirebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference myRef = mFirebaseDatabase.getReference();
 
