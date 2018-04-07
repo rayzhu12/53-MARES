@@ -40,7 +40,7 @@ public class ShelterListActivity extends AppCompatActivity
         implements AdapterView.OnItemClickListener {
     private ListView listView;
     private ArrayAdapter adapter;
-    private final static ShelterManager sm = ShelterManager.getInstance();
+    private static final ShelterManager sm = ShelterManager.getInstance();
     //private static List<Shelter> shelterList;
 
     private final List<String> shelterNames = new ArrayList<>();

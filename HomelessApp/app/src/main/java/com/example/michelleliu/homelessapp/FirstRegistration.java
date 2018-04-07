@@ -11,7 +11,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+
+import model.UserManager;
 
 /**
  * First registration
@@ -21,18 +25,16 @@ public class FirstRegistration extends AppCompatActivity {
 
     private EditText email;
     private EditText password;
-    //private EditText confirmPass;
 
     private String emailHolder;
     private String passwordHolder;
     private boolean EditTextStatus;
 
+    UserManager manager = new UserManager();
+
     private ProgressDialog progressDialog;
 
-    //private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mAuth;
-    //private FirebaseAuth.AuthStateListener mAuthListener;
-    //private DatabaseReference myRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +43,8 @@ public class FirstRegistration extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-       email = findViewById(R.id.email);
-       password = findViewById(R.id.password);
+        email = findViewById(R.id.email);
+        password = findViewById(R.id.password);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -50,20 +52,42 @@ public class FirstRegistration extends AppCompatActivity {
 
         Button nextRegister = findViewById(R.id.nextRegister);
         nextRegister.setOnClickListener(view -> {
-            // Calling method to check EditText is empty or no status.
-            CheckEditTextIsEmptyOrNot();
+            emailHolder = email.getText().toString().trim();
+            passwordHolder = password.getText().toString().trim();
+            String error = manager.checkRegisterInfo(emailHolder, passwordHolder);
+
+            CheckErrorMessage(error);
 
             // If EditText is true then this block with execute.
-            if(EditTextStatus){
-                // If EditText is not empty than UserRegistrationFunction method will call.
-                UserRegistrationFunction();
-            }
-            // If EditText is false then this block with execute.
-            else {
-                Toast.makeText(FirstRegistration.this, "Please fill all form fields."
-                        , Toast.LENGTH_LONG).show();
-            }
+            if(EditTextStatus) {
+                // Showing progress dialog at user registration time.
+                progressDialog.setMessage("Please Wait, We are Registering Your Data on Server");
+                progressDialog.show();
 
+                Task<AuthResult> t = manager.registerUser(emailHolder, passwordHolder);
+                t.addOnCompleteListener(FirstRegistration.this, task -> {
+                    // Checking if user is registered successfully.
+                    if (task.isSuccessful()) {
+
+                        // If user registered successfully then show this toast message.
+                        Toast.makeText(FirstRegistration.this
+                                , "User Registration Successfully", Toast.LENGTH_LONG).show();
+                        finish();
+                        Intent intent = new Intent(FirstRegistration.this
+                                , RegistrationActivity.class);
+                        startActivity(intent);
+
+
+                    } else {
+                        // If something goes wrong.
+                        Toast.makeText(FirstRegistration.this, "Something Went Wrong."
+                                , Toast.LENGTH_LONG).show();
+                    }
+                    // Hiding the progress dialog after all task complete.
+                    progressDialog.dismiss();
+
+                });
+            }
         });
 
         Button logIn = findViewById(R.id.logIn);
@@ -74,66 +98,30 @@ public class FirstRegistration extends AppCompatActivity {
         });
     }
 
-    private void UserRegistrationFunction() {
-
-        // Showing progress dialog at user registration time.
-        progressDialog.setMessage("Please Wait, We are Registering Your Data on Server");
-        progressDialog.show();
-
-        // Creating createUserWithEmailAndPassword method and pass email and password inside it.
-        //chained method given by FireBase documentation
-        mAuth.createUserWithEmailAndPassword(emailHolder, passwordHolder)
-                .addOnCompleteListener(FirstRegistration.this, task -> {
-
-                    // Checking if user is registered successfully.
-                    if(task.isSuccessful()){
-
-                        // If user registered successfully then show this toast message.
-                        Toast.makeText(FirstRegistration.this
-                                ,"User Registration Successfully",Toast.LENGTH_LONG).show();
-                        finish();
-                        Intent intent = new Intent(FirstRegistration.this
-                                , RegistrationActivity.class);
-                        startActivity(intent);
-
-
-                    }else{
-
-                        // If something goes wrong.
-                        Toast.makeText(FirstRegistration.this,"Something Went Wrong."
-                                ,Toast.LENGTH_LONG).show();
-                    }
-
-                    // Hiding the progress dialog after all task complete.
-                    progressDialog.dismiss();
-
-                });
-    }
-
-    private void CheckEditTextIsEmptyOrNot(){
+    private void CheckErrorMessage(String error){
 
         boolean cancel = false;
         View focusView = null;
 
         // Check for a valid password, if the user entered one.
-        if (!isPasswordValid(password.getText().toString())) {
+        if (error.equals("Password must have at least 8 characters")) {
             password.setError(getString(R.string.error_invalid_password));
             focusView = password;
             cancel = true;
         }
-        if (TextUtils.isEmpty(password.getText().toString())) {
+        if (error.equals("Password cannot be empty")) {
             password.setError(getString(R.string.error_field_required));
             focusView = password;
             cancel = true;
         }
 
         // Check for a valid email address.
-        if (TextUtils.isEmpty(email.getText().toString())) {
+        if (error.equals("Email cannot be empty")) {
             email.setError(getString(R.string.error_field_required));
             focusView = email;
             cancel = true;
         }
-        if (!isEmailValid(email.getText().toString())) {
+        if (error.equals("Email must contain @")) {
             email.setError(getString(R.string.error_invalid_email));
             focusView = email;
             cancel = true;
@@ -144,23 +132,7 @@ public class FirstRegistration extends AppCompatActivity {
             // form field with an error.
             focusView.requestFocus();
         } else {
-
-            // Getting name and email from EditText and save into string variables.
-            emailHolder = email.getText().toString().trim();
-            passwordHolder = password.getText().toString().trim();
+            EditTextStatus = true;
         }
-
-
-        EditTextStatus = !(TextUtils.isEmpty(emailHolder) || TextUtils.isEmpty(passwordHolder));
-
     }
-
-    private boolean isEmailValid(String email) {
-        return email.contains("@");
-    }
-
-    private boolean isPasswordValid(CharSequence password) {
-        return password.length() >= 8;
-    }
-
 }

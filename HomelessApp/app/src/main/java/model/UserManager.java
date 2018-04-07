@@ -1,29 +1,37 @@
 package model;
 
+import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
 
+import com.example.michelleliu.homelessapp.FirstRegistration;
+import com.example.michelleliu.homelessapp.R;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.android.gms.tasks.Task;
 
 /**
  * @author Emily Wang
  */
 public class UserManager {
-    private final FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
+    private FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
+    private String email;
+    private String password;
 
 
     private static final String TAG = "userManager";
 
     /**
-     * the default constructor
+     * the default constructor needed for Firebase
      */
     public UserManager() {
 
     }
-
 
     /**
      * the constructor
@@ -62,12 +70,51 @@ public class UserManager {
         myRef.child("users").child(id).setValue(userInfo);
     }
 
-//    private void showData(DataSnapshot dataSnapshot, String userID) {
-//        UserInfo uInfo = new UserInfo();
-//        uInfo.setName(dataSnapshot.child(userID).getValue(UserInfo.class).getName());
-//        uInfo.setNumberOfBeds(dataSnapshot.child(userID).getValue(
-//                UserInfo.class).getNumberOfBeds());
-//        Log.d(TAG, "showData: name: " + uInfo.getName());
-//        Log.d(TAG, "showData: bed; " + uInfo.getNumberOfBeds());
-//    }
+    public Task<AuthResult> registerUser(String email, String password) {
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        return mAuth.createUserWithEmailAndPassword(email, password);
+    }
+
+    public String checkRegisterInfo(String email, String password) {
+        this.email = email;
+        this.password = password;
+
+        return CheckEditTextIsEmptyOrNot();
+    }
+
+
+    private String CheckEditTextIsEmptyOrNot(){
+
+        boolean notValid = false;
+        View focusView = null;
+
+        if (password.equals("")) {
+            return "Password cannot be empty";
+        }
+
+        // Check for a valid password, if the user entered one.
+        if (!isPasswordValid(password)) {
+            notValid = true;
+            return "Password must have at least 8 characters";
+        }
+
+        if (email.equals("")) {
+            return "Email cannot be empty";
+        }
+
+        if (!isEmailValid(email)) {
+            return "Email must contain @";
+        }
+
+        return "";
+    }
+
+    private boolean isEmailValid(String email) {
+        return email.contains("@");
+    }
+
+    private boolean isPasswordValid(CharSequence password) {
+        return password.length() >= 8;
+    }
+
 }
