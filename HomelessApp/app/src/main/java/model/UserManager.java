@@ -19,7 +19,6 @@ import com.google.android.gms.tasks.Task;
  * @author Emily Wang
  */
 public class UserManager {
-    private FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
     private String email;
     private String password;
 
@@ -43,6 +42,7 @@ public class UserManager {
      */
     public void addNewUser(String id, String name, int age, String gender, String type) {
         UserInfo userInfo = new UserInfo(name, age, gender, type);
+        FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
 
         //declare the database reference object. This is what we use to access the database.
         //NOTE: Unless you are signed in, this will not be usable.
