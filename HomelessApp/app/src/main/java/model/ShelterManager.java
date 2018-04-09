@@ -24,7 +24,7 @@ public class ShelterManager {
 
     //private FirebaseAuth mAuth;
     //private FirebaseAuth.AuthStateListener mAuthListener;
-    private final FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
+//    private final FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
 
     //replace with database
     private List<Shelter> shelterList;
@@ -55,6 +55,7 @@ public class ShelterManager {
         Log.d("u got here", name.toLowerCase());
         Shelter[] foundShelter = new Shelter[1];
 
+        FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference myRef = mFirebaseDatabase.getReference("shelters");
 
         myRef.addValueEventListener(new ValueEventListener() {

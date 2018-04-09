@@ -19,7 +19,6 @@ import com.google.android.gms.tasks.Task;
  * @author Emily Wang
  */
 public class UserManager {
-    private FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
     private String email;
     private String password;
 
@@ -43,6 +42,7 @@ public class UserManager {
      */
     public void addNewUser(String id, String name, int age, String gender, String type) {
         UserInfo userInfo = new UserInfo(name, age, gender, type);
+        FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
 
         //declare the database reference object. This is what we use to access the database.
         //NOTE: Unless you are signed in, this will not be usable.
@@ -84,17 +84,12 @@ public class UserManager {
 
 
     private String CheckEditTextIsEmptyOrNot(){
-
-        boolean notValid = false;
-        View focusView = null;
-
         if (password.equals("")) {
             return "Password cannot be empty";
         }
 
         // Check for a valid password, if the user entered one.
         if (!isPasswordValid(password)) {
-            notValid = true;
             return "Password must have at least 8 characters";
         }
 
@@ -109,8 +104,12 @@ public class UserManager {
         return "";
     }
 
-    private boolean isEmailValid(String email) {
-        return email.contains("@");
+    public boolean isEmailValid(String email) {
+        if (!email.contains("@")) {
+            return false;
+        } else {
+            return !(email.contains("!") || email.contains("?"));
+        }
     }
 
     private boolean isPasswordValid(CharSequence password) {
