@@ -104,8 +104,12 @@ public class UserManager {
         return "";
     }
 
-    private boolean isEmailValid(String email) {
-        return email.contains("@");
+    public boolean isEmailValid(String email) {
+        if (!email.contains("@")) {
+            return false;
+        } else {
+            return !(email.contains("!") || email.contains("?"));
+        }
     }
 
     private boolean isPasswordValid(CharSequence password) {
