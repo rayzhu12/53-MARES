@@ -84,17 +84,12 @@ public class UserManager {
 
 
     private String CheckEditTextIsEmptyOrNot(){
-
-        boolean notValid = false;
-        View focusView = null;
-
         if (password.equals("")) {
             return "Password cannot be empty";
         }
 
         // Check for a valid password, if the user entered one.
         if (!isPasswordValid(password)) {
-            notValid = true;
             return "Password must have at least 8 characters";
         }
 

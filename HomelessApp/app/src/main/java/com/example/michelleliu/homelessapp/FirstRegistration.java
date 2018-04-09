@@ -59,7 +59,7 @@ public class FirstRegistration extends AppCompatActivity {
             CheckErrorMessage(error);
 
             // If EditText is true then this block with execute.
-            if(EditTextStatus) {
+            if (EditTextStatus) {
                 // Showing progress dialog at user registration time.
                 progressDialog.setMessage("Please Wait, We are Registering Your Data on Server");
                 progressDialog.show();
@@ -98,7 +98,7 @@ public class FirstRegistration extends AppCompatActivity {
         });
     }
 
-    private void CheckErrorMessage(String error){
+    private void CheckErrorMessage(String error) {
 
         boolean cancel = false;
         View focusView = null;

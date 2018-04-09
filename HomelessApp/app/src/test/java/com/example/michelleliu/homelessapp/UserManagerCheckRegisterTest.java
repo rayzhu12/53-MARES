@@ -4,11 +4,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import model.UserManager;
-import model.UserInfo;
-
 
 import static junit.framework.TestCase.assertEquals;
-import static org.junit.Assert.*;
 
 /**
  * @author Emily Wang
@@ -46,6 +43,7 @@ public class UserManagerCheckRegisterTest {
         assertEquals("Password must have at least 8 characters", message);
     }
 
+    @Test
     public void emptyPassword() {
         String message = manager.checkRegisterInfo("test@gmail.com", "");
         assertEquals("Password cannot be empty", message);
