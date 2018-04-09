@@ -56,23 +56,36 @@ public class Shelter implements Serializable {
      */
     private List<Restriction> parseRestrictions(String inputString) {
         List<Restriction> restrictionList = new ArrayList<>();
-        if (inputString.toLowerCase().contains("women")) {
+        if (inputString.toLowerCase().contains("women") ||
+                inputString.toLowerCase().contains("woman") ||
+                inputString.toLowerCase().contains("female")) {
             restrictionList.add(Restriction.FEMALE);
-        } else if (inputString.toLowerCase().contains("men")) {
+        } else if (inputString.toLowerCase().contains("men") ||
+                inputString.toLowerCase().contains("man") ||
+                inputString.toLowerCase().contains("male")) {
             restrictionList.add(Restriction.MALE);
         }
         if (inputString.toLowerCase().contains("families") ||
-                inputString.toLowerCase().contains("anyone")) {
+                inputString.toLowerCase().contains("family")) {
             restrictionList.add(Restriction.FAMILIES);
         }
-        if (inputString.toLowerCase().contains("newborn")) {
+        if (inputString.toLowerCase().contains("newborn") ||
+                inputString.toLowerCase().contains("children")) {
             restrictionList.add(Restriction.CHILDREN);
         }
-        if (inputString.toLowerCase().contains("adult") ||
-                inputString.toLowerCase().contains("veteran")) {
+        if (inputString.toLowerCase().contains("young adult")) {
             restrictionList.add(Restriction.YOUNG_ADULTS);
+        }
+        if (inputString.toLowerCase().contains("anyone")) {
+            restrictionList.add(Restriction.YOUNG_ADULTS);
+            restrictionList.add(Restriction.CHILDREN);
+            restrictionList.add(Restriction.FAMILIES);
             restrictionList.add(Restriction.FEMALE);
             restrictionList.add(Restriction.MALE);
+            restrictionList.add(Restriction.NONBINARY);
+        }
+        if (inputString.toLowerCase().contains("nonbinary")) {
+            restrictionList.add(Restriction.NONBINARY);
         }
 
         return restrictionList;
