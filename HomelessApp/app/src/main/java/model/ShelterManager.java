@@ -99,11 +99,8 @@ public class ShelterManager {
                 matchingShelters.add(s);
             }
         }
-        if (matchingShelters == null) {
-            return new ArrayList<>();
-        } else {
-            return matchingShelters;
-        }
+        return matchingShelters;
+
     }
 
     /**

@@ -52,25 +52,25 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
                 nameMatchList = sm.findShelterByString(entry);
 
                 if (nameMatchList != null) {
-                    Log.d("testing", "here1");
+                    //Log.d("testing", "here1");
                     if (restrictionMatchList != null) {
-                        Log.d("testing", "here2");
+                        //Log.d("testing", "here2");
                         List<Shelter> combinedShelterList = new ArrayList<>();
                         for (Shelter s: nameMatchList) {
                             if (restrictionMatchList.contains(s)) {
-                                Log.d("testing", s + " added");
+                                //Log.d("testing", s + " added");
                                 combinedShelterList.add(s);
                             }
                         }
                         populateList(combinedShelterList);
                     } else {
-                        Log.d("testing", "here3");
+                        //Log.d("testing", "here3");
                         populateList(nameMatchList);
                     }
                 } else {
-                    Log.d("testing", "here4");
+                    //Log.d("testing", "here4");
                     if (restrictionMatchList != null) {
-                        Log.d("testing", "here5");
+                        //Log.d("testing", "here5");
                         populateList(restrictionMatchList);
                     }
                 }
