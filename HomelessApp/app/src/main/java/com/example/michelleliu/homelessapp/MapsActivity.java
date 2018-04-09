@@ -86,7 +86,7 @@ public class MapsActivity extends FragmentActivity
         rb6.setOnClickListener(
                 view -> populateList(sm.findShelterByRestriction(Restriction.CHILDREN)));
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(33.75, -84.39), 12));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(.75, -84.39), 12));
         mMap.setOnInfoWindowClickListener(this);
 
         Button clearMap = findViewById(R.id.clearmap);

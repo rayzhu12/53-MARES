@@ -12,7 +12,7 @@ import model.ShelterManager;
 
 import static org.junit.Assert.*;
 /**
- * Created by Zhuo.C on 4/8/2018.
+ * @author Sarah
  */
 
 public class ShelterManagerFindRestrictionTest {

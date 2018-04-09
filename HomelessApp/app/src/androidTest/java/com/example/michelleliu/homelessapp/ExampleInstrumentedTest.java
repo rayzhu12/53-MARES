@@ -18,6 +18,7 @@ import static org.junit.Assert.*;
 public class ExampleInstrumentedTest {
     /**
      * Uses app context.
+     * @throws Exception
      */
     @Test
     public void useAppContext() throws Exception {

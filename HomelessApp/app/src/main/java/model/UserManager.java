@@ -70,11 +70,23 @@ public class UserManager {
         myRef.child("users").child(id).setValue(userInfo);
     }
 
+    /**\
+     * Registers the user in Firebase
+     * @param email the email of the user
+     * @param password the password of the user
+     * @return the task auth result
+     */
     public Task<AuthResult> registerUser(String email, String password) {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         return mAuth.createUserWithEmailAndPassword(email, password);
     }
 
+    /**
+     * check if the register email works
+     * @param email the email
+     * @param password the password
+     * @return a string
+     */
     public String checkRegisterInfo(String email, String password) {
         this.email = email;
         this.password = password;
@@ -104,12 +116,13 @@ public class UserManager {
         return "";
     }
 
+    /**
+     * checks if email is valid or not
+     * @param email the email provided
+     * @return whether or not the email is valid
+     */
     public boolean isEmailValid(String email) {
-        if (!email.contains("@")) {
-            return false;
-        } else {
-            return !(email.contains("!") || email.contains("?"));
-        }
+        return email.contains("@") && !(email.contains("!") || email.contains("?"));
     }
 
     private boolean isPasswordValid(CharSequence password) {
