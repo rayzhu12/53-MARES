@@ -35,16 +35,16 @@ public class Shelter implements Serializable {
             throw new NullPointerException("Null information cannot be made into a Shelter.");
         }
         if (info.length == 9) {
-            key = Integer.parseInt(info[0]);
-            name = info[1];
-            capacity = info[2];
-            restriction = info[3];
-            restrictionList = parseRestrictions(info[3]);
-            longitude = Float.parseFloat(info[4]);
-            latitude = Float.parseFloat(info[5]);
-            address = info[6];
-            specialNotes = info[7];
-            phoneNumber = info[8];
+            key = Integer.parseInt(info[0].trim());
+            name = info[1].trim();
+            capacity = info[2].trim();
+            restriction = info[3].trim();
+            restrictionList = parseRestrictions(info[3].trim());
+            longitude = Float.parseFloat(info[4].trim());
+            latitude = Float.parseFloat(info[5].trim());
+            address = info[6].trim();
+            specialNotes = info[7].trim();
+            phoneNumber = info[8].trim();
 
         }
     }

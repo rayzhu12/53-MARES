@@ -7,8 +7,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import model.CSVFile;
 
 /**
  * @author Michelle
@@ -24,11 +29,19 @@ public class ShelterManager {
 
     //private FirebaseAuth mAuth;
     //private FirebaseAuth.AuthStateListener mAuthListener;
-//    private final FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
+    //private final FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
 
-    //replace with database
     private List<Shelter> shelterList;
-
+    //replace with database
+    public ShelterManager() {
+        try {
+            InputStream inputstream = new FileInputStream("C:\\Users\\Zhuo.C\\Documents\\GitHub\\SNACK-OVERFLOW\\HomelessApp\\app\\src\\main\\res\\raw\\stats.csv");
+            CSVFile csvFile = new CSVFile(inputstream);
+            shelterList = csvFile.returnShelterList();
+        } catch (FileNotFoundException e){
+            throw new RuntimeException("CSV file does not exist.");
+        }
+    }
 
     /**
      * gets the shelter list

@@ -33,7 +33,6 @@ public class CSVFile {
     public List<Shelter> read(){
         List resultList = new ArrayList();
         shelterList = new ArrayList<>();
-        Log.d("3/14", "i reach here");
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         try {
             String csvLine;

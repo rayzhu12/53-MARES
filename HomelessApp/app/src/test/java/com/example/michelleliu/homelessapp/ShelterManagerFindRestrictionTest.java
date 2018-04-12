@@ -36,9 +36,7 @@ public class ShelterManagerFindRestrictionTest {
         for (int i = 0; i < shelters.size(); i++) {
             shelterNames[i] = shelters.get(i).getName();
         }
-        for (String str : female) {
-            assertTrue(Arrays.asList(shelterNames).contains(str));
-        }
+        assertArrayEquals(female, shelterNames);
     }
 
     @Test
@@ -48,9 +46,7 @@ public class ShelterManagerFindRestrictionTest {
         for (int i = 0; i < shelters.size(); i++) {
             shelterNames[i] = shelters.get(i).getName();
         }
-        for (String str : male) {
-            assertTrue(Arrays.asList(shelterNames).contains(str));
-        }
+        assertArrayEquals(male, shelterNames);
     }
 
     @Test
@@ -60,9 +56,7 @@ public class ShelterManagerFindRestrictionTest {
         for (int i = 0; i < shelters.size(); i++) {
             shelterNames[i] = shelters.get(i).getName();
         }
-        for (String str : families) {
-            assertTrue(Arrays.asList(shelterNames).contains(str));
-        }
+        assertArrayEquals(families, shelterNames);
     }
 
     @Test
@@ -72,9 +66,7 @@ public class ShelterManagerFindRestrictionTest {
         for (int i = 0; i < shelters.size(); i++) {
             shelterNames[i] = shelters.get(i).getName();
         }
-        for (String str : ya) {
-            assertTrue(Arrays.asList(shelterNames).contains(str));
-        }
+        assertArrayEquals(ya, shelterNames);
     }
 
     @Test
@@ -84,9 +76,7 @@ public class ShelterManagerFindRestrictionTest {
         for (int i = 0; i < shelters.size(); i++) {
             shelterNames[i] = shelters.get(i).getName();
         }
-        for (String str : children) {
-            assertTrue(Arrays.asList(shelterNames).contains(str));
-        }
+        assertArrayEquals(children, shelterNames);
     }
 
     @Test
@@ -96,8 +86,6 @@ public class ShelterManagerFindRestrictionTest {
         for (int i = 0; i < shelters.size(); i++) {
             shelterNames[i] = shelters.get(i).getName();
         }
-        for (String str : nonbinary) {
-            assertTrue(Arrays.asList(shelterNames).contains(str));
-        }
+        assertArrayEquals(nonbinary, shelterNames);
     }
 }
