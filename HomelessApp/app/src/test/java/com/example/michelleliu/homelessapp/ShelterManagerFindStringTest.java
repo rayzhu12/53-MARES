@@ -47,7 +47,7 @@ public class ShelterManagerFindStringTest {
         hasStringF = new String[]{allShelterNames[1], allShelterNames[3], allShelterNames[12]};
         hasStringH = new String[]{allShelterNames[0], allShelterNames[1], allShelterNames[2],
                 allShelterNames[3], allShelterNames[4], allShelterNames[6], allShelterNames[7],
-                allShelterNames[8], allShelterNames[9], allShelterNames[0], allShelterNames[12]};
+                allShelterNames[8], allShelterNames[9], allShelterNames[12]};
     }
 
     @Test

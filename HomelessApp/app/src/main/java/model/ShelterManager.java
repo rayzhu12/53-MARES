@@ -39,7 +39,7 @@ public class ShelterManager {
     public ShelterManager() {
         try {
             //InputStream inputStream = getResources().openRawResource(R.raw.stats);
-            InputStream inputstream = new FileInputStream("C:\\Users\\Zhuo.C\\Documents\\GitHub\\SNACK-OVERFLOW\\HomelessApp\\app\\src\\main\\res\\raw\\stats.csv");
+            InputStream inputstream = new FileInputStream("C:\\0RAYZHU12\\GitHub\\SNACK-OVERFLOW\\HomelessApp\\app\\src\\main\\res\\raw\\stats.csv");
             //InputStream inputstream = new FileInputStream("C:\\Users\\michelleliu\\Documents\\Code\\SNACK-OVERFLOW\\HomelessApp\\app\\src\\main\\res\\raw\\stats.csv");
             CSVFile csvFile = new CSVFile(inputstream);
             shelterList = csvFile.returnShelterList();
@@ -112,6 +112,9 @@ public class ShelterManager {
      * @return list of Shelters whose names include s
      */
     public List<Shelter> findShelterByString(String input) {
+        if (input.equals("")) {
+            return new ArrayList<>();
+        }
         List<Shelter> matchingShelters = new ArrayList<>();
         for (Shelter s : shelterList) {
             if (s.getName().toLowerCase().contains(input.toLowerCase())) {
