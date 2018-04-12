@@ -1,6 +1,9 @@
 package model;
 
 import android.util.Log;
+
+import com.example.michelleliu.homelessapp.AppActivity;
+import com.example.michelleliu.homelessapp.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,7 +38,9 @@ public class ShelterManager {
     //replace with database
     public ShelterManager() {
         try {
+            //InputStream inputStream = getResources().openRawResource(R.raw.stats);
             InputStream inputstream = new FileInputStream("C:\\Users\\Zhuo.C\\Documents\\GitHub\\SNACK-OVERFLOW\\HomelessApp\\app\\src\\main\\res\\raw\\stats.csv");
+            //InputStream inputstream = new FileInputStream("C:\\Users\\michelleliu\\Documents\\Code\\SNACK-OVERFLOW\\HomelessApp\\app\\src\\main\\res\\raw\\stats.csv");
             CSVFile csvFile = new CSVFile(inputstream);
             shelterList = csvFile.returnShelterList();
         } catch (FileNotFoundException e){

@@ -57,7 +57,6 @@ public class CSVFile {
         return shelterList;
     }
 
-// --Commented out by Inspection START (4/4/2018 3:23 PM):
     /**
      * return Shelter List
      * @return shelter list
@@ -68,14 +67,4 @@ public class CSVFile {
         }
         return shelterList;
     }
-// --Commented out by Inspection STOP (4/4/2018 3:23 PM)
-
-//    String printRow(String[] row) {
-//        String returned = "[";
-//        for (String s : row) {
-//            returned += s + "| ";
-//        }
-//        returned += "]";
-//        return returned;
-//    }
 }
