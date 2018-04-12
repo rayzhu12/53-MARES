@@ -122,11 +122,7 @@ public class UserManager {
      * @return whether or not the email is valid
      */
     public boolean isEmailValid(String email) {
-        if (email.contains("!") || email.contains("?")) {
-            return false;
-        } else {
-            return email.contains("@");
-        }
+        return !email.contains("!") && !email.contains("?") && email.contains("@");
     }
 
     private boolean isPasswordValid(CharSequence password) {
