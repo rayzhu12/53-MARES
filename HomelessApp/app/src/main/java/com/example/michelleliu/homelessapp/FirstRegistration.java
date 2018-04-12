@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
+//import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,11 +30,9 @@ public class FirstRegistration extends AppCompatActivity {
     private String passwordHolder;
     private boolean EditTextStatus;
 
-    UserManager manager = new UserManager();
+    private final UserManager manager = new UserManager();
 
     private ProgressDialog progressDialog;
-
-    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +44,7 @@ public class FirstRegistration extends AppCompatActivity {
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
 
-        mAuth = FirebaseAuth.getInstance();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
         progressDialog = new ProgressDialog(FirstRegistration.this);
 

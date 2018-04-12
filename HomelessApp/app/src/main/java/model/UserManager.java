@@ -1,11 +1,11 @@
 package model;
 
-import android.text.TextUtils;
+//import android.text.TextUtils;
 import android.util.Log;
-import android.view.View;
+//import android.view.View;
 
-import com.example.michelleliu.homelessapp.FirstRegistration;
-import com.example.michelleliu.homelessapp.R;
+//import com.example.michelleliu.homelessapp.FirstRegistration;
+//import com.example.michelleliu.homelessapp.R;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
