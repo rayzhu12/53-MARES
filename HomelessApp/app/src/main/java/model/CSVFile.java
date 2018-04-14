@@ -31,7 +31,7 @@ public class CSVFile {
      * @return List of all Shelter objects parsed from raw csv file
      */
     public List<Shelter> read(){
-        List resultList = new ArrayList();
+        //List resultList = new ArrayList();
         shelterList = new ArrayList<>();
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         try {
@@ -51,7 +51,7 @@ public class CSVFile {
                 inputStream.close();
             }
             catch (IOException e) {
-                throw new RuntimeException("Error while closing input stream: "+ e);
+                //throw new RuntimeException("Error while closing input stream: "+ e);
             }
         }
         return shelterList;

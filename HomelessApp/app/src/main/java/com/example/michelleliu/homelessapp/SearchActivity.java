@@ -9,10 +9,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RadioButton;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import model.Restriction;
@@ -55,7 +57,7 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
                     //Log.d("testing", "here1");
                     if (restrictionMatchList != null) {
                         //Log.d("testing", "here2");
-                        List<Shelter> combinedShelterList = new ArrayList<>();
+                        Collection<Shelter> combinedShelterList = new ArrayList<>();
                         for (Shelter s: nameMatchList) {
                             if (restrictionMatchList.contains(s)) {
                                 //Log.d("testing", s + " added");
@@ -115,13 +117,13 @@ public class SearchActivity extends AppCompatActivity implements AdapterView.OnI
     }
 //    RadioGroup radioGroup = (RadioGroup) findViewById(R.id.filter);
 
-    private void populateList(List<Shelter> newShelterList) {
+    private void populateList(Iterable<Shelter> newShelterList) {
         List<String> shelterNames = new ArrayList<>();
         if (newShelterList != null) {
             for (Shelter shelter : newShelterList) {
                 shelterNames.add(shelter.getName());
             }
-            ArrayAdapter<Shelter> arrayAdapter =
+            ListAdapter arrayAdapter =
                     new ArrayAdapter(this, R.layout.listview_layout, shelterNames);
             shelters.setAdapter(arrayAdapter);
             shelters.setOnItemClickListener(this);

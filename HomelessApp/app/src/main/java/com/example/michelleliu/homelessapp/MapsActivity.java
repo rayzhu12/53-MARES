@@ -4,7 +4,6 @@ package com.example.michelleliu.homelessapp;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Location;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
@@ -17,7 +16,6 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -56,7 +54,7 @@ public class MapsActivity extends FragmentActivity
     private List<Shelter> shelterList;
 
     private static final String TAG = MapsActivity.class.getSimpleName();
-    private CameraPosition mCameraPosition;
+    //private CameraPosition mCameraPosition;
 
     // The entry points to the Places API.
     //private GeoDataClient mGeoDataClient;
@@ -68,13 +66,13 @@ public class MapsActivity extends FragmentActivity
     // A default location (Sydney, Australia) and default zoom to use when location permission is
     // not granted.
     //private final LatLng mDefaultLocation = new LatLng(-33.8523341, 151.2106085);
-    private static final int DEFAULT_ZOOM = 15;
+    //private static final int DEFAULT_ZOOM = 15;
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
     private boolean mLocationPermissionGranted;
 
     // Keys for storing activity state.
-    private static final String KEY_CAMERA_POSITION = "camera_position";
-    private static final String KEY_LOCATION = "location";
+    //private static final String KEY_CAMERA_POSITION = "camera_position";
+    //private static final String KEY_LOCATION = "location";
 
 
 
@@ -169,19 +167,19 @@ public class MapsActivity extends FragmentActivity
         }
     }
 
-    private void showCurrentPlace() {
-        if (mMap == null) {
-            return;
-        }
-        if (mLocationPermissionGranted) {
-
-        } else {
-            // The user has not granted permission.
-            Log.i(TAG, "The user did not grant location permission.");
-            // Prompt the user for permission.
-            getLocationPermission();
-        }
-    }
+//    private void showCurrentPlace() {
+//        if (mMap == null) {
+//            return;
+//        }
+//        if (mLocationPermissionGranted) {
+//
+//        } else {
+//            // The user has not granted permission.
+//            Log.i(TAG, "The user did not grant location permission.");
+//            // Prompt the user for permission.
+//            getLocationPermission();
+//        }
+//    }
 
     /**
      * Prompts the user for permission to use the device location.
@@ -216,8 +214,8 @@ public class MapsActivity extends FragmentActivity
         switch (requestCode) {
             case PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION: {
                 // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                if ((grantResults.length > 0)
+                        && (grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                     mLocationPermissionGranted = true;
                 }
             }
@@ -237,15 +235,13 @@ public class MapsActivity extends FragmentActivity
             } else {
                 mMap.setMyLocationEnabled(false);
                 mMap.getUiSettings().setMyLocationButtonEnabled(false);
-                Location mLastKnownLocation = null;
+                //Location mLastKnownLocation = null;
                 getLocationPermission();
             }
         } catch (SecurityException e)  {
             Log.e("Exception: %s", e.getMessage());
         }
     }
-
-    //todo: delete eventually
     //sets location permissions back to false after closing the app
     @Override
     public void onStop() {

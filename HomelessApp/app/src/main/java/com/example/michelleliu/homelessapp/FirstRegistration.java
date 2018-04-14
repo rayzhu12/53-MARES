@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
+//import com.google.firebase.auth.FirebaseAuth;
 
 import model.UserManager;
 
@@ -44,7 +44,7 @@ public class FirstRegistration extends AppCompatActivity {
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
 
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        //FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
         progressDialog = new ProgressDialog(FirstRegistration.this);
 
@@ -102,24 +102,24 @@ public class FirstRegistration extends AppCompatActivity {
         View focusView = null;
 
         // Check for a valid password, if the user entered one.
-        if (error.equals("Password must have at least 8 characters")) {
+        if (("Password must have at least 8 characters").equals(error)) {
             password.setError(getString(R.string.error_invalid_password));
             focusView = password;
             cancel = true;
         }
-        if (error.equals("Password cannot be empty")) {
+        if (("Password cannot be empty").equals(error)) {
             password.setError(getString(R.string.error_field_required));
             focusView = password;
             cancel = true;
         }
 
         // Check for a valid email address.
-        if (error.equals("Email cannot be empty")) {
+        if (("Email cannot be empty").equals(error)) {
             email.setError(getString(R.string.error_field_required));
             focusView = email;
             cancel = true;
         }
-        if (error.equals("Email must contain @")) {
+        if (("Email must contain @").equals(error)) {
             email.setError(getString(R.string.error_invalid_email));
             focusView = email;
             cancel = true;

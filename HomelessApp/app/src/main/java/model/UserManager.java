@@ -96,7 +96,7 @@ public class UserManager {
 
 
     private String CheckEditTextIsEmptyOrNot(){
-        if (password.equals("")) {
+        if ("".equals(password)) {
             return "Password cannot be empty";
         }
 
@@ -105,7 +105,7 @@ public class UserManager {
             return "Password must have at least 8 characters";
         }
 
-        if (email.equals("")) {
+        if ("".equals(email)) {
             return "Email cannot be empty";
         }
 

@@ -2,8 +2,6 @@ package model;
 
 import android.util.Log;
 
-import com.example.michelleliu.homelessapp.AppActivity;
-import com.example.michelleliu.homelessapp.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,11 +34,19 @@ public class ShelterManager {
 
     private List<Shelter> shelterList;
     //replace with database
+
+    /**
+     * creating a ShelterManager instance
+     */
     public ShelterManager() {
         try {
             //InputStream inputStream = getResources().openRawResource(R.raw.stats);
-            InputStream inputstream = new FileInputStream("C:\\0RAYZHU12\\GitHub\\SNACK-OVERFLOW\\HomelessApp\\app\\src\\main\\res\\raw\\stats.csv");
-            //InputStream inputstream = new FileInputStream("C:\\Users\\michelleliu\\Documents\\Code\\SNACK-OVERFLOW\\HomelessApp\\app\\src\\main\\res\\raw\\stats.csv");
+            InputStream inputstream = new FileInputStream(
+                    "C:\\0RAYZHU12\\GitHub\\SNACK-OVERFLOW\\HomelessApp\\app\\" +
+                            "src\\main\\res\\raw\\stats.csv");
+            //InputStream inputstream = new FileInputStream(
+            // "C:\\Users\\michelleliu\\Documents\\Code\\SNACK-OVERFLOW\\HomelessApp\\app
+            // \\src\\main\\res\\raw\\stats.csv");
             CSVFile csvFile = new CSVFile(inputstream);
             shelterList = csvFile.returnShelterList();
         } catch (FileNotFoundException e){
@@ -112,7 +118,7 @@ public class ShelterManager {
      * @return list of Shelters whose names include s
      */
     public List<Shelter> findShelterByString(String input) {
-        if (input.equals("")) {
+        if ("".equals(input)) {
             return new ArrayList<>();
         }
         List<Shelter> matchingShelters = new ArrayList<>();

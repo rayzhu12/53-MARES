@@ -10,15 +10,13 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Shelter;
-
 /**
  * @author Raymond Zhu
  */
 
 class ItemArrayAdapter extends ArrayAdapter<String[]> {
     private final List<String[]> scoreList = new ArrayList<>();
-    private final List<Shelter> shelterList = new ArrayList<>();
+    //private final List<Shelter> shelterList = new ArrayList<>();
 
     static class ItemViewHolder {
         TextView key;

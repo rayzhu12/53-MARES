@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -54,7 +55,7 @@ public class Shelter implements Serializable {
      * @param inputString the string to be parsed
      * @return list of parsed restrictions
      */
-    public List<Restriction> parseRestrictions(String inputString) {
+    public final List<Restriction> parseRestrictions(String inputString) {
         List<Restriction> restrictionList = new ArrayList<>();
         if (inputString.toLowerCase().contains("women") ||
                 inputString.toLowerCase().contains("woman") ||
@@ -119,7 +120,7 @@ public class Shelter implements Serializable {
      * gets the restriction list of the shelters
      * @return the restriction list
      */
-    public List<Restriction> getRestrictionList() {
+    public Collection<Restriction> getRestrictionList() {
         return restrictionList;
     }
 
