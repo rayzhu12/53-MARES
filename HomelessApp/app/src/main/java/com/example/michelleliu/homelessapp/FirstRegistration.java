@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -35,7 +37,7 @@ public class FirstRegistration extends AppCompatActivity {
     private ProgressDialog progressDialog;
 
     private FirebaseAuth mAuth;
-
+    Animation frombottom;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,6 +98,9 @@ public class FirstRegistration extends AppCompatActivity {
             Intent intent = new Intent(FirstRegistration.this, MainActivity.class);
             startActivity(intent);
         });
+        frombottom = AnimationUtils.loadAnimation(this,R.anim.frombottom);
+        logIn.setAnimation(frombottom);
+        nextRegister.setAnimation(frombottom);
     }
 
     private void CheckErrorMessage(String error){
