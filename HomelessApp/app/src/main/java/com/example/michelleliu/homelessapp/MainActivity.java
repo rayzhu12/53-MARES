@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -39,11 +41,13 @@ public class MainActivity extends AppCompatActivity {
     // Creating Boolean variable that holds EditText is empty or not status.
     //Boolean EditTextStatus ;
 
+    // animation
+    Animation frombottom;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         firebaseAuth = FirebaseAuth.getInstance();
 
 //        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
@@ -58,6 +62,10 @@ public class MainActivity extends AppCompatActivity {
         Button logIn = findViewById(R.id.sign_in);
         Button buttonGoToRegistration = findViewById(R.id.new_user);
 
+
+        frombottom = AnimationUtils.loadAnimation(this,R.anim.frombottom);
+        logIn.setAnimation(frombottom);
+        buttonGoToRegistration.setAnimation(frombottom);
         // Creating object instance.
         firebaseAuth = FirebaseAuth.getInstance();
 
