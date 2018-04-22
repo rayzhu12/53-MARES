@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -12,16 +12,11 @@
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/name_input"
-        android:layout_width="0dp"
+        android:layout_width="368dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="74dp"
-        app:layout_constraintBottom_toTopOf="@+id/email_input"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.45"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="85dp">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/Name"
@@ -33,78 +28,46 @@
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/email_input"
-        android:layout_width="0dp"
+        android:layout_width="368dp"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:layout_marginEnd="19dp"
-        android:layout_marginStart="19dp"
-        app:layout_constraintBottom_toTopOf="@+id/password_input"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name_input">
+        android:layout_marginStart="19dp">
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/Age"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Age"
-            android:inputType="number" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/password_input"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="15dp"
-        android:layout_marginEnd="19dp"
-        android:layout_marginStart="19dp"
-        app:layout_constraintBottom_toTopOf="@+id/email"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email_input">
+        android:layout_width="368dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="227dp">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/Gender"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="352dp"
+            android:layout_height="match_parent"
             android:hint="Gender"
             android:inputType="text" />
     </android.support.design.widget.TextInputLayout>
-
-    <Button
-        android:id="@+id/create_account"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="42dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:text="@string/create_account"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/typeOfUser" />
 
     <Spinner
         android:id="@+id/typeOfUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginLeft="4dp"
-        app:layout_constraintBottom_toTopOf="@+id/create_account"
-        app:layout_constraintStart_toStartOf="@+id/userText"
-        app:layout_constraintTop_toBottomOf="@+id/userText" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="123dp" />
 
     <TextView
         android:id="@+id/userText"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        android:text="@string/user_type"
-        app:layout_constraintBottom_toTopOf="@+id/typeOfUser"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/confirmPassword" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="247dp"
+        android:text="@string/user_type" />
 
     <EditText
         android:id="@+id/email"
@@ -115,11 +78,7 @@
         android:layout_marginStart="19dp"
         android:ems="10"
         android:hint="do not fill out"
-        android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/password"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password_input" />
+        android:inputType="textEmailAddress" />
 
     <EditText
         android:id="@+id/password"
@@ -130,12 +89,7 @@
         android:layout_marginStart="19dp"
         android:ems="10"
         android:hint="do not fill out"
-        android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/confirmPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email" />
+        android:inputType="textPassword" />
 
     <EditText
         android:id="@+id/confirmPassword"
@@ -145,10 +99,27 @@
         android:layout_marginStart="16dp"
         android:ems="10"
         android:hint="do not fill out"
-        android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/userText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
+        android:inputType="textPassword" />
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.design.widget.TextInputEditText
+        android:id="@+id/Age"
+        android:layout_width="363dp"
+        android:layout_height="44dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="154dp"
+        android:hint="Age"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/create_account"
+        android:layout_width="188dp"
+        android:layout_height="34dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="53dp"
+        android:background="@drawable/oval"
+        android:text="@string/create_account"
+        android:textColor="#FFFFFF" />
+
+</RelativeLayout>
