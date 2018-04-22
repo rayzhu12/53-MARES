@@ -17,6 +17,8 @@
         android:drawableLeft="@drawable/ic_action_email"
         android:ems="10"
         android:hint="Email"
+        android:textColorHint="#D5DCE4"
+        android:textColor="#D5DCE4"
         android:inputType="textEmailAddress" />
 
     <EditText
@@ -29,6 +31,8 @@
         android:drawableLeft="@drawable/ic_action_lock"
         android:ems="10"
         android:hint="Password"
+        android:textColor="#D5DCE4"
+        android:textColorHint="#D5DCE4"
         android:inputType="textPassword" />
 
     <Button
