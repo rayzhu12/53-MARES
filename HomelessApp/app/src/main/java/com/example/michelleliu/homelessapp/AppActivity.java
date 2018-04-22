@@ -76,14 +76,6 @@ public class AppActivity extends AppCompatActivity {
             finish();
             startActivity(new Intent(AppActivity.this, ShelterListActivity.class));
         });
-        Button notification = findViewById(R.id.notification);
-        notification.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                System.out.println("Button clicked!");
-                NotificationGenerator.openActivityNotification(getApplicationContext());
-            }
-        });
 
         Button logout = findViewById(R.id.logout);
         logout.setOnClickListener(logOutListener);
