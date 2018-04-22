@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -50,13 +52,13 @@ public class AppActivity extends AppCompatActivity {
 
     private int nBeds = 0;
     private String shelterName = "";
-
+    Animation frombottom;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+//        Toolbar toolbar = findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
 
         if (shelterList == null) {
             InputStream inputStream = getResources().openRawResource(R.raw.stats);
@@ -83,6 +85,10 @@ public class AppActivity extends AppCompatActivity {
         Button releaseBed = findViewById(R.id.release);
         releaseBed.setOnClickListener(releaseBedListener);
 
+        frombottom = AnimationUtils.loadAnimation(this,R.anim.frombottom);
+        releaseBed.setAnimation(frombottom);
+        logout.setAnimation(frombottom);
+        updateData.setAnimation(frombottom);
         mAuthListener = firebaseAuth -> {
             FirebaseUser user = firebaseAuth.getCurrentUser();
             if (user != null) {

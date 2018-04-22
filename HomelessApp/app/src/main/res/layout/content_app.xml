@@ -26,7 +26,7 @@
         android:layout_height="34dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="196dp"
+        android:layout_marginBottom="149dp"
         android:background="@drawable/oval"
         android:text="@string/action_sign_out"
         android:textColor="#FFFFFF" />
@@ -37,7 +37,7 @@
         android:layout_height="34dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="298dp"
+        android:layout_marginTop="291dp"
         android:background="@drawable/oval"
         android:text="@string/data"
         android:textColor="#FFFFFF" />
@@ -45,13 +45,13 @@
     <Button
         android:id="@+id/release"
         android:layout_width="188dp"
-        android:layout_height="34dp"
+        android:layout_height="35dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="262dp"
+        android:layout_marginBottom="271dp"
         android:background="@drawable/oval"
-        android:textColor="#FFFFFF"
-        android:text="@string/release_bed" />
+        android:text="@string/release_bed"
+        android:textColor="#FFFFFF" />
 
     <Button
         android:id="@+id/notification"
