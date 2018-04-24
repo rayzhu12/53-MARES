@@ -47,5 +47,9 @@
     <string name="title_activity_reserve_confirm">ReserveConfirmActivity</string>
     <string name="title_activity_confirm_bed">ConfirmBedActivity</string>
     <string name="title_activity_maps">Map</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="title_activity_password_recovery">PasswordRecoveryActivity</string>
+    <string name="password_recovery">Password Recovery</string>
+    <string name="forgot_your_password">Forgot your password?</string>
 
 </resources>

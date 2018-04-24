@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         // Assign button layout ID.
         Button logIn = findViewById(R.id.sign_in);
         Button buttonGoToRegistration = findViewById(R.id.new_user);
-
+        Button forgotPassword = findViewById(R.id.forgotPass);
 
         frombottom = AnimationUtils.loadAnimation(this,R.anim.frombottom);
         logIn.setAnimation(frombottom);
@@ -118,7 +119,15 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
 
+                Intent intent = new Intent(MainActivity.this, PasswordRecoveryActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 

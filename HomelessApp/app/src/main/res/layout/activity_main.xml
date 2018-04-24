@@ -17,7 +17,8 @@
         android:gravity="center"
         android:text="@string/title_sign_in"
         android:textColor="#FFFFFF"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:layout_alignParentLeft="true" />
 
     <EditText
         android:id="@+id/email"
@@ -30,7 +31,8 @@
         android:ems="10"
         android:gravity="center"
         android:hint="@string/prompt_email"
-        android:inputType="textEmailAddress" />
+        android:inputType="textEmailAddress"
+        android:layout_alignLeft="@+id/password" />
 
     <EditText
         android:id="@+id/password"
@@ -75,5 +77,15 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="198dp"
         app:srcCompat="@drawable/logo_s" />
+
+    <Button
+        android:id="@+id/forgotPass"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_above="@+id/sign_in"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/gradient"
+        android:text="@string/forgot_password" />
 
 </RelativeLayout>
