@@ -1,9 +1,7 @@
 package com.example.michelleliu.homelessapp;
 
 import android.content.Intent;
-import android.graphics.Point;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -12,8 +10,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.Toast;
-import android.app.activity;
-import android.view.View.OnClickListener;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -26,11 +22,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import model.CSVFile;
 import model.FireBaseCallBack;
-import model.GameBoard;
 import model.Shelter;
 import model.ShelterManager;
 
@@ -59,31 +53,13 @@ public class AppActivity extends AppCompatActivity {
     private int nBeds = 0;
     private String shelterName = "";
     Animation frombottom;
-
-    private Handler frame = new Handler();
-    //Velocity includes the speed and the direction of our sprite motion
-    private Point sprite1Velocity;
-    private Point sprite2Velocity;
-    private int sprite1MaxX;
-    private int sprite1MaxY;
-    private int sprite2MaxX;
-    private int sprite2MaxY;
-    //Divide the frame by 1000 to calculate how many times per second the screen will update.
-    private static final int FRAME_RATE = 20; //50 frames per second
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app);
 //        Toolbar toolbar = findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
-        Handler h = new Handler();
-        ((Button)findViewById(R.id.notification)).setOnClickListener(this);
-        h.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                initGfx();
-            }
-        }, 1000);
+
         if (shelterList == null) {
             InputStream inputStream = getResources().openRawResource(R.raw.stats);
             CSVFile csvFile = new CSVFile(inputStream);
@@ -127,28 +103,6 @@ public class AppActivity extends AppCompatActivity {
             }
         };
 
-    }
-    private Point getRandomVelocity() {
-        Random r = new Random();
-        int min = 1;
-        int max = 5;
-        int x = r.nextInt(max-min+1)+min;
-        int y = r.nextInt(max-min+1)+min;
-        return new Point (x,y);
-    }
-    private Point getRandomPoint() {
-        Random r = new Random();
-        int minX = 0;
-        int maxX = findViewById(R.id.the_canvas).getWidth() -
-                ((GameBoard)findViewById(R.id.the_canvas)).getSprite1Width();
-        int x = 0;
-        int minY = 0;
-        int maxY = findViewById(R.id.the_canvas).getHeight() -
-                ((GameBoard)findViewById(R.id.the_canvas)).getSprite1Height();
-        int y = 0;
-        x = r.nextInt(maxX-minX+1)+minX;
-        y = r.nextInt(maxY-minY+1)+minY;
-        return new Point (x,y);
     }
 
     private void loggedIn() {

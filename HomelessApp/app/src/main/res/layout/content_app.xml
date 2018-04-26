@@ -63,9 +63,5 @@
         android:background="@drawable/oval"
         android:text="Notification"
         android:textColor="#FFFFFF" />
-    <com.example.michelleliu.homelessapp
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_margin="20dip"
-        android:id="@+id/the_canvas"/>
+
 </RelativeLayout>
