@@ -51,5 +51,8 @@
     <string name="title_activity_password_recovery">PasswordRecoveryActivity</string>
     <string name="password_recovery">Password Recovery</string>
     <string name="forgot_your_password">Forgot your password?</string>
+    <string name="title_activity_my_firebase_messaging_service">MyFirebaseMessagingService</string>
+    <string name="title_activity_my_firebase_instance_idservice">MyFirebaseInstanceIDService
+    </string>
 
 </resources>
