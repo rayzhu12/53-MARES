@@ -64,4 +64,15 @@
         android:text="Notification"
         android:textColor="#FFFFFF" />
 
+    <Button
+        android:id="@+id/fbShare"
+        android:layout_width="188dp"
+        android:layout_height="34dp"
+        android:layout_alignTop="@+id/logout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/oval"
+        android:textColor="#FFFFFF"
+        android:text="Share on Facebook" />
+
 </RelativeLayout>

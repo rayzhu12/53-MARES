@@ -1,6 +1,7 @@
 package com.example.michelleliu.homelessapp;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -11,6 +12,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.widget.ShareDialog;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -53,6 +56,9 @@ public class AppActivity extends AppCompatActivity {
     private int nBeds = 0;
     private String shelterName = "";
     Animation frombottom;
+
+    ShareDialog shareDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,6 +109,21 @@ public class AppActivity extends AppCompatActivity {
             }
         };
 
+        Button fbShare = findViewById(R.id.fbShare);
+        shareDialog = new ShareDialog(this);
+        fbShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (ShareDialog.canShow(ShareLinkContent.class)) {
+                    ShareLinkContent linkContent = new ShareLinkContent.Builder()
+                            .setQuote("Snack Overflow's app. This app displays homeless" +
+                                    "shelters in the Atlanta area and allows users to reserve beds.")
+                            .setContentUrl(Uri.parse("https://github.com/rayzhu12/SNACK-OVERFLOW"))
+                            .build();
+                    shareDialog.show(linkContent);
+                }
+            }
+        });
     }
 
     private void loggedIn() {
