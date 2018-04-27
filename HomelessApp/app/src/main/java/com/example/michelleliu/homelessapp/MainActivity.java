@@ -195,6 +195,9 @@ public class MainActivity extends AppCompatActivity {
                                 counter++;
                             };
                         }
+                    } else {
+                        Toast alert = Toast.makeText(MainActivity.this, "Login Disabled for 1 minute.", Toast.LENGTH_SHORT);
+                        alert.show();
                     }
 
                 });
