@@ -2,6 +2,7 @@ package com.example.michelleliu.homelessapp;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -45,6 +46,9 @@ public class MainActivity extends AppCompatActivity {
     // animation
     Animation frombottom;
 
+    private int counter;
+
+    private boolean run = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
             if(EditTextEmptyCheck){
 
                 // If EditText is not empty than UserRegistrationFunction method will call.
-                LoginFunction();
+                LoginFunction(logIn);
 
             }
             // If EditText is false then this block with execute.
@@ -142,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
         EditTextEmptyCheck = !(TextUtils.isEmpty(EmailHolder) || TextUtils.isEmpty(PasswordHolder));
     }
 
-    private void LoginFunction() {
+    private void LoginFunction(Button logIn) {
 
         // Setting up message in progressDialog.
         progressDialog.setMessage("Please Wait");
@@ -155,30 +159,44 @@ public class MainActivity extends AppCompatActivity {
         firebaseAuth.signInWithEmailAndPassword(EmailHolder, PasswordHolder)
                 .addOnCompleteListener(this, task -> {
 
-                    // If task done Successful.
-                    if (task.isSuccessful()) {
+                    if (run) {
+                        // If task done Successful.
+                        if (task.isSuccessful()) {
 
-                        // Hiding the progress dialog.
-                        progressDialog.dismiss();
+                            // Hiding the progress dialog.
+                            progressDialog.dismiss();
 
-                        // Closing the current Login Activity.
-                        finish();
+                            // Closing the current Login Activity.
+                            finish();
 
 
-                        // Opening the UserProfileActivity.
-                        Intent intent = new Intent(MainActivity.this, AppActivity.class);
-                        startActivity(intent);
-                    } else {
+                            // Opening the UserProfileActivity.
+                            Intent intent = new Intent(MainActivity.this, AppActivity.class);
+                            startActivity(intent);
+                        } else {
+                            if (counter == 2) {
+                                Toast alert = Toast.makeText(MainActivity.this, "Login Disabled for 1 minute.", Toast.LENGTH_SHORT);
+                                alert.show();
 
-                        // Hiding the progress dialog.
-                        progressDialog.dismiss();
-
-                        // Showing toast message when email or password not found in
-                        // Firebase Online database.
-                        Toast.makeText(MainActivity.this,
-                                "Email or Password Not found, Please Try Again",
-                                Toast.LENGTH_LONG).show();
+                                run = false;
+                                final Handler handler = new Handler();
+                                handler.postDelayed(new Runnable() {   @Override
+                                    public void run() {
+                                        counter = 0;
+                                        run = true;
+                                        logIn.setEnabled(true);
+                                    }
+                                }, 60000);
+                            } else {
+                                // Hiding the progress dialog.
+                                progressDialog.dismiss();
+                                Toast alert = Toast.makeText(MainActivity.this, "Wrong Credentials", Toast.LENGTH_SHORT);
+                                alert.show();
+                                counter++;
+                            };
+                        }
                     }
+
                 });
     }
 }
