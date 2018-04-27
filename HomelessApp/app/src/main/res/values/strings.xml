@@ -52,7 +52,8 @@
     <string name="password_recovery">Password Recovery</string>
     <string name="forgot_your_password">Forgot your password?</string>
     <string name="title_activity_my_firebase_messaging_service">MyFirebaseMessagingService</string>
-    <string name="title_activity_my_firebase_instance_idservice">MyFirebaseInstanceIDService
-    </string>
+    <string name="title_activity_my_firebase_instance_idservice">MyFirebaseInstanceIDService</string>
+    <string name="facebook_app_id">687038901420036</string>
+    <string name="fb_login_protocol_scheme">fb687038901420036</string>
 
 </resources>
